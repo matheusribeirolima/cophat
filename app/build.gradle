@@ -1,0 +1,102 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion target_version
+    flavorDimensions "default"
+    defaultConfig {
+        applicationId "com.example.cophat"
+        minSdkVersion min_version
+        targetSdkVersion target_version
+        versionCode code_version
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField("String", "DATABASE_NAME", '"cophat"')
+    }
+    buildTypes {
+        debug {
+            minifyEnabled false
+            shrinkResources false
+        }
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    productFlavors {
+        def STRING = "String"
+        def APP_NAME = "APP_NAME"
+        def BASE_URL = "BASE_URL"
+        children {
+            applicationId "com.example.cophat.ca"
+            resValue "string", APP_NAME, "Cophat CA"
+            buildConfigField(STRING, BASE_URL, '"https://www.google.com.br"')
+            manifestPlaceholders = [appIcon: "@mipmap/ic_launcher"]
+        }
+        parents {
+            applicationId "com.example.cophat.p"
+            resValue "string", APP_NAME, "Cophat P"
+            buildConfigField(STRING, BASE_URL, '"https://www.google.com.br"')
+            manifestPlaceholders = [appIcon: "@mipmap/ic_launcher_round"]
+        }
+    }
+    dataBinding {
+        enabled = true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    // Core
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "androidx.appcompat:appcompat:$appcompat_version"
+    implementation "androidx.core:core-ktx:$core_version"
+
+    // Layout
+    implementation "com.google.android.material:material:$material_version"
+    implementation "androidx.constraintlayout:constraintlayout:$constraint_version"
+
+    // Courotines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$courotine_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$courotine_version"
+
+    // ViewModel and LiveData
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+    kapt "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
+
+    // Storage
+    implementation "androidx.room:room-runtime:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+
+    // Dependency injection
+    implementation "org.koin:koin-android:$koin_version"
+    implementation "org.koin:koin-androidx-scope:$koin_version"
+    implementation "org.koin:koin-androidx-viewmodel:$koin_version"
+
+    // Web communication
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$interceptor_version"
+
+    // Loading
+    implementation "com.wang.avi:library:$loading_version"
+
+    // Debug db
+    implementation "com.amitshekhar.android:debug-db:$debugdb_version"
+
+    // Test helpers
+    testImplementation "junit:junit:$junit_version"
+    testImplementation "androidx.arch.core:core-testing:$lifecycle_version"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$courotine_version"
+    testImplementation "androidx.room:room-testing:$room_version"
+    testImplementation "org.koin:koin-test:$koin_version"
+    androidTestImplementation "androidx.test:runner:$runner_version"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
+}
