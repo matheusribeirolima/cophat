@@ -1,4 +1,4 @@
-package com.example.cophat.ui
+package com.example.cophat.feature
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

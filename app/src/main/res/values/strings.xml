@@ -1,3 +1,5 @@
 <resources>
-
+    <string name="attention">Atenção</string>
+    <string name="unexpected_error">Ops… Ocorreu um erro inesperado.\nTente novamente mais tarde.</string>
+    <string name="ok">OK</string>
 </resources>

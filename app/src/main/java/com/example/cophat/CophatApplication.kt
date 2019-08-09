@@ -4,6 +4,7 @@ import android.app.Application
 import com.example.cophat.di.dataModule
 import com.example.cophat.di.helperModule
 import com.example.cophat.di.networkModule
+import com.example.cophat.di.viewModuleModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidFileProperties
 import org.koin.android.ext.koin.androidLogger
@@ -18,7 +19,7 @@ class CophatApplication : Application() {
             androidLogger()
             androidContext(this@CophatApplication)
             androidFileProperties()
-            modules(listOf(networkModule, dataModule, helperModule))
+            modules(listOf(networkModule, dataModule, helperModule, viewModuleModule))
         }
     }
 }
