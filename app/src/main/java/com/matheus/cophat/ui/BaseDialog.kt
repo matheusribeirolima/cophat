@@ -5,10 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
+import com.matheus.cophat.R
 
 abstract class BaseDialog<T : ViewDataBinding> : DialogFragment() {
 
@@ -31,11 +33,12 @@ abstract class BaseDialog<T : ViewDataBinding> : DialogFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        baseObserver = BaseObserver(getViewModel(), fragmentManager)
+        baseObserver = BaseObserver(getViewModel(), activity?.supportFragmentManager)
         baseObserver.observeChanges(this)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        dialog?.window?.setBackgroundDrawable(ContextCompat.getDrawable(context!!, R.drawable.bg_gradient))
         binding = DataBindingUtil.inflate(inflater, getLayout(), container, false)
         return binding.root
     }
@@ -46,6 +49,12 @@ abstract class BaseDialog<T : ViewDataBinding> : DialogFragment() {
     }
 
     fun show(fragmentManager: FragmentManager) {
-        show(fragmentManager, getDialogTag())
+        val old = fragmentManager.findFragmentByTag(getDialogTag())
+        if (old != null && old.isAdded) {
+            return
+        }
+        val ft = fragmentManager.beginTransaction()
+        ft.add(this, getDialogTag())
+        ft.commit()
     }
 }

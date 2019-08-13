@@ -4,5 +4,6 @@
     <string name="cophat">Cophat</string>
     <string name="attention">Atenção</string>
     <string name="unexpected_error">Ops… Ocorreu um erro inesperado.\nTente novamente mais tarde.</string>
+    <string name="database_error">Ops… Ocorreu um erro com o banco de dados.\nTente novamente.</string>
     <string name="ok">OK</string>
 </resources>

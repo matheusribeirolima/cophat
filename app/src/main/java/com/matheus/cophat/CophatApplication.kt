@@ -2,7 +2,7 @@ package com.matheus.cophat
 
 import android.app.Application
 import com.matheus.cophat.di.dataModule
-import com.matheus.cophat.di.helperModule
+import com.matheus.cophat.di.appModule
 import com.matheus.cophat.di.networkModule
 import com.matheus.cophat.di.viewModuleModule
 import org.koin.android.ext.koin.androidContext
@@ -19,7 +19,7 @@ class CophatApplication : Application() {
             androidLogger()
             androidContext(this@CophatApplication)
             androidFileProperties()
-            modules(listOf(networkModule, dataModule, helperModule, viewModuleModule))
+            modules(listOf(networkModule, dataModule, appModule, viewModuleModule))
         }
     }
 }

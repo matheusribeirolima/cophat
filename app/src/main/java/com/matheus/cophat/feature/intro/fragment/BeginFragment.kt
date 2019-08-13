@@ -21,5 +21,7 @@ class BeginFragment : BaseFragment<FragmentBeginBinding>() {
 
     override fun initBinding() {
         binding = getBinding()
+
+        binding.btTest.setOnClickListener { introViewModel.testSave() }
     }
 }

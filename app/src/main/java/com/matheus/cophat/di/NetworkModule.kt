@@ -1,7 +1,7 @@
 package com.matheus.cophat.di
 
 import com.matheus.cophat.BuildConfig
-import com.matheus.cophat.data.source.remote.CophatApi
+import com.matheus.cophat.data.remote.CophatApi
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module

@@ -14,8 +14,7 @@
             android:icon="${appIcon}"
             android:theme="@style/AppTheme">
         <activity android:name="com.matheus.cophat.feature.intro.activity.IntroActivity"
-                  android:configChanges="orientation|keyboardHidden|screenSize"
-                  android:theme="@style/AppTheme.IntroTheme">
+                  android:configChanges="orientation|keyboardHidden|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <action android:name="android.intent.action.VIEW"/>

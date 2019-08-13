@@ -10,7 +10,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class ErrorDialog : BaseDialog<DialogErrorBinding>() {
 
     companion object {
-        private const val TAG = "error_loading"
+        private const val TAG = "dialog_error"
 
         @Synchronized
         fun newInstance(): ErrorDialog {
@@ -34,6 +34,8 @@ class ErrorDialog : BaseDialog<DialogErrorBinding>() {
 
     override fun initBinding() {
         binding = getBinding()
+
+        binding.btError.setOnClickListener { dismiss() }
 
         errorViewModel.errorMessage.observe(this,
             Observer { binding.tvMessageError.text = resources.getText(it) })
