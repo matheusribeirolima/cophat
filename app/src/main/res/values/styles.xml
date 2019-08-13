@@ -1,11 +1,31 @@
 <resources>
-
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@drawable/bg_gradient</item>
+        <item name="android:fontFamily">@font/comfortaa_regular</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textSize">@dimen/default_size</item>
+    </style>
+
+    <style name="AppTheme.IntroTheme">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <style name="TextViewTheme" parent="TextAppearance.AppCompat">
+        <item name="android:shadowDx">1</item>
+        <item name="android:shadowDy">1</item>
+        <item name="android:shadowRadius">2</item>
+        <item name="android:shadowColor">@color/colorShadowText</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textSize">@dimen/default_size</item>
+        <item name="android:fontFamily">@font/comfortaa_regular</item>
+    </style>
+
+    <style name="TextViewTheme.Bold">
+        <item name="android:fontFamily">@font/comfortaa_bold</item>
     </style>
 
 </resources>
