@@ -1,18 +1,18 @@
-package com.matheus.cophat.feature.intro.activity
+package com.matheus.cophat.feature.children.activity
 
 import com.matheus.cophat.R
-import com.matheus.cophat.databinding.ActivityIntroBinding
-import com.matheus.cophat.feature.intro.viewmodel.IntroViewModel
+import com.matheus.cophat.databinding.ActivityChildrenBinding
+import com.matheus.cophat.feature.children.viewmodel.ChildrenViewModel
 import com.matheus.cophat.ui.BaseActivity
 import com.matheus.cophat.ui.BaseViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class IntroActivity : BaseActivity<ActivityIntroBinding>() {
+class ChildrenActivity : BaseActivity<ActivityChildrenBinding>() {
 
-    private val viewModel: IntroViewModel by viewModel()
+    private val viewModel: ChildrenViewModel by viewModel()
 
     override fun getLayout(): Int {
-        return R.layout.activity_intro
+        return R.layout.activity_children
     }
 
     override fun getViewModel(): BaseViewModel {
@@ -21,6 +21,7 @@ class IntroActivity : BaseActivity<ActivityIntroBinding>() {
 
     override fun initBinding() {
         binding = getBinding()
+
 
     }
 }

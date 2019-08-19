@@ -16,14 +16,14 @@ import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class SplashFragment : BaseFragment<FragmentSplashBinding>() {
 
-    private val introViewModel: IntroViewModel by sharedViewModel()
+    private val viewModel: IntroViewModel by sharedViewModel()
 
     override fun getLayout(): Int {
         return R.layout.fragment_splash
     }
 
     override fun getViewModel(): BaseViewModel {
-        return introViewModel
+        return viewModel
     }
 
     override fun initBinding() {

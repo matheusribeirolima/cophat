@@ -11,7 +11,7 @@ class ErrorViewModel : BaseViewModel() {
 
     fun handleThrowable(throwable: Throwable) {
         if (throwable is DatabaseException) {
-            errorMessage.value = R.string.database_error
+            errorMessage.value = R.string.firebase_error
         } else {
             errorMessage.value = R.string.unexpected_error
         }

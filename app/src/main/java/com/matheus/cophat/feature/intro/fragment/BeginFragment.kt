@@ -1,5 +1,8 @@
 package com.matheus.cophat.feature.intro.fragment
 
+import android.view.WindowManager
+import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.matheus.cophat.R
 import com.matheus.cophat.databinding.FragmentBeginBinding
 import com.matheus.cophat.feature.intro.viewmodel.IntroViewModel
@@ -9,19 +12,31 @@ import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class BeginFragment : BaseFragment<FragmentBeginBinding>() {
 
-    private val introViewModel: IntroViewModel by sharedViewModel()
+    private val viewModel: IntroViewModel by sharedViewModel()
 
     override fun getLayout(): Int {
         return R.layout.fragment_begin
     }
 
     override fun getViewModel(): BaseViewModel {
-        return introViewModel
+        return viewModel
     }
 
     override fun initBinding() {
+        activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
         binding = getBinding()
 
-        binding.btTest.setOnClickListener { introViewModel.testSave() }
+        viewModel.initialize()
+
+        viewModel.beginPresenter.observe(this,
+            Observer { binding.presenter = it })
+
+        binding.btFormBegin.setOnClickListener {
+            findNavController().navigate(viewModel.chooseNav())
+        }
+
+        binding.btListFormsBegin.setOnClickListener {
+            findNavController().navigate(R.id.action_beginFragment_to_nav_questionnaires)
+        }
     }
 }

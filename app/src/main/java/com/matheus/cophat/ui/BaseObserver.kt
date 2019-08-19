@@ -11,10 +11,10 @@ import org.koin.core.inject
 class BaseObserver constructor(
     private val baseViewModel: BaseViewModel,
     private val fragmentManager: FragmentManager?
-) : KoinComponent {
+) {
 
-    private val loadingDialog by inject<LoadingDialog>()
-    private val errorDialog by inject<ErrorDialog>()
+    private val loadingDialog = LoadingDialog.newInstance()
+    private val errorDialog = ErrorDialog.newInstance()
 
     fun observeChanges(owner: LifecycleOwner) {
         baseViewModel.handleLoading.observe(
@@ -35,7 +35,7 @@ class BaseObserver constructor(
     }
 
     private fun hideLoading() {
-        loadingDialog.dismiss()
+        fragmentManager?.let { loadingDialog.dismiss() }
     }
 
     private fun handleError(throwable: Throwable) {

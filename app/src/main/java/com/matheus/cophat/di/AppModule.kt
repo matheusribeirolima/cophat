@@ -9,10 +9,4 @@ val appModule = module {
     single {
         ResourceManager(get())
     }
-    single {
-        LoadingDialog.newInstance()
-    }
-    single {
-        ErrorDialog.newInstance()
-    }
 }

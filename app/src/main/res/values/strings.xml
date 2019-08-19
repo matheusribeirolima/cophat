@@ -1,9 +1,36 @@
 <resources>
     <string name="app_name_children" translatable="false">Cophat CA</string>
     <string name="app_name_parents" translatable="false">Cophat P</string>
+    <string name="cophat_ca" translatable="false">Cophat-CA</string>
+    <string name="cophat_p" translatable="false">Cophat-P</string>
     <string name="cophat">Cophat</string>
+    <string name="cophat_ca_desc">Escala de Coping da Hospitalização, Adoecimento e Tratamento\nVersão para crianças e
+        adolescentes
+    </string>
+    <string name="cophat_p_desc">Escala de Coping da Hospitalização, Adoecimento e Tratamento\nVersão para
+        pais/responsáveis
+    </string>
     <string name="attention">Atenção</string>
     <string name="unexpected_error">Ops… Ocorreu um erro inesperado.\nTente novamente mais tarde.</string>
-    <string name="database_error">Ops… Ocorreu um erro com o banco de dados.\nTente novamente.</string>
+    <string name="firebase_error">Ops… Ocorreu um erro ao salvar as informações.</string>
     <string name="ok">OK</string>
+    <string name="initiate_questionnaire">Iniciar questionário</string>
+    <string name="continue_questionnaire">Continuar questionário</string>
+    <string name="list_questionnaires">Listar questionários</string>
+    <string name="configurations">Configurações</string>
+    <string name="emotions">Emoções</string>
+    <string name="emotions_description">O que cada carinha significa?</string>
+    <string name="happy">Feliz</string>
+    <string name="sad">Triste</string>
+    <string name="angry">Raiva</string>
+    <string name="scared">Medo</string>
+    <string name="thermometer">Termômetro</string>
+    <string name="thermometer_description">O que cada estado significa?</string>
+    <string name="always">Sempre</string>
+    <string name="often">Quase sempre</string>
+    <string name="sometimes">Às vezes</string>
+    <string name="almost_never">Quase nunca</string>
+    <string name="never">Nunca</string>
+    <string name="before_start">Antes de começar, vamos aprender o que significam as imagens!</string>
+
 </resources>

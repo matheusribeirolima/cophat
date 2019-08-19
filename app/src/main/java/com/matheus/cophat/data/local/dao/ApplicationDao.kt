@@ -11,4 +11,13 @@ interface ApplicationDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertApplication(applicationEntity: ApplicationEntity)
+
+    @Update
+    suspend fun updateApplication(applicationEntity: ApplicationEntity)
+
+    @Delete
+    suspend fun deleteApplication(applicationEntity: ApplicationEntity)
+
+    @Query("DELETE FROM application")
+    suspend fun deleteAllApplications()
 }

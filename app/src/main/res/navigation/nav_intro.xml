@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/splashFragment">
+
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.matheus.cophat.feature.intro.fragment.SplashFragment"
+        android:label="SplashFragment">
+        <action
+                android:id="@+id/action_splashFragment_to_beginFragment"
+                app:destination="@id/beginFragment"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:popUpTo="@+id/navigation_graph"
+                app:popUpToInclusive="true" app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+    </fragment>
+    <fragment
+        android:id="@+id/beginFragment"
+        android:name="com.matheus.cophat.feature.intro.fragment.BeginFragment"
+        android:label="BeginFragment" >
+        <action
+            android:id="@+id/action_beginFragment_to_children_navigation"
+            app:destination="@id/children_navigation"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_beginFragment_to_parents_navigation"
+            app:destination="@id/parents_navigation"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action android:id="@+id/action_beginFragment_to_nav_questionnaires" app:destination="@id/nav_questionnaires"/>
+    </fragment>
+    <include app:graph="@navigation/nav_children" />
+    <include app:graph="@navigation/nav_parents" />
+    <include app:graph="@navigation/nav_questionnaires"/>
+</navigation>
