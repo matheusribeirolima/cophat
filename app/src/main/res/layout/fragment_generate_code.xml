@@ -1,0 +1,139 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/default_padding">
+
+        <TextView
+            android:id="@+id/tvTitleCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Aplicador, insira os dados abaixo para poder iniciar o questionário"
+            android:textSize="@dimen/title_size"
+            android:textStyle="bold"
+            app:fadeIn="@{100}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvApplicatorCode"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/large_margin"
+            android:text="Escolha o aplicador:"
+            android:textSize="@dimen/title_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitleCode" />
+
+        <Spinner
+            android:id="@+id/sApplicatorCode"
+            android:backgroundTint="@color/colorWhite"
+            android:layout_width="400dp"
+            android:popupBackground="@drawable/bg_gradient"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/medium_margin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvApplicatorCode" />
+
+        <TextView
+            android:id="@+id/tvHospitalCode"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/large_margin"
+            android:text="Escolha o hospital:"
+            android:textSize="@dimen/title_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sApplicatorCode" />
+
+        <RadioGroup
+            android:id="@+id/rgHospitalCode"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/medium_margin"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvHospitalCode">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/colorWhite"
+                android:text="Hospital do Câncer de Uberlândia"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/default_size" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/medium_margin"
+                android:buttonTint="@color/colorWhite"
+                android:text="Hospital de Câncer de Barretos"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/default_size" />
+
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/tvChildCode"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/large_margin"
+            android:text="Nome completo da criança"
+            android:textSize="@dimen/title_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rgHospitalCode" />
+
+        <EditText
+            android:id="@+id/etChildCode"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/medium_margin"
+            android:backgroundTint="@color/colorWhite"
+            android:hint="Nome"
+            android:inputType="textCapWords"
+            android:textColorHint="@color/colorRipple"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/default_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvChildCode" />
+
+        <Button
+            android:id="@+id/btBackCode"
+            style="@style/AppTheme.SecondaryButtonTheme"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginTop="@dimen/big_margin"
+            android:text="@string/go_back"
+            app:fadeIn="@{1850}"
+            app:layout_constraintEnd_toStartOf="@+id/btContinueCode"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etChildCode" />
+
+        <Button
+            android:id="@+id/btContinueCode"
+            style="@style/AppTheme.ButtonTheme"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/button_height"
+            android:text="@string/advance"
+            app:fadeIn="@{1900}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btBackCode"
+            app:layout_constraintTop_toTopOf="@+id/btBackCode" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

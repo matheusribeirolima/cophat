@@ -32,5 +32,17 @@
     <string name="almost_never">Quase nunca</string>
     <string name="never">Nunca</string>
     <string name="before_start">Antes de começar, vamos aprender o que significam as imagens!</string>
+    <string name="advance">Avançar</string>
+    <string name="go_back">Voltar</string>
+    <string name="hcu">Hospital do Câncer de Uberlândia</string>
+    <string name="hcb">Hospital de Câncer de Barretos</string>
+    <string-array name="applicators">
+        <item>Matheus Ribeiro Lima</item>
+        <item>Maria Adriana Vidigal Lima</item>
+        <item>Matheus Ribeiro Lima</item>
+        <item>Maria Adriana Vidigal Lima</item>
+        <item>Matheus Ribeiro Lima</item>
+        <item>Maria Adriana Vidigal Lima</item>
+    </string-array>
 
 </resources>

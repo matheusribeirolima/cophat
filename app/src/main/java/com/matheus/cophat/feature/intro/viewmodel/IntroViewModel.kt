@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.database.DatabaseException
 import com.matheus.cophat.R
+import com.matheus.cophat.data.local.entity.Applicator
 import com.matheus.cophat.data.presenter.BeginPresenter
 import com.matheus.cophat.data.repository.IntroRepository
 import com.matheus.cophat.helper.ResourceManager
@@ -16,6 +17,7 @@ class IntroViewModel(
 ) : BaseViewModel() {
 
     val beginPresenter = MutableLiveData<BeginPresenter>()
+    val applicators = MutableLiveData<List<Applicator>>()
 
     fun initialize() {
         viewModelScope.launch/*(context = Dispatchers.IO)*/ {
@@ -59,9 +61,19 @@ class IntroViewModel(
 
     fun chooseNav(): Int {
         return if (isChildren) {
-            R.id.action_beginFragment_to_children_navigation
+            R.id.action_generateCodeFragment_to_children_navigation
         } else {
-            R.id.action_beginFragment_to_parents_navigation
+            R.id.action_generateCodeFragment_to_parents_navigation
+        }
+    }
+
+    fun testRead() {
+        viewModelScope.launch/*(context = Dispatchers.IO)*/ {
+            try {
+                applicators.postValue(repository.getApplicators())
+            } catch (e: DatabaseException) {
+                handleError.postValue(e)
+            }
         }
     }
 

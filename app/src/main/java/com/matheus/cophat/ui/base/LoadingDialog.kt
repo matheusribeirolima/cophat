@@ -15,7 +15,7 @@ import com.matheus.cophat.R
 class LoadingDialog : DialogFragment() {
 
     companion object {
-        private const val TAG = "dialog_loading"
+        const val TAG = "dialog_loading"
 
         @Synchronized
         fun newInstance(): LoadingDialog {

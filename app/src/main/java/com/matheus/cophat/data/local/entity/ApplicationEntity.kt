@@ -7,13 +7,13 @@ import java.util.*
 @Entity(tableName = "application")
 data class ApplicationEntity(
     @PrimaryKey
-    val applicationId: String,
-    val hospital: Hospital,
-    val respondent: Respondent,
-    val applicator: Applicator,
-    val questionnaire: Questionnaire,
-    val questions: List<Question>,
-    val date: Date,
-    val startHour: Date,
-    val endHour: Date
+    var applicationId: String,
+    var hospital: Hospital,
+    var respondent: Respondent,
+    var applicator: Applicator,
+    var questionnaire: Questionnaire,
+    var questions: List<Question>,
+    var date: Date,
+    var startHour: Date,
+    var endHour: Date
 )

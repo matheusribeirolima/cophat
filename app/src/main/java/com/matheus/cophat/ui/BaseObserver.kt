@@ -1,20 +1,16 @@
 package com.matheus.cophat.ui
 
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import com.matheus.cophat.ui.base.ErrorDialog
 import com.matheus.cophat.ui.base.LoadingDialog
-import org.koin.core.KoinComponent
-import org.koin.core.inject
 
 class BaseObserver constructor(
     private val baseViewModel: BaseViewModel,
     private val fragmentManager: FragmentManager?
 ) {
-
-    private val loadingDialog = LoadingDialog.newInstance()
-    private val errorDialog = ErrorDialog.newInstance()
 
     fun observeChanges(owner: LifecycleOwner) {
         baseViewModel.handleLoading.observe(
@@ -31,15 +27,17 @@ class BaseObserver constructor(
     }
 
     private fun showLoading() {
-        fragmentManager?.let { loadingDialog.show(it) }
+        fragmentManager?.let { LoadingDialog.newInstance().show(it) }
     }
 
     private fun hideLoading() {
-        fragmentManager?.let { loadingDialog.dismiss() }
+        fragmentManager?.findFragmentByTag(LoadingDialog.TAG)
+            ?.let { (it as DialogFragment).dismiss() }
     }
 
     private fun handleError(throwable: Throwable) {
         fragmentManager?.let {
+            val errorDialog = ErrorDialog.newInstance()
             errorDialog.show(it)
             errorDialog.handleThrowable(throwable)
         }

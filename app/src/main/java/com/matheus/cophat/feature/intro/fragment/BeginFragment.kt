@@ -6,6 +6,7 @@ import androidx.navigation.fragment.findNavController
 import com.matheus.cophat.R
 import com.matheus.cophat.databinding.FragmentBeginBinding
 import com.matheus.cophat.feature.intro.viewmodel.IntroViewModel
+import com.matheus.cophat.helper.showToast
 import com.matheus.cophat.ui.BaseFragment
 import com.matheus.cophat.ui.BaseViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
@@ -18,21 +19,19 @@ class BeginFragment : BaseFragment<FragmentBeginBinding>() {
         return R.layout.fragment_begin
     }
 
-    override fun getViewModel(): BaseViewModel {
-        return viewModel
-    }
-
     override fun initBinding() {
         activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
         binding = getBinding()
 
         viewModel.initialize()
 
+        viewModel.applicators.observe(this, Observer { activity?.showToast(it[0].name) })
+
         viewModel.beginPresenter.observe(this,
             Observer { binding.presenter = it })
 
         binding.btFormBegin.setOnClickListener {
-            findNavController().navigate(viewModel.chooseNav())
+            findNavController().navigate(R.id.action_beginFragment_to_generateCodeFragment)
         }
 
         binding.btListFormsBegin.setOnClickListener {

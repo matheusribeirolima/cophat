@@ -22,10 +22,6 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>() {
         return R.layout.fragment_splash
     }
 
-    override fun getViewModel(): BaseViewModel {
-        return viewModel
-    }
-
     override fun initBinding() {
         binding = getBinding()
 

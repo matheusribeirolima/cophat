@@ -16,8 +16,6 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
     @LayoutRes
     abstract fun getLayout(): Int
 
-    abstract fun getViewModel(): BaseViewModel
-
     abstract fun initBinding()
 
     fun getBinding(): T {

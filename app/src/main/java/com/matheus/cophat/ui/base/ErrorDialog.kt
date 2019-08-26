@@ -38,7 +38,7 @@ class ErrorDialog : BaseDialog<DialogErrorBinding>() {
         binding.btError.setOnClickListener { dismiss() }
 
         errorViewModel.errorMessage.observe(this,
-            Observer { binding.tvMessageError.text = resources.getText(it) })
+            Observer { binding.tvMessageError.text = it })
     }
 
     fun handleThrowable(throwable: Throwable?) {

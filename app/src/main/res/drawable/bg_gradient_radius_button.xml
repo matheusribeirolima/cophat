@@ -12,8 +12,7 @@
         <shape android:shape="rectangle">
             <gradient
                 android:endColor="@color/colorPrimary"
-                android:startColor="@color/colorAccent"
-                android:type="linear" />
+                android:startColor="@color/colorAccent" />
             <corners android:radius="@dimen/button_radius" />
         </shape>
     </item>

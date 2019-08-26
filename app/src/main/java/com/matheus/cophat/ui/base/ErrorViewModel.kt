@@ -3,17 +3,18 @@ package com.matheus.cophat.ui.base
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.database.DatabaseException
 import com.matheus.cophat.R
+import com.matheus.cophat.helper.ResourceManager
 import com.matheus.cophat.ui.BaseViewModel
 
-class ErrorViewModel : BaseViewModel() {
+class ErrorViewModel(private val resourceManager: ResourceManager) : BaseViewModel() {
 
-    val errorMessage = MutableLiveData<Int>()
+    val errorMessage = MutableLiveData<String>()
 
     fun handleThrowable(throwable: Throwable) {
         if (throwable is DatabaseException) {
-            errorMessage.value = R.string.firebase_error
+            errorMessage.value = resourceManager.getString(R.string.firebase_error)
         } else {
-            errorMessage.value = R.string.unexpected_error
+            errorMessage.value = throwable.message
         }
     }
 }

@@ -38,7 +38,7 @@ abstract class BaseDialog<T : ViewDataBinding> : DialogFragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        dialog?.window?.setBackgroundDrawable(ContextCompat.getDrawable(context!!, R.drawable.bg_gradient))
+        context?.let { dialog?.window?.setBackgroundDrawable(ContextCompat.getDrawable(it, R.drawable.bg_gradient)) }
         binding = DataBindingUtil.inflate(inflater, getLayout(), container, false)
         return binding.root
     }
