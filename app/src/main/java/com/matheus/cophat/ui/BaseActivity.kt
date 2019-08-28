@@ -1,7 +1,9 @@
 package com.matheus.cophat.ui
 
 import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
+import android.view.View
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -24,13 +26,13 @@ abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
 
     abstract fun initBinding()
 
-    fun getBinding(): T {
-        return binding
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            window.decorView.importantForAutofill =
+                View.IMPORTANT_FOR_AUTOFILL_NO_EXCLUDE_DESCENDANTS
+        }
         binding = DataBindingUtil.setContentView(this, getLayout())
 
         baseObserver = BaseObserver(getViewModel(), supportFragmentManager)
@@ -40,7 +42,11 @@ abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
     }
 
     fun requestPermission(permission: String) {
-        if (ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(
+                this,
+                permission
+            ) == PackageManager.PERMISSION_GRANTED
+        ) {
             getViewModel().handlePermission.postValue(true)
         } else {
             ActivityCompat.requestPermissions(
@@ -50,7 +56,11 @@ abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
         }
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
         when (requestCode) {
             permissionsRequestCode -> {
                 if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {

@@ -5,10 +5,12 @@ import androidx.lifecycle.viewModelScope
 import com.google.firebase.database.DatabaseException
 import com.matheus.cophat.R
 import com.matheus.cophat.data.local.entity.Applicator
+import com.matheus.cophat.data.local.entity.Hospital
 import com.matheus.cophat.data.presenter.BeginPresenter
 import com.matheus.cophat.data.repository.IntroRepository
 import com.matheus.cophat.helper.ResourceManager
 import com.matheus.cophat.ui.BaseViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class IntroViewModel(
@@ -18,9 +20,10 @@ class IntroViewModel(
 
     val beginPresenter = MutableLiveData<BeginPresenter>()
     val applicators = MutableLiveData<List<Applicator>>()
+    val hospitals = MutableLiveData<List<Hospital>>()
 
-    fun initialize() {
-        viewModelScope.launch/*(context = Dispatchers.IO)*/ {
+    fun initializeBegin() {
+        viewModelScope.launch(context = Dispatchers.IO) {
             handleLoading.postValue(true)
 
             val presenterImage: Int
@@ -59,31 +62,25 @@ class IntroViewModel(
         }
     }
 
+    fun initializeGenerateCode() {
+        viewModelScope.launch(context = Dispatchers.IO) {
+            try {
+                handleLoading.postValue(true)
+                hospitals.postValue(repository.getDatabaseChild("hospital", Hospital::class.java))
+                applicators.postValue(repository.getDatabaseChild("applicator", Applicator::class.java))
+            } catch (e: DatabaseException) {
+                handleError.postValue(e)
+            } finally {
+                handleLoading.postValue(false)
+            }
+        }
+    }
+
     fun chooseNav(): Int {
         return if (isChildren) {
             R.id.action_generateCodeFragment_to_children_navigation
         } else {
             R.id.action_generateCodeFragment_to_parents_navigation
-        }
-    }
-
-    fun testRead() {
-        viewModelScope.launch/*(context = Dispatchers.IO)*/ {
-            try {
-                applicators.postValue(repository.getApplicators())
-            } catch (e: DatabaseException) {
-                handleError.postValue(e)
-            }
-        }
-    }
-
-    fun testSave() {
-        viewModelScope.launch/*(context = Dispatchers.IO)*/ {
-            try {
-                repository.testSave()
-            } catch (e: DatabaseException) {
-                handleError.postValue(e)
-            }
         }
     }
 }

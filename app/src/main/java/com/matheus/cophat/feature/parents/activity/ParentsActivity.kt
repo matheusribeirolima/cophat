@@ -20,6 +20,5 @@ class ParentsActivity : BaseActivity<ActivityParentsBinding>() {
     }
 
     override fun initBinding() {
-        binding = getBinding()
     }
 }

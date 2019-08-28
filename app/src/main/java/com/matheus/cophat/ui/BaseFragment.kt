@@ -18,10 +18,6 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
 
     abstract fun initBinding()
 
-    fun getBinding(): T {
-        return binding
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, getLayout(), container, false)
         binding.lifecycleOwner = this

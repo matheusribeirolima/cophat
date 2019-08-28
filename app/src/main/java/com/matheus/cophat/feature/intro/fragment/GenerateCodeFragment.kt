@@ -1,6 +1,8 @@
 package com.matheus.cophat.feature.intro.fragment
 
+import android.content.Context
 import android.widget.ArrayAdapter
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.matheus.cophat.R
 import com.matheus.cophat.databinding.FragmentGenerateCodeBinding
@@ -17,19 +19,37 @@ class GenerateCodeFragment : BaseFragment<FragmentGenerateCodeBinding>() {
     }
 
     override fun initBinding() {
-        binding = getBinding()
+        configureListeners()
 
+        viewModel.initializeGenerateCode()
+
+        viewModel.applicators.observe(this, Observer { applicators ->
+            context?.let { context ->
+                binding.sApplicatorCode.adapter = generateAdapter(context, applicators)
+            }
+        })
+
+        viewModel.hospitals.observe(this, Observer { hospitals ->
+            context?.let { context ->
+                binding.sHospitalCode.adapter = generateAdapter(context, hospitals)
+            }
+        })
+    }
+
+    private fun<T> generateAdapter(context: Context, list : List<T>) : ArrayAdapter<T> {
+        val adapter = ArrayAdapter(
+            context,
+            android.R.layout.simple_spinner_item,
+            list
+        )
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+
+        return adapter
+    }
+
+    private fun configureListeners() {
         binding.btBackCode.setOnClickListener { activity?.onBackPressed() }
 
         binding.btContinueCode.setOnClickListener { findNavController().navigate(viewModel.chooseNav()) }
-
-        context?.let {
-            val adapter = ArrayAdapter.createFromResource(
-                it,
-                R.array.applicators, android.R.layout.simple_spinner_item
-            )
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            binding.sApplicatorCode.adapter = adapter
-        }
     }
 }

@@ -15,6 +15,7 @@ import com.matheus.cophat.R
 abstract class BaseDialog<T : ViewDataBinding> : DialogFragment() {
 
     private lateinit var baseObserver: BaseObserver
+
     internal lateinit var binding: T
 
     @LayoutRes
@@ -25,10 +26,6 @@ abstract class BaseDialog<T : ViewDataBinding> : DialogFragment() {
     abstract fun getDialogTag(): String
 
     abstract fun initBinding()
-
-    fun getBinding(): T {
-        return binding
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

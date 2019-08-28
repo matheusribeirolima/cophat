@@ -23,8 +23,6 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>() {
     }
 
     override fun initBinding() {
-        binding = getBinding()
-
         animateLauncher()
     }
 

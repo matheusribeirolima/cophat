@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
@@ -40,12 +40,12 @@
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="TextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
-        <item name="colorControlNormal">@color/colorWhite</item>
-        <item name="colorControlActivated">@color/colorWhite</item>
-        <item name="colorControlHighlight">@color/colorWhite</item>
-        <item name="boxStrokeColor">@color/colorWhite</item>
-        <item name="boxStrokeWidth">2dp</item>
+    <style name="AppTheme.EditTextTheme">
+        <item name="android:backgroundTint">@color/colorWhite</item>
+        <item name="android:textColorHint">@color/colorRipple</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textSize">@dimen/large_size</item>
+        <item name="android:importantForAutofill" tools:targetApi="o">no</item>
     </style>
 
 </resources>

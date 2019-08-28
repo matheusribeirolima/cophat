@@ -15,7 +15,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@string/before_start"
+            android:text="@string/lets_learn"
             android:textSize="@dimen/title_size"
             android:textStyle="bold"
             app:fadeIn="@{100}"

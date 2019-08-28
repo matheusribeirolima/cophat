@@ -15,6 +15,6 @@ class ListQuestionnairesFragment : BaseFragment<FragmentListQuestionnairesBindin
     }
 
     override fun initBinding() {
-        binding = getBinding()
+
     }
 }

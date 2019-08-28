@@ -4,8 +4,8 @@ import androidx.annotation.DrawableRes
 
 data class BeginPresenter(
     @DrawableRes
-    val beginImage: Int,
-    val beginTitle: String,
-    val beginSubtitle: String,
-    val beginButton: String
+    var beginImage: Int = 0,
+    var beginTitle: String = "",
+    var beginSubtitle: String = "",
+    var beginButton: String = ""
 )

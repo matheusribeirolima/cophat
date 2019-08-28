@@ -31,18 +31,16 @@
     <string name="sometimes">Às vezes</string>
     <string name="almost_never">Quase nunca</string>
     <string name="never">Nunca</string>
-    <string name="before_start">Antes de começar, vamos aprender o que significam as imagens!</string>
+    <string name="insert_data_before">Antes de começar, insira os dados abaixo para que seja gerado o código da família</string>
+    <string name="lets_learn">%1$s, vamos aprender o que significam as imagens?</string>
     <string name="advance">Avançar</string>
     <string name="go_back">Voltar</string>
-    <string name="hcu">Hospital do Câncer de Uberlândia</string>
-    <string name="hcb">Hospital de Câncer de Barretos</string>
-    <string-array name="applicators">
-        <item>Matheus Ribeiro Lima</item>
-        <item>Maria Adriana Vidigal Lima</item>
-        <item>Matheus Ribeiro Lima</item>
-        <item>Maria Adriana Vidigal Lima</item>
-        <item>Matheus Ribeiro Lima</item>
-        <item>Maria Adriana Vidigal Lima</item>
-    </string-array>
-
+    <string name="child_name">Qual o nome da criança?</string>
+    <string name="complete_name">Nome completo</string>
+    <string name="choose_hospital">Escolha o hospital:</string>
+    <string name="choose_applicator">Escolha o aplicador:</string>
+    <string name="edit_or_remove_applicator">Clique nos ícones para adicionar, editar ou remover qualquer aplicador no banco de dados da aplicação</string>
+    <string name="edit">Editar</string>
+    <string name="remove">Remover</string>
+    <string name="add">Adicionar</string>
 </resources>

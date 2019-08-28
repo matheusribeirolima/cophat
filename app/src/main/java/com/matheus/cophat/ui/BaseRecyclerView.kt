@@ -7,17 +7,19 @@ import androidx.recyclerview.widget.RecyclerView
 
 abstract class BaseRecyclerView<T, VH : RecyclerView.ViewHolder> : RecyclerView.Adapter<VH>() {
 
+    internal var presenterList = ArrayList<T>()
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
         val itemView = LayoutInflater.from(parent.context).inflate(getLayoutId(viewType), parent, false)
         return getViewHolderInstance(itemView, viewType)
     }
 
     override fun getItemCount(): Int {
-        return getItems().size
+        return presenterList.size
     }
 
     override fun onBindViewHolder(holder: VH, position: Int) {
-        onBindViewHolder(holder, getItems()[position], position)
+        onBindViewHolder(holder, presenterList[position], position)
     }
 
     abstract fun getLayoutId(viewType: Int): Int
@@ -26,5 +28,6 @@ abstract class BaseRecyclerView<T, VH : RecyclerView.ViewHolder> : RecyclerView.
 
     abstract fun onBindViewHolder(holder: VH, item: T, position: Int)
 
-    abstract fun getItems(): List<T>
+    abstract fun setItems(items : List<T>)
+
 }

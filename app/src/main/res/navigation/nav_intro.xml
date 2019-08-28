@@ -24,6 +24,9 @@
         <action
             android:id="@+id/action_beginFragment_to_generateCodeFragment"
             app:destination="@id/generateCodeFragment" />
+        <action
+            android:id="@+id/action_beginFragment_to_configureFragment"
+            app:destination="@id/configureFragment" />
     </fragment>
     <include app:graph="@navigation/nav_children" />
     <include app:graph="@navigation/nav_parents" />
@@ -39,4 +42,8 @@
             android:id="@+id/action_generateCodeFragment_to_parents_navigation"
             app:destination="@id/parents_navigation" />
     </fragment>
+    <fragment
+        android:id="@+id/configureFragment"
+        android:name="com.matheus.cophat.feature.intro.fragment.ConfigureFragment"
+        android:label="ConfigureFragment" />
 </navigation>

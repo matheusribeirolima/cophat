@@ -20,7 +20,6 @@ class IntroActivity : BaseActivity<ActivityIntroBinding>() {
     }
 
     override fun initBinding() {
-        binding = getBinding()
 
     }
 }

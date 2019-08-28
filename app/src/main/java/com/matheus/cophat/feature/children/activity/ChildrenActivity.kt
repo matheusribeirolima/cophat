@@ -20,7 +20,7 @@ class ChildrenActivity : BaseActivity<ActivityChildrenBinding>() {
     }
 
     override fun initBinding() {
-        binding = getBinding()
+
 
 
     }

@@ -20,6 +20,6 @@ class QuestionnairesActivity : BaseActivity<ActivityQuestionnairesBinding>() {
     }
 
     override fun initBinding() {
-        binding = getBinding()
+
     }
 }

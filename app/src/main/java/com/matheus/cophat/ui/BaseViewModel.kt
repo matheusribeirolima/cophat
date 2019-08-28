@@ -11,6 +11,6 @@ abstract class BaseViewModel : ViewModel() {
     val handleError = MutableLiveData<Throwable>()
     val isChildren = BuildConfig.FLAVOR == "children"
 
-    //abstract fun initialize()
+    //abstract fun initializeBegin()
 
 }

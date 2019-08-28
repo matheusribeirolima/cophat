@@ -33,8 +33,6 @@ class ErrorDialog : BaseDialog<DialogErrorBinding>() {
     }
 
     override fun initBinding() {
-        binding = getBinding()
-
         binding.btError.setOnClickListener { dismiss() }
 
         errorViewModel.errorMessage.observe(this,
