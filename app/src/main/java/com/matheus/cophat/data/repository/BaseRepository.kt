@@ -33,4 +33,40 @@ abstract class BaseRepository {
                 }
             })
         }
+
+    suspend fun <T> getDatabaseChildHash(child: String, dataType: Class<T>): HashMap<String, T> =
+        suspendCoroutine { d ->
+            val children = HashMap<String, T>()
+            getDatabase().addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onCancelled(error: DatabaseError) {
+                    d.resumeWithException(error.toException())
+                }
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    try {
+                        for (dataSnapshot in snapshot.child(child).children) {
+                            dataSnapshot.getValue(dataType)?.let { value ->
+                                dataSnapshot.key?.let { key ->
+                                    children[key] = value
+                                }
+                            }
+                        }
+
+                        d.resume(children)
+                    } catch (e: Exception) {
+                        d.resumeWithException(e)
+                    }
+                }
+            })
+        }
+
+    suspend fun updateChild(child: String, key: String, updated: Any): Void? =
+        suspendCoroutine { d ->
+            val childUpdates = HashMap<String, Any>()
+            childUpdates["/$child/$key"] = updated
+
+            getDatabase().updateChildren(childUpdates)
+                .addOnCompleteListener { d.resume(null) }
+                .addOnFailureListener { d.resumeWithException(it) }
+        }
 }

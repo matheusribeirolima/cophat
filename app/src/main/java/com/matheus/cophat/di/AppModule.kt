@@ -1,5 +1,6 @@
 package com.matheus.cophat.di
 
+import com.matheus.cophat.feature.intro.adapter.ApplicatorRecyclerAdapter
 import com.matheus.cophat.helper.ResourceManager
 import com.matheus.cophat.ui.base.ErrorDialog
 import com.matheus.cophat.ui.base.LoadingDialog
@@ -8,5 +9,9 @@ import org.koin.dsl.module
 val appModule = module {
     single {
         ResourceManager(get())
+    }
+
+    factory {
+        ApplicatorRecyclerAdapter()
     }
 }

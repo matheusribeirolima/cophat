@@ -24,6 +24,7 @@ class ApplicatorRecyclerAdapter : BaseRecyclerView<ItemApplicatorPresenter, Appl
     }
 
     override fun setItems(items: List<ItemApplicatorPresenter>) {
+        presenterList.clear()
         presenterList.addAll(items)
         notifyDataSetChanged()
     }

@@ -2,7 +2,9 @@ package com.matheus.cophat.data.repository
 
 import com.google.firebase.database.DatabaseReference
 import com.matheus.cophat.data.local.dao.ApplicationDao
+import com.matheus.cophat.data.local.entity.Applicator
 import com.matheus.cophat.data.local.entity.Hospital
+import com.matheus.cophat.data.presenter.ItemApplicatorPresenter
 import kotlinx.coroutines.tasks.await
 
 class IntroRepository(private val database: DatabaseReference, private val dao: ApplicationDao) :
