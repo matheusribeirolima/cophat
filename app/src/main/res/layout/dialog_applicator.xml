@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="presenter"
+            type="com.matheus.cophat.data.presenter.ApplicatorConfigurePresenter" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/default_padding">
+
+        <TextView
+            android:id="@+id/tvTitleDialogApplicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@{presenter.title}"
+            android:textSize="@dimen/title_size"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:fadeIn="@{100}"
+            tools:text="@string/add_applicator" />
+
+        <TextView
+            android:id="@+id/tvSubtitleDialogApplicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/large_margin"
+            android:gravity="center"
+            android:text="@{presenter.subtitle}"
+            tools:text="@string/add_desc_applicator"
+            android:textSize="@dimen/large_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitleDialogApplicator"
+            app:fadeIn="@{300}" />
+
+        <TextView
+            android:id="@+id/tvNameDialogApplicator"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/extra_margin"
+            android:text="@string/name_applicator"
+            android:textSize="@dimen/title_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvSubtitleDialogApplicator"            app:fadeIn="@{500}" />
+
+        <EditText
+            android:id="@+id/etNameDialogApplicator"
+            style="@style/AppTheme.EditTextTheme"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/medium_margin"
+            android:hint="@string/complete_name"
+            android:text="@={presenter.name}"
+            android:inputType="textCapWords"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvNameDialogApplicator"
+            app:fadeIn="@{600}" />
+
+        <TextView
+            android:id="@+id/tvContactDialogApplicator"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/extra_margin"
+            android:text="@string/contact_applicator"
+            android:textSize="@dimen/title_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etNameDialogApplicator"
+            app:fadeIn="@{800}" />
+
+        <EditText
+            android:id="@+id/etContactConfigure"
+            style="@style/AppTheme.EditTextTheme"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/medium_margin"
+            android:hint="@string/email"
+            android:text="@={presenter.contact}"
+            android:inputType="textEmailAddress"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvContactDialogApplicator"
+            app:fadeIn="@{1000}" />
+
+        <Button
+            android:id="@+id/btCancelApplicator"
+            style="@style/AppTheme.SecondaryButtonTheme"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginTop="@dimen/extra_margin"
+            android:text="@string/cancel"
+            android:layout_marginBottom="@dimen/small_margin"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btSaveApplicator"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etContactConfigure"
+            app:fadeIn="@{1200}" />
+
+        <Button
+            android:id="@+id/btSaveApplicator"
+            style="@style/AppTheme.ButtonTheme"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/button_height"
+            android:text="@string/save"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btCancelApplicator"
+            app:layout_constraintTop_toTopOf="@+id/btCancelApplicator"
+            app:fadeIn="@{1300}" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

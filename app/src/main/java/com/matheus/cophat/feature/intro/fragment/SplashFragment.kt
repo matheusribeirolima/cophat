@@ -12,14 +12,18 @@ import com.matheus.cophat.helper.CustomAnimator
 import com.matheus.cophat.helper.OnAnimationEndListener
 import com.matheus.cophat.ui.BaseFragment
 import com.matheus.cophat.ui.BaseViewModel
-import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SplashFragment : BaseFragment<FragmentSplashBinding>() {
 
-    private val viewModel: IntroViewModel by sharedViewModel()
+    private val viewModel: IntroViewModel by viewModel()
 
     override fun getLayout(): Int {
         return R.layout.fragment_splash
+    }
+
+    override fun getViewModel(): BaseViewModel {
+        return viewModel
     }
 
     override fun initBinding() {
@@ -28,14 +32,14 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>() {
 
     private fun animateLauncher() {
         YoYo.with(Techniques.BounceIn)
-                .duration(900)
-                .interpolate(AccelerateDecelerateInterpolator())
-                .pivot(YoYo.CENTER_PIVOT, YoYo.CENTER_PIVOT)
-                .withListener(CustomAnimator(object : OnAnimationEndListener {
-                    override fun onAnimationEnd(animation: Animator?) {
-                        findNavController().navigate(R.id.action_splashFragment_to_beginFragment)
-                    }
-                }))
-                .playOn(binding.ivLauncherSplash)
+            .duration(900)
+            .interpolate(AccelerateDecelerateInterpolator())
+            .pivot(YoYo.CENTER_PIVOT, YoYo.CENTER_PIVOT)
+            .withListener(CustomAnimator(object : OnAnimationEndListener {
+                override fun onAnimationEnd(animation: Animator?) {
+                    findNavController().navigate(R.id.action_splashFragment_to_beginFragment)
+                }
+            }))
+            .playOn(binding.ivLauncherSplash)
     }
 }

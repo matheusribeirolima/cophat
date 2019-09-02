@@ -20,3 +20,5 @@ fun Context.isConnected(): Boolean {
     val networkInfo = connMgr.activeNetworkInfo
     return networkInfo != null && networkInfo.isConnected
 }
+
+fun Boolean.visibleOrGone() = if (this) 0 else 8

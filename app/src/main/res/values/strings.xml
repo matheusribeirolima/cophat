@@ -4,12 +4,10 @@
     <string name="cophat_ca" translatable="false">Cophat-CA</string>
     <string name="cophat_p" translatable="false">Cophat-P</string>
     <string name="cophat">Cophat</string>
-    <string name="cophat_ca_desc">Escala de Coping da Hospitalização, Adoecimento e Tratamento\nVersão para crianças e
-        adolescentes
-    </string>
-    <string name="cophat_p_desc">Escala de Coping da Hospitalização, Adoecimento e Tratamento\nVersão para
-        pais/responsáveis
-    </string>
+    <string name="cophat_ca_desc">Escala de Coping da Hospitalização, Adoecimento e Tratamento\n
+        Versão para crianças e adolescentes</string>
+    <string name="cophat_p_desc">Escala de Coping da Hospitalização, Adoecimento e Tratamento\n
+        Versão para pais/responsáveis</string>
     <string name="attention">Atenção</string>
     <string name="unexpected_error">Ops… Ocorreu um erro inesperado.\nTente novamente mais tarde.</string>
     <string name="firebase_error">Ops… Ocorreu um erro ao salvar as informações.</string>
@@ -31,7 +29,8 @@
     <string name="sometimes">Às vezes</string>
     <string name="almost_never">Quase nunca</string>
     <string name="never">Nunca</string>
-    <string name="insert_data_before">Antes de começar, insira os dados abaixo para que seja gerado o código da família</string>
+    <string name="insert_data_before">Antes de começar, insira os dados abaixo para que seja gerado
+        o código da família</string>
     <string name="lets_learn">%1$s, vamos aprender o que significam as imagens?</string>
     <string name="advance">Avançar</string>
     <string name="go_back">Voltar</string>
@@ -39,8 +38,20 @@
     <string name="complete_name">Nome completo</string>
     <string name="choose_hospital">Escolha o hospital:</string>
     <string name="choose_applicator">Escolha o aplicador:</string>
-    <string name="edit_or_remove_applicator">Clique nos ícones para adicionar, editar ou remover qualquer aplicador no banco de dados da aplicação</string>
+    <string name="edit_or_remove_applicator">Clique nos ícones para adicionar, editar ou remover
+        qualquer aplicador no banco de dados da aplicação</string>
     <string name="edit">Editar</string>
     <string name="remove">Remover</string>
     <string name="add">Adicionar</string>
+    <string name="add_applicator">Adicionar aplicador</string>
+    <string name="edit_applicator">Editar aplicador</string>
+    <string name="add_desc_applicator">Insira abaixo o nome e o e-mail do aplicador que deseja cadastrar</string>
+    <string name="edit_desc_applicator">Altere abaixo o nome ou o e-mail do aplicador selecionado</string>
+    <string name="name_applicator">Qual o nome do aplicador?</string>
+    <string name="contact_applicator">Qual o contato do aplicador?</string>
+    <string name="email">e-mail</string>
+    <string name="cancel">Cancelar</string>
+    <string name="save">Salvar</string>
+    <string name="success_register">Cadastro realizado com sucesso!</string>
+    <string name="success_update">Ataulização realizada com sucesso!</string>
 </resources>

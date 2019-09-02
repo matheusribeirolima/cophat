@@ -1,10 +1,8 @@
 package com.matheus.cophat.di
 
-import com.matheus.cophat.data.repository.ChildrenRepository
-import com.matheus.cophat.data.repository.IntroRepository
-import com.matheus.cophat.data.repository.ParentsRepository
-import com.matheus.cophat.data.repository.QuestionnairesRepository
+import com.matheus.cophat.data.repository.*
 import com.matheus.cophat.feature.children.viewmodel.ChildrenViewModel
+import com.matheus.cophat.feature.configure.viewmodel.ConfigureViewModel
 import com.matheus.cophat.feature.intro.viewmodel.IntroViewModel
 import com.matheus.cophat.feature.parents.viewmodel.ParentsViewModel
 import com.matheus.cophat.feature.questionnaires.viewmodel.QuestionnairesViewModel
@@ -34,4 +32,9 @@ val viewModuleModule = module {
         QuestionnairesRepository(get(), get())
     }
     viewModel { QuestionnairesViewModel(get(), get()) }
+
+    single {
+        ConfigureRepository(get(), get())
+    }
+    viewModel { ConfigureViewModel(get(), get()) }
 }

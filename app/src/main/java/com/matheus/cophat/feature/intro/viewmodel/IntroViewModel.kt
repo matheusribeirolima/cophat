@@ -10,6 +10,7 @@ import com.matheus.cophat.data.presenter.BeginPresenter
 import com.matheus.cophat.data.presenter.ItemApplicatorPresenter
 import com.matheus.cophat.data.repository.IntroRepository
 import com.matheus.cophat.helper.ResourceManager
+import com.matheus.cophat.helper.visibleOrGone
 import com.matheus.cophat.ui.BaseViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -22,7 +23,6 @@ class IntroViewModel(
     val beginPresenter = MutableLiveData<BeginPresenter>()
     val applicators = MutableLiveData<List<Applicator>>()
     val hospitals = MutableLiveData<List<Hospital>>()
-    val applicatorsPresenter = MutableLiveData<List<ItemApplicatorPresenter>>()
 
     fun initializeBegin() {
         viewModelScope.launch(context = Dispatchers.IO) {
@@ -71,44 +71,6 @@ class IntroViewModel(
                 hospitals.postValue(repository.getDatabaseChild("hospital", Hospital::class.java))
                 applicators.postValue(
                     repository.getDatabaseChild("applicator", Applicator::class.java)
-                )
-            } catch (e: DatabaseException) {
-                handleError.postValue(e)
-            } finally {
-                handleLoading.postValue(false)
-            }
-        }
-    }
-
-    fun initializeConfigure() {
-        viewModelScope.launch(context = Dispatchers.IO) {
-            try {
-                handleLoading.postValue(true)
-
-                val list = ArrayList<ItemApplicatorPresenter>()
-                repository.getDatabaseChildHash("applicator", Applicator::class.java)
-                    .forEach { (key, value) ->
-                        list.add(ItemApplicatorPresenter(value.name, value.contact, 0, key))
-                    }
-
-                applicatorsPresenter.postValue(list)
-            } catch (e: DatabaseException) {
-                handleError.postValue(e)
-            } finally {
-                handleLoading.postValue(false)
-            }
-        }
-    }
-
-    fun teste(item: ItemApplicatorPresenter) {
-        viewModelScope.launch(context = Dispatchers.IO) {
-            try {
-                handleLoading.postValue(true)
-
-                repository.updateChild(
-                    "applicator",
-                    item.applicatorDatabaseKey,
-                    Applicator("Matheus Ribeiro Lima", "matheus_ribeirolima@hotmail.com")
                 )
             } catch (e: DatabaseException) {
                 handleError.postValue(e)

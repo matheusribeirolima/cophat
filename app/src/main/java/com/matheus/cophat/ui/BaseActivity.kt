@@ -15,8 +15,6 @@ abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
 
     private var permissionsRequestCode = 0
 
-    private lateinit var baseObserver: BaseObserver
-
     internal lateinit var binding: T
 
     @LayoutRes
@@ -34,9 +32,6 @@ abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
                 View.IMPORTANT_FOR_AUTOFILL_NO_EXCLUDE_DESCENDANTS
         }
         binding = DataBindingUtil.setContentView(this, getLayout())
-
-        baseObserver = BaseObserver(getViewModel(), supportFragmentManager)
-        baseObserver.observeChanges(this)
 
         initBinding()
     }

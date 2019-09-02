@@ -9,6 +9,8 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ErrorDialog : BaseDialog<DialogErrorBinding>() {
 
+    private val viewModel: ErrorViewModel by viewModel()
+
     companion object {
         private const val TAG = "dialog_error"
 
@@ -18,14 +20,12 @@ class ErrorDialog : BaseDialog<DialogErrorBinding>() {
         }
     }
 
-    private val errorViewModel: ErrorViewModel by viewModel()
-
     override fun getLayout(): Int {
         return R.layout.dialog_error
     }
 
     override fun getViewModel(): BaseViewModel {
-        return errorViewModel
+        return viewModel
     }
 
     override fun getDialogTag(): String {
@@ -35,11 +35,11 @@ class ErrorDialog : BaseDialog<DialogErrorBinding>() {
     override fun initBinding() {
         binding.btError.setOnClickListener { dismiss() }
 
-        errorViewModel.errorMessage.observe(this,
+        viewModel.errorMessage.observe(this,
             Observer { binding.tvMessageError.text = it })
     }
 
     fun handleThrowable(throwable: Throwable?) {
-        throwable?.let { errorViewModel.handleThrowable(it) }
+        throwable?.let { viewModel.handleThrowable(it) }
     }
 }

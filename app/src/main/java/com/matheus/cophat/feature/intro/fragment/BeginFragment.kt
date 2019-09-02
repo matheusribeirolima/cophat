@@ -6,20 +6,26 @@ import androidx.navigation.fragment.findNavController
 import com.matheus.cophat.R
 import com.matheus.cophat.databinding.FragmentBeginBinding
 import com.matheus.cophat.feature.intro.viewmodel.IntroViewModel
-import com.matheus.cophat.helper.showToast
 import com.matheus.cophat.ui.BaseFragment
-import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import com.matheus.cophat.ui.BaseViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class BeginFragment : BaseFragment<FragmentBeginBinding>() {
 
-    private val viewModel: IntroViewModel by sharedViewModel()
+    private val viewModel: IntroViewModel by viewModel()
 
     override fun getLayout(): Int {
         return R.layout.fragment_begin
     }
 
+    override fun getViewModel(): BaseViewModel {
+        return viewModel
+    }
+
     override fun initBinding() {
         activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
+
+        binding.loading = viewModel.handleLoading
 
         configureListeners()
 
@@ -39,7 +45,7 @@ class BeginFragment : BaseFragment<FragmentBeginBinding>() {
         }
 
         binding.btConfigureBegin.setOnClickListener {
-            findNavController().navigate(R.id.action_beginFragment_to_configureFragment)
+            findNavController().navigate(R.id.action_beginFragment_to_nav_configure)
         }
     }
 }

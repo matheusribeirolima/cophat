@@ -8,18 +8,25 @@ import com.matheus.cophat.R
 import com.matheus.cophat.databinding.FragmentGenerateCodeBinding
 import com.matheus.cophat.feature.intro.viewmodel.IntroViewModel
 import com.matheus.cophat.ui.BaseFragment
-import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import com.matheus.cophat.ui.BaseViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class GenerateCodeFragment : BaseFragment<FragmentGenerateCodeBinding>() {
 
-    private val viewModel: IntroViewModel by sharedViewModel()
+    private val viewModel: IntroViewModel by viewModel()
 
     override fun getLayout(): Int {
         return R.layout.fragment_generate_code
     }
 
+    override fun getViewModel(): BaseViewModel {
+        return viewModel
+    }
+
     override fun initBinding() {
         configureListeners()
+
+        binding.loading = viewModel.handleLoading
 
         viewModel.initializeGenerateCode()
 
@@ -36,7 +43,7 @@ class GenerateCodeFragment : BaseFragment<FragmentGenerateCodeBinding>() {
         })
     }
 
-    private fun<T> generateAdapter(context: Context, list : List<T>) : ArrayAdapter<T> {
+    private fun <T> generateAdapter(context: Context, list: List<T>): ArrayAdapter<T> {
         val adapter = ArrayAdapter(
             context,
             android.R.layout.simple_spinner_item,

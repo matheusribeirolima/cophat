@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_configure"
+    app:startDestination="@id/applicatorFragment">
+    <fragment
+        android:id="@+id/applicatorFragment"
+        android:name="com.matheus.cophat.feature.configure.fragment.ApplicatorFragment"
+        android:label="ApplicatorFragment"
+        tools:layout="@layout/fragment_applicator">
+        <action
+            android:id="@+id/action_applicatorFragment_to_applicatorDialog"
+            app:destination="@id/applicatorDialog"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+    <dialog
+        android:id="@+id/applicatorDialog"
+        android:name="com.matheus.cophat.feature.configure.fragment.ApplicatorDialog"
+        android:label="ApplicatorDialog"
+        tools:layout="@layout/dialog_applicator">
+        <argument
+            android:name="presenter"
+            app:argType="com.matheus.cophat.data.presenter.ApplicatorConfigurePresenter" />
+        <argument
+            android:name="key"
+            app:argType="string"
+            android:defaultValue="@null"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_applicatorDialog_to_applicatorFragment"
+            app:destination="@id/applicatorFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@+id/nav_configure"
+            app:popUpToInclusive="true" />
+    </dialog>
+</navigation>

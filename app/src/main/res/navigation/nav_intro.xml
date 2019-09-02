@@ -1,40 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_graph"
     app:startDestination="@id/splashFragment">
 
     <fragment
         android:id="@+id/splashFragment"
         android:name="com.matheus.cophat.feature.intro.fragment.SplashFragment"
-        android:label="SplashFragment">
+        android:label="SplashFragment"
+        tools:layout="@layout/fragment_splash">
         <action
-                android:id="@+id/action_splashFragment_to_beginFragment"
-                app:destination="@id/beginFragment"
-                app:enterAnim="@anim/nav_default_enter_anim"
-                app:popUpTo="@+id/navigation_graph"
-                app:popUpToInclusive="true" app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+            android:id="@+id/action_splashFragment_to_beginFragment"
+            app:destination="@id/beginFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@+id/navigation_graph"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/beginFragment"
         android:name="com.matheus.cophat.feature.intro.fragment.BeginFragment"
-        android:label="BeginFragment" >
-        <action android:id="@+id/action_beginFragment_to_nav_questionnaires" app:destination="@id/nav_questionnaires"/>
+        android:label="BeginFragment"
+        tools:layout="@layout/fragment_begin">
+        <action
+            android:id="@+id/action_beginFragment_to_nav_questionnaires"
+            app:destination="@id/nav_questionnaires" />
         <action
             android:id="@+id/action_beginFragment_to_generateCodeFragment"
             app:destination="@id/generateCodeFragment" />
         <action
-            android:id="@+id/action_beginFragment_to_configureFragment"
-            app:destination="@id/configureFragment" />
+            android:id="@+id/action_beginFragment_to_nav_configure"
+            app:destination="@id/nav_configure"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <include app:graph="@navigation/nav_children" />
     <include app:graph="@navigation/nav_parents" />
-    <include app:graph="@navigation/nav_questionnaires"/>
+    <include app:graph="@navigation/nav_questionnaires" />
     <fragment
         android:id="@+id/generateCodeFragment"
         android:name="com.matheus.cophat.feature.intro.fragment.GenerateCodeFragment"
-        android:label="GenerateCodeFragment" >
+        android:label="GenerateCodeFragment"
+        tools:layout="@layout/fragment_generate_code">
         <action
             android:id="@+id/action_generateCodeFragment_to_children_navigation"
             app:destination="@id/children_navigation" />
@@ -42,8 +53,5 @@
             android:id="@+id/action_generateCodeFragment_to_parents_navigation"
             app:destination="@id/parents_navigation" />
     </fragment>
-    <fragment
-        android:id="@+id/configureFragment"
-        android:name="com.matheus.cophat.feature.intro.fragment.ConfigureFragment"
-        android:label="ConfigureFragment" />
+    <include app:graph="@navigation/nav_configure" />
 </navigation>

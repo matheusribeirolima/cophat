@@ -11,12 +11,23 @@ import androidx.fragment.app.Fragment
 
 abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
 
+    private lateinit var baseObserver: BaseObserver
+
     internal lateinit var binding: T
 
     @LayoutRes
     abstract fun getLayout(): Int
 
+    abstract fun getViewModel(): BaseViewModel
+
     abstract fun initBinding()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        baseObserver = BaseObserver(getViewModel(), activity?.supportFragmentManager)
+        baseObserver.observeChanges(this)
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, getLayout(), container, false)

@@ -3,6 +3,9 @@
 
     <data>
 
+        <variable
+            name="loading"
+            type="androidx.lifecycle.MutableLiveData&lt;Boolean&gt;" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,10 +21,11 @@
             android:text="@string/lets_learn"
             android:textSize="@dimen/title_size"
             android:textStyle="bold"
-            app:fadeIn="@{100}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:alreadyLoaded="@{loading}"
+            app:fadeIn="@{100}" />
 
         <TextView
             android:id="@+id/tvTitleTutorial"
@@ -31,10 +35,11 @@
             android:text="@string/emotions"
             android:textSize="@dimen/title_size"
             android:textStyle="bold"
-            app:fadeIn="@{300}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvIntroTutorial" />
+            app:layout_constraintTop_toBottomOf="@+id/tvIntroTutorial"
+            app:alreadyLoaded="@{loading}"
+            app:fadeIn="@{300}" />
 
         <TextView
             android:id="@+id/tvSubtitleTutorial"
@@ -43,10 +48,11 @@
             android:layout_marginTop="@dimen/small_margin"
             android:text="@string/emotions_description"
             android:textSize="@dimen/large_size"
-            app:fadeIn="@{500}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvTitleTutorial" />
+            app:layout_constraintTop_toBottomOf="@+id/tvTitleTutorial"
+            app:alreadyLoaded="@{loading}"
+            app:fadeIn="@{500}" />
 
         <TextView
             android:id="@+id/tvHappyTutorial"
@@ -57,11 +63,12 @@
             android:drawablePadding="@dimen/small_margin"
             android:gravity="center"
             android:text="@string/happy"
-            app:fadeIn="@{700}"
             app:layout_constraintEnd_toStartOf="@+id/tvSadTutorial"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvSubtitleTutorial" />
+            app:layout_constraintTop_toBottomOf="@+id/tvSubtitleTutorial"
+            app:alreadyLoaded="@{loading}"
+            app:fadeIn="@{700}" />
 
         <TextView
             android:id="@+id/tvSadTutorial"
@@ -71,11 +78,12 @@
             android:drawablePadding="@dimen/small_margin"
             android:gravity="center"
             android:text="@string/sad"
-            app:fadeIn="@{750}"
             app:layout_constraintEnd_toStartOf="@+id/tvScaredTutorial"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/tvHappyTutorial"
-            app:layout_constraintTop_toTopOf="@+id/tvHappyTutorial" />
+            app:layout_constraintTop_toTopOf="@+id/tvHappyTutorial"
+            app:alreadyLoaded="@{loading}"
+            app:fadeIn="@{750}" />
 
         <TextView
             android:id="@+id/tvScaredTutorial"
@@ -85,11 +93,12 @@
             android:drawablePadding="@dimen/small_margin"
             android:gravity="center"
             android:text="@string/scared"
-            app:fadeIn="@{800}"
             app:layout_constraintEnd_toStartOf="@+id/tvAngryTutorial"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/tvSadTutorial"
-            app:layout_constraintTop_toTopOf="@+id/tvHappyTutorial" />
+            app:layout_constraintTop_toTopOf="@+id/tvHappyTutorial"
+            app:alreadyLoaded="@{loading}"
+            app:fadeIn="@{800}" />
 
         <TextView
             android:id="@+id/tvAngryTutorial"
@@ -99,11 +108,12 @@
             android:drawablePadding="@dimen/small_margin"
             android:gravity="center"
             android:text="@string/angry"
-            app:fadeIn="@{850}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/tvScaredTutorial"
-            app:layout_constraintTop_toTopOf="@+id/tvHappyTutorial" />
+            app:layout_constraintTop_toTopOf="@+id/tvHappyTutorial"
+            app:alreadyLoaded="@{loading}"
+            app:fadeIn="@{850}" />
 
         <TextView
             android:id="@+id/tvTitleThermTutorial"
@@ -113,10 +123,11 @@
             android:text="@string/thermometer"
             android:textSize="@dimen/title_size"
             android:textStyle="bold"
-            app:fadeIn="@{1050}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvAngryTutorial" />
+            app:layout_constraintTop_toBottomOf="@+id/tvAngryTutorial"
+            app:alreadyLoaded="@{loading}"
+            app:fadeIn="@{1050}" />
 
         <TextView
             android:id="@+id/tvSubtitleThermTutorial"
@@ -125,10 +136,11 @@
             android:layout_marginTop="@dimen/small_margin"
             android:text="@string/thermometer_description"
             android:textSize="@dimen/large_size"
-            app:fadeIn="@{1250}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvTitleThermTutorial" />
+            app:layout_constraintTop_toBottomOf="@+id/tvTitleThermTutorial"
+            app:alreadyLoaded="@{loading}"
+            app:fadeIn="@{1250}" />
 
         <TextView
             android:id="@+id/tvThermometer1Tutorial"
@@ -140,11 +152,12 @@
             android:gravity="center"
             android:text="@string/always"
             android:textSize="@dimen/large_size"
-            app:fadeIn="@{1450}"
             app:layout_constraintEnd_toStartOf="@+id/tvThermometer2Tutorial"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvSubtitleThermTutorial" />
+            app:layout_constraintTop_toBottomOf="@+id/tvSubtitleThermTutorial"
+            app:alreadyLoaded="@{loading}"
+            app:fadeIn="@{1450}" />
 
         <TextView
             android:id="@+id/tvThermometer2Tutorial"
@@ -155,11 +168,12 @@
             android:gravity="center"
             android:text="@string/often"
             android:textSize="@dimen/large_size"
-            app:fadeIn="@{1500}"
             app:layout_constraintEnd_toStartOf="@+id/tvThermometer3Tutorial"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/tvThermometer1Tutorial"
-            app:layout_constraintTop_toTopOf="@+id/tvThermometer1Tutorial" />
+            app:layout_constraintTop_toTopOf="@+id/tvThermometer1Tutorial"
+            app:alreadyLoaded="@{loading}"
+            app:fadeIn="@{1500}" />
 
         <TextView
             android:id="@+id/tvThermometer3Tutorial"
@@ -170,11 +184,12 @@
             android:gravity="center"
             android:text="@string/sometimes"
             android:textSize="@dimen/large_size"
-            app:fadeIn="@{1550}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/tvThermometer2Tutorial"
-            app:layout_constraintTop_toTopOf="@+id/tvThermometer1Tutorial" />
+            app:layout_constraintTop_toTopOf="@+id/tvThermometer1Tutorial"
+            app:alreadyLoaded="@{loading}"
+            app:fadeIn="@{1550}" />
 
         <TextView
             android:id="@+id/tvThermometer4Tutorial"
@@ -186,11 +201,12 @@
             android:gravity="center"
             android:text="@string/almost_never"
             android:textSize="@dimen/large_size"
-            app:fadeIn="@{1600}"
             app:layout_constraintEnd_toStartOf="@+id/tvThermometer5Tutorial"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvThermometer1Tutorial" />
+            app:layout_constraintTop_toBottomOf="@+id/tvThermometer1Tutorial"
+            app:alreadyLoaded="@{loading}"
+            app:fadeIn="@{1600}" />
 
         <TextView
             android:id="@+id/tvThermometer5Tutorial"
@@ -201,11 +217,12 @@
             android:gravity="center"
             android:text="@string/never"
             android:textSize="@dimen/large_size"
-            app:fadeIn="@{1650}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/tvThermometer4Tutorial"
-            app:layout_constraintTop_toTopOf="@+id/tvThermometer4Tutorial" />
+            app:layout_constraintTop_toTopOf="@+id/tvThermometer4Tutorial"
+            app:alreadyLoaded="@{loading}"
+            app:fadeIn="@{1650}" />
 
         <Button
             android:id="@+id/btBackTutorial"
@@ -214,11 +231,12 @@
             android:layout_height="@dimen/button_height"
             android:layout_marginTop="@dimen/big_margin"
             android:text="@string/go_back"
-            app:fadeIn="@{1850}"
             app:layout_constraintEnd_toStartOf="@+id/btContinueTutorial"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvThermometer5Tutorial" />
+            app:layout_constraintTop_toBottomOf="@+id/tvThermometer5Tutorial"
+            app:alreadyLoaded="@{loading}"
+            app:fadeIn="@{1850}" />
 
         <Button
             android:id="@+id/btContinueTutorial"
@@ -226,11 +244,12 @@
             android:layout_width="0dp"
             android:layout_height="@dimen/button_height"
             android:text="@string/advance"
-            app:fadeIn="@{1900}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/btBackTutorial"
-            app:layout_constraintTop_toTopOf="@+id/btBackTutorial" />
+            app:layout_constraintTop_toTopOf="@+id/btBackTutorial"
+            app:alreadyLoaded="@{loading}"
+            app:fadeIn="@{1900}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

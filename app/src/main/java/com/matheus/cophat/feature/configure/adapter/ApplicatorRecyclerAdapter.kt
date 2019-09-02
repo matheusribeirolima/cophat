@@ -1,18 +1,22 @@
-package com.matheus.cophat.feature.intro.adapter
+package com.matheus.cophat.feature.configure.adapter
 
 import android.view.View
+import androidx.lifecycle.MutableLiveData
 import com.matheus.cophat.R
 import com.matheus.cophat.data.presenter.ItemApplicatorPresenter
 import com.matheus.cophat.ui.BaseRecyclerView
 
-class ApplicatorRecyclerAdapter : BaseRecyclerView<ItemApplicatorPresenter, ApplicatorViewHolder>() {
+class ApplicatorRecyclerAdapter :
+    BaseRecyclerView<ItemApplicatorPresenter, ApplicatorViewHolder>() {
+
+    lateinit var applicatorListener: ApplicatorListener
 
     override fun getLayoutId(viewType: Int): Int {
         return R.layout.item_applicator
     }
 
     override fun getViewHolderInstance(itemView: View, viewType: Int): ApplicatorViewHolder {
-        return ApplicatorViewHolder(itemView)
+        return ApplicatorViewHolder(itemView, applicatorListener)
     }
 
     override fun onBindViewHolder(
