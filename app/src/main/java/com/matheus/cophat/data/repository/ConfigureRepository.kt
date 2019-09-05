@@ -5,7 +5,10 @@ import com.matheus.cophat.data.local.dao.ApplicationDao
 import com.matheus.cophat.data.local.entity.Applicator
 import kotlinx.coroutines.tasks.await
 
-class ConfigureRepository(private val database: DatabaseReference, private val dao: ApplicationDao) :
+class ConfigureRepository(
+    private val database: DatabaseReference,
+    private val dao: ApplicationDao
+) :
     BaseRepository() {
 
     override fun getDatabase(): DatabaseReference {
@@ -19,5 +22,9 @@ class ConfigureRepository(private val database: DatabaseReference, private val d
 
     suspend fun updateApplicator(name: String, contact: String, key: String) {
         updateChild("applicator", key, Applicator(name, contact))
+    }
+
+    suspend fun removeApplicator(key: String) {
+        removeChild("applicator", key)
     }
 }

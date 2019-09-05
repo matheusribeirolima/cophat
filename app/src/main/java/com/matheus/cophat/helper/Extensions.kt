@@ -22,3 +22,5 @@ fun Context.isConnected(): Boolean {
 }
 
 fun Boolean.visibleOrGone() = if (this) 0 else 8
+
+fun String.isValidEmail(): Boolean = android.util.Patterns.EMAIL_ADDRESS.matcher(this).matches()

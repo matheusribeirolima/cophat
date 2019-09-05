@@ -69,4 +69,14 @@ abstract class BaseRepository {
                 .addOnCompleteListener { d.resume(null) }
                 .addOnFailureListener { d.resumeWithException(it) }
         }
+
+    suspend fun removeChild(child: String, key: String): Void? =
+        suspendCoroutine { d ->
+            val childUpdates = HashMap<String, Any?>()
+            childUpdates["/$child/$key"] = null
+
+            getDatabase().updateChildren(childUpdates)
+                .addOnCompleteListener { d.resume(null) }
+                .addOnFailureListener { d.resumeWithException(it) }
+        }
 }

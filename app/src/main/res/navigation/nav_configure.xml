@@ -16,6 +16,13 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_applicatorFragment_to_configureExcludeDialog"
+            app:destination="@id/configureExcludeDialog"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <dialog
         android:id="@+id/applicatorDialog"
@@ -27,8 +34,8 @@
             app:argType="com.matheus.cophat.data.presenter.ApplicatorConfigurePresenter" />
         <argument
             android:name="key"
-            app:argType="string"
             android:defaultValue="@null"
+            app:argType="string"
             app:nullable="true" />
         <action
             android:id="@+id/action_applicatorDialog_to_applicatorFragment"
@@ -37,6 +44,22 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@+id/nav_configure"
+            app:popUpToInclusive="true" />
+    </dialog>
+    <dialog
+        android:id="@+id/configureExcludeDialog"
+        android:name="com.matheus.cophat.feature.configure.fragment.ConfigureExcludeDialog"
+        android:label="ConfigureExcludeDialog"
+        tools:layout="@layout/dialog_configure_exclude">
+        <argument
+            android:name="key"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_configureExcludeDialog_to_applicatorFragment"
+            app:destination="@id/applicatorFragment"
             app:popUpTo="@+id/nav_configure"
             app:popUpToInclusive="true" />
     </dialog>

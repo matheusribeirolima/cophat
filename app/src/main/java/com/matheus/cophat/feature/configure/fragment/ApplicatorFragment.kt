@@ -57,6 +57,10 @@ class ApplicatorFragment : BaseFragment<FragmentApplicatorBinding>(), Applicator
     }
 
     override fun onRemove(item: ItemApplicatorPresenter) {
-        TODO("not implemented")
+        findNavController().navigate(
+            ApplicatorFragmentDirections.actionApplicatorFragmentToConfigureExcludeDialog(
+                item.applicatorDatabaseKey
+            )
+        )
     }
 }

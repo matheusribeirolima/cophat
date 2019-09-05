@@ -54,4 +54,7 @@
     <string name="save">Salvar</string>
     <string name="success_register">Cadastro realizado com sucesso!</string>
     <string name="success_update">Ataulização realizada com sucesso!</string>
+    <string name="confirm">Confirmar</string>
+    <string name="are_you_sure">Tem certeza que deseja prosseguir?\nEsta ação não poderá ser desfeita.</string>
+    <string name="success_remove">Remoção realizada com sucesso!</string>
 </resources>

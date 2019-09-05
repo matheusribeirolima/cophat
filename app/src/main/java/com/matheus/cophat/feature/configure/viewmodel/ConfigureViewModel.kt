@@ -6,9 +6,11 @@ import com.google.firebase.database.DatabaseException
 import com.matheus.cophat.R
 import com.matheus.cophat.data.local.entity.Applicator
 import com.matheus.cophat.data.presenter.ApplicatorConfigurePresenter
+import com.matheus.cophat.data.presenter.BottomButtonPresenter
 import com.matheus.cophat.data.presenter.ItemApplicatorPresenter
 import com.matheus.cophat.data.repository.ConfigureRepository
 import com.matheus.cophat.helper.ResourceManager
+import com.matheus.cophat.helper.isValidEmail
 import com.matheus.cophat.helper.visibleOrGone
 import com.matheus.cophat.ui.BaseViewModel
 import kotlinx.coroutines.Dispatchers
@@ -21,6 +23,7 @@ class ConfigureViewModel(
 
     val applicatorsPresenter = MutableLiveData<List<ItemApplicatorPresenter>>()
     val statusApplicator = MutableLiveData<String>()
+    val dialogValidator = MutableLiveData<BottomButtonPresenter>()
 
     fun initialize() {
         viewModelScope.launch(context = Dispatchers.IO) {
@@ -80,6 +83,33 @@ class ConfigureViewModel(
                 handleError.postValue(e)
             } finally {
                 handleLoading.postValue(false)
+            }
+        }
+    }
+
+    fun removeApplicator(key: String?) {
+        viewModelScope.launch(context = Dispatchers.IO) {
+            try {
+                handleLoading.postValue(true)
+
+                key?.let {
+                    repository.removeApplicator(key)
+                    statusApplicator.postValue(resourceManager.getString(R.string.success_remove))
+                }
+            } catch (e: DatabaseException) {
+                handleError.postValue(e)
+            } finally {
+                handleLoading.postValue(false)
+            }
+        }
+    }
+
+    fun verifyDialogPresenter(applicator: ApplicatorConfigurePresenter?) {
+        applicator?.let {
+            if (applicator.name.isNotEmpty() && applicator.contact.isValidEmail()) {
+                dialogValidator.postValue(BottomButtonPresenter(true, 1f))
+            } else {
+                dialogValidator.postValue(BottomButtonPresenter(false, 0.5f))
             }
         }
     }

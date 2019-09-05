@@ -8,6 +8,10 @@
         <variable
             name="presenter"
             type="com.matheus.cophat.data.presenter.ApplicatorConfigurePresenter" />
+
+        <variable
+            name="buttonPresenter"
+            type="com.matheus.cophat.data.presenter.BottomButtonPresenter" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -23,10 +27,10 @@
             android:text="@{presenter.title}"
             android:textSize="@dimen/title_size"
             android:textStyle="bold"
+            app:fadeIn="@{100}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:fadeIn="@{100}"
             tools:text="@string/add_applicator" />
 
         <TextView
@@ -36,12 +40,12 @@
             android:layout_marginTop="@dimen/large_margin"
             android:gravity="center"
             android:text="@{presenter.subtitle}"
-            tools:text="@string/add_desc_applicator"
             android:textSize="@dimen/large_size"
+            app:fadeIn="@{300}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvTitleDialogApplicator"
-            app:fadeIn="@{300}" />
+            tools:text="@string/add_desc_applicator" />
 
         <TextView
             android:id="@+id/tvNameDialogApplicator"
@@ -50,9 +54,10 @@
             android:layout_marginTop="@dimen/extra_margin"
             android:text="@string/name_applicator"
             android:textSize="@dimen/title_size"
+            app:fadeIn="@{500}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvSubtitleDialogApplicator"            app:fadeIn="@{500}" />
+            app:layout_constraintTop_toBottomOf="@+id/tvSubtitleDialogApplicator" />
 
         <EditText
             android:id="@+id/etNameDialogApplicator"
@@ -61,12 +66,12 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/medium_margin"
             android:hint="@string/complete_name"
-            android:text="@={presenter.name}"
             android:inputType="textCapWords"
+            android:text="@={presenter.name}"
+            app:fadeIn="@{600}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvNameDialogApplicator"
-            app:fadeIn="@{600}" />
+            app:layout_constraintTop_toBottomOf="@+id/tvNameDialogApplicator" />
 
         <TextView
             android:id="@+id/tvContactDialogApplicator"
@@ -75,10 +80,10 @@
             android:layout_marginTop="@dimen/extra_margin"
             android:text="@string/contact_applicator"
             android:textSize="@dimen/title_size"
+            app:fadeIn="@{800}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etNameDialogApplicator"
-            app:fadeIn="@{800}" />
+            app:layout_constraintTop_toBottomOf="@+id/etNameDialogApplicator" />
 
         <EditText
             android:id="@+id/etContactConfigure"
@@ -87,12 +92,12 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/medium_margin"
             android:hint="@string/email"
-            android:text="@={presenter.contact}"
             android:inputType="textEmailAddress"
+            android:text="@={presenter.contact}"
+            app:fadeIn="@{1000}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvContactDialogApplicator"
-            app:fadeIn="@{1000}" />
+            app:layout_constraintTop_toBottomOf="@+id/tvContactDialogApplicator" />
 
         <Button
             android:id="@+id/btCancelApplicator"
@@ -100,26 +105,29 @@
             android:layout_width="0dp"
             android:layout_height="@dimen/button_height"
             android:layout_marginTop="@dimen/extra_margin"
-            android:text="@string/cancel"
             android:layout_marginBottom="@dimen/small_margin"
+            android:text="@string/cancel"
+            app:fadeIn="@{1200}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btSaveApplicator"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etContactConfigure"
-            app:fadeIn="@{1200}" />
+            app:layout_constraintTop_toBottomOf="@+id/etContactConfigure" />
 
         <Button
             android:id="@+id/btSaveApplicator"
             style="@style/AppTheme.ButtonTheme"
             android:layout_width="0dp"
             android:layout_height="@dimen/button_height"
+            android:alpha="@{buttonPresenter.alpha}"
+            android:enabled="@{buttonPresenter.enabled}"
             android:text="@string/save"
+            app:endAlpha="@{0.5f}"
+            app:fadeIn="@{1300}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/btCancelApplicator"
-            app:layout_constraintTop_toTopOf="@+id/btCancelApplicator"
-            app:fadeIn="@{1300}" />
+            app:layout_constraintTop_toTopOf="@+id/btCancelApplicator" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
