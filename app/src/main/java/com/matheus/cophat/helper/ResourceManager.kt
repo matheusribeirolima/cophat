@@ -22,6 +22,10 @@ class ResourceManager constructor(var context: Context) {
         return context.resources.getDimension(dimensionRes)
     }
 
+    fun getDimensionPixelSize(dimensionRes: Int): Int {
+        return context.resources.getDimensionPixelSize(dimensionRes)
+    }
+
     fun getColor(color: Int): Int {
         return ContextCompat.getColor(context, color)
     }

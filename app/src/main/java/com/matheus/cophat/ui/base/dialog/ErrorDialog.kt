@@ -1,4 +1,4 @@
-package com.matheus.cophat.ui.base
+package com.matheus.cophat.ui.base.dialog
 
 import androidx.lifecycle.Observer
 import com.matheus.cophat.R

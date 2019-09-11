@@ -6,7 +6,6 @@ import com.google.firebase.database.DatabaseException
 import com.matheus.cophat.R
 import com.matheus.cophat.data.local.entity.Applicator
 import com.matheus.cophat.data.presenter.ApplicatorConfigurePresenter
-import com.matheus.cophat.data.presenter.BottomButtonPresenter
 import com.matheus.cophat.data.presenter.ItemApplicatorPresenter
 import com.matheus.cophat.data.repository.ConfigureRepository
 import com.matheus.cophat.helper.ResourceManager
@@ -23,12 +22,11 @@ class ConfigureViewModel(
 
     val applicatorsPresenter = MutableLiveData<List<ItemApplicatorPresenter>>()
     val statusApplicator = MutableLiveData<String>()
-    val dialogValidator = MutableLiveData<BottomButtonPresenter>()
 
     fun initialize() {
         viewModelScope.launch(context = Dispatchers.IO) {
             try {
-                handleLoading.postValue(true)
+                isLoading.postValue(true)
 
                 val list = ArrayList<ItemApplicatorPresenter>()
                 repository.getDatabaseChildHash("applicator", Applicator::class.java)
@@ -44,7 +42,7 @@ class ConfigureViewModel(
             } catch (e: DatabaseException) {
                 handleError.postValue(e)
             } finally {
-                handleLoading.postValue(false)
+                isLoading.postValue(false)
             }
         }
     }
@@ -68,7 +66,7 @@ class ConfigureViewModel(
     fun saveOrUpdateApplicator(applicator: ApplicatorConfigurePresenter?, key: String?) {
         viewModelScope.launch(context = Dispatchers.IO) {
             try {
-                handleLoading.postValue(true)
+                isLoading.postValue(true)
 
                 applicator?.let {
                     if (key != null) {
@@ -82,7 +80,7 @@ class ConfigureViewModel(
             } catch (e: DatabaseException) {
                 handleError.postValue(e)
             } finally {
-                handleLoading.postValue(false)
+                isLoading.postValue(false)
             }
         }
     }
@@ -90,7 +88,7 @@ class ConfigureViewModel(
     fun removeApplicator(key: String?) {
         viewModelScope.launch(context = Dispatchers.IO) {
             try {
-                handleLoading.postValue(true)
+                isLoading.postValue(true)
 
                 key?.let {
                     repository.removeApplicator(key)
@@ -99,7 +97,7 @@ class ConfigureViewModel(
             } catch (e: DatabaseException) {
                 handleError.postValue(e)
             } finally {
-                handleLoading.postValue(false)
+                isLoading.postValue(false)
             }
         }
     }
@@ -107,9 +105,9 @@ class ConfigureViewModel(
     fun verifyDialogPresenter(applicator: ApplicatorConfigurePresenter?) {
         applicator?.let {
             if (applicator.name.isNotEmpty() && applicator.contact.isValidEmail()) {
-                dialogValidator.postValue(BottomButtonPresenter(true, 1f))
+                isButtonEnabled.postValue(true)
             } else {
-                dialogValidator.postValue(BottomButtonPresenter(false, 0.5f))
+                isButtonEnabled.postValue(false)
             }
         }
     }

@@ -36,34 +36,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvTitleExclude" />
 
-        <Button
-            android:id="@+id/btCancelExclude"
-            style="@style/AppTheme.SecondaryButtonTheme"
+        <com.matheus.cophat.ui.base.view.BottomButtonsView
+            android:id="@+id/bbvExclude"
             android:layout_width="0dp"
-            android:layout_height="@dimen/button_height"
-            android:layout_marginStart="@dimen/small_margin"
-            android:layout_marginTop="@dimen/extra_margin"
-            android:layout_marginEnd="@dimen/small_margin"
-            android:layout_marginBottom="@dimen/small_margin"
-            android:text="@string/cancel"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btConfirmExclude"
-            app:layout_constraintHorizontal_bias="0.5"
+            android:layout_height="@dimen/bottom_button_height"
+            app:bbv_primary_enabled="true"
+            app:bbv_primary_name="@string/confirm"
+            app:bbv_secondary_name="@string/cancel"
+            app:bbv_is_small="true"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvSubtitleExclude" />
-
-        <Button
-            android:id="@+id/btConfirmExclude"
-            style="@style/AppTheme.ButtonTheme"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/button_height"
-            android:layout_marginStart="@dimen/small_margin"
-            android:layout_marginEnd="@dimen/small_margin"
-            android:text="@string/confirm"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/btCancelExclude"
-            app:layout_constraintTop_toTopOf="@+id/btCancelExclude" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -10,7 +10,7 @@ import com.matheus.cophat.feature.configure.viewmodel.ConfigureViewModel
 import com.matheus.cophat.helper.showToast
 import com.matheus.cophat.ui.BaseDialog
 import com.matheus.cophat.ui.BaseViewModel
-import kotlinx.android.synthetic.main.dialog_applicator.*
+import com.matheus.cophat.ui.base.view.BottomButtonsListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ApplicatorDialog : BaseDialog<DialogApplicatorBinding>() {
@@ -43,8 +43,8 @@ class ApplicatorDialog : BaseDialog<DialogApplicatorBinding>() {
             }
         })
 
-        viewModel.dialogValidator.observe(this, Observer {
-            binding.buttonPresenter = it
+        viewModel.isButtonEnabled.observe(this, Observer {
+            binding.bbvApplicator.updatePrimaryButton(it)
         })
 
         viewModel.statusApplicator.observe(this, Observer {
@@ -57,12 +57,15 @@ class ApplicatorDialog : BaseDialog<DialogApplicatorBinding>() {
     }
 
     private fun configureListeners() {
-        binding.btCancelApplicator.setOnClickListener {
-            dismiss()
-        }
+        binding.bbvApplicator.setBottomButtonsListener(object :
+            BottomButtonsListener {
+            override fun onPrimaryClick() {
+                viewModel.saveOrUpdateApplicator(binding.presenter, args.key)
+            }
 
-        binding.btSaveApplicator.setOnClickListener {
-            viewModel.saveOrUpdateApplicator(binding.presenter, args.key)
-        }
+            override fun onSecondaryClick() {
+                dismiss()
+            }
+        })
     }
 }

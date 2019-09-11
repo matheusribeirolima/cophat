@@ -1,4 +1,4 @@
-package com.matheus.cophat.ui.base
+package com.matheus.cophat.ui.base.dialog
 
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.database.DatabaseException

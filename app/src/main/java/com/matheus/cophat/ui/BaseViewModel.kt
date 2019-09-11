@@ -6,11 +6,10 @@ import com.matheus.cophat.BuildConfig
 
 abstract class BaseViewModel : ViewModel() {
 
-    val handleLoading = MutableLiveData<Boolean>()
-    val handlePermission = MutableLiveData<Boolean>()
-    val handleError = MutableLiveData<Throwable>()
+    val isButtonEnabled = MutableLiveData<Boolean>()
+    val isLoading = MutableLiveData<Boolean>()
     val isChildren = BuildConfig.FLAVOR == "children"
-
-    //abstract fun initializeBegin()
+    val hasPermission = MutableLiveData<Boolean>()
+    val handleError = MutableLiveData<Throwable>()
 
 }

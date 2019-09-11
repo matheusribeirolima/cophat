@@ -7,7 +7,8 @@ interface OnAnimationEndListener {
     fun onAnimationEnd(animation: Animator?)
 }
 
-class CustomAnimator constructor(private val onAnimationEndListener: OnAnimationEndListener) : Animator.AnimatorListener {
+class CustomAnimator(private val onAnimationEndListener: OnAnimationEndListener) :
+    Animator.AnimatorListener {
 
     override fun onAnimationRepeat(animation: Animator?) {}
 

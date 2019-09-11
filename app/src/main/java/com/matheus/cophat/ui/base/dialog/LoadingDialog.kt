@@ -1,4 +1,4 @@
-package com.matheus.cophat.ui.base
+package com.matheus.cophat.ui.base.dialog
 
 import android.app.Dialog
 import android.graphics.Color
@@ -30,12 +30,22 @@ class LoadingDialog : DialogFragment() {
             .create()
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 
     fun show(fragmentManager: FragmentManager) {
-        show(fragmentManager, TAG)
+        val old = fragmentManager.findFragmentByTag(TAG)
+        if (old != null && old.isAdded) {
+            return
+        }
+        val ft = fragmentManager.beginTransaction()
+        ft.add(this, TAG)
+        ft.commit()
     }
 }

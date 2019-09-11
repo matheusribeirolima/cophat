@@ -42,7 +42,7 @@ abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
                 permission
             ) == PackageManager.PERMISSION_GRANTED
         ) {
-            getViewModel().handlePermission.postValue(true)
+            getViewModel().hasPermission.postValue(true)
         } else {
             ActivityCompat.requestPermissions(
                 this, arrayOf(permission),
@@ -59,9 +59,9 @@ abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
         when (requestCode) {
             permissionsRequestCode -> {
                 if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    getViewModel().handlePermission.postValue(true)
+                    getViewModel().hasPermission.postValue(true)
                 } else {
-                    getViewModel().handlePermission.postValue(false)
+                    getViewModel().hasPermission.postValue(false)
                 }
             }
         }

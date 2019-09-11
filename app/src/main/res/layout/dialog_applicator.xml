@@ -9,9 +9,6 @@
             name="presenter"
             type="com.matheus.cophat.data.presenter.ApplicatorConfigurePresenter" />
 
-        <variable
-            name="buttonPresenter"
-            type="com.matheus.cophat.data.presenter.BottomButtonPresenter" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -86,7 +83,7 @@
             app:layout_constraintTop_toBottomOf="@+id/etNameDialogApplicator" />
 
         <EditText
-            android:id="@+id/etContactConfigure"
+            android:id="@+id/etContactApplicator"
             style="@style/AppTheme.EditTextTheme"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -99,35 +96,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvContactDialogApplicator" />
 
-        <Button
-            android:id="@+id/btCancelApplicator"
-            style="@style/AppTheme.SecondaryButtonTheme"
+        <com.matheus.cophat.ui.base.view.BottomButtonsView
+            android:id="@+id/bbvApplicator"
             android:layout_width="0dp"
-            android:layout_height="@dimen/button_height"
-            android:layout_marginTop="@dimen/extra_margin"
-            android:layout_marginBottom="@dimen/small_margin"
-            android:text="@string/cancel"
+            android:layout_height="@dimen/bottom_button_height"
+            app:bbv_primary_enabled="false"
+            app:bbv_primary_name="@string/save"
+            app:bbv_secondary_name="@string/cancel"
             app:fadeIn="@{1200}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btSaveApplicator"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etContactConfigure" />
-
-        <Button
-            android:id="@+id/btSaveApplicator"
-            style="@style/AppTheme.ButtonTheme"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/button_height"
-            android:alpha="@{buttonPresenter.alpha}"
-            android:enabled="@{buttonPresenter.enabled}"
-            android:text="@string/save"
-            app:endAlpha="@{0.5f}"
-            app:fadeIn="@{1300}"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/btCancelApplicator"
-            app:layout_constraintTop_toTopOf="@+id/btCancelApplicator" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etContactApplicator" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

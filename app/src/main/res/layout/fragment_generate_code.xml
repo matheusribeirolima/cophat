@@ -6,6 +6,10 @@
         <variable
             name="loading"
             type="androidx.lifecycle.MutableLiveData&lt;Boolean&gt;" />
+
+        <variable
+            name="presenter"
+            type="com.matheus.cophat.data.presenter.GenerateCodePresenter" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -21,11 +25,11 @@
             android:text="@string/insert_data_before"
             android:textSize="@dimen/title_size"
             android:textStyle="bold"
+            app:alreadyLoaded="@{loading}"
+            app:fadeIn="@{100}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:alreadyLoaded="@{loading}"
-            app:fadeIn="@{100}" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tvChildCode"
@@ -34,11 +38,11 @@
             android:layout_marginTop="@dimen/extra_margin"
             android:text="@string/child_name"
             android:textSize="@dimen/title_size"
+            app:alreadyLoaded="@{loading}"
+            app:fadeIn="@{300}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvTitleCode"
-            app:alreadyLoaded="@{loading}"
-            app:fadeIn="@{300}" />
+            app:layout_constraintTop_toBottomOf="@+id/tvTitleCode" />
 
         <EditText
             android:id="@+id/etChildCode"
@@ -48,11 +52,12 @@
             android:layout_marginTop="@dimen/medium_margin"
             android:hint="@string/complete_name"
             android:inputType="textCapWords"
+            android:text="@={presenter.child}"
+            app:alreadyLoaded="@{loading}"
+            app:fadeIn="@{400}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvChildCode"
-            app:alreadyLoaded="@{loading}"
-            app:fadeIn="@{400}" />
+            app:layout_constraintTop_toBottomOf="@+id/tvChildCode" />
 
         <TextView
             android:id="@+id/tvHospitalCode"
@@ -61,11 +66,11 @@
             android:layout_marginTop="@dimen/extra_margin"
             android:text="@string/choose_hospital"
             android:textSize="@dimen/title_size"
+            app:alreadyLoaded="@{loading}"
+            app:fadeIn="@{600}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etChildCode"
-            app:alreadyLoaded="@{loading}"
-            app:fadeIn="@{600}" />
+            app:layout_constraintTop_toBottomOf="@+id/etChildCode" />
 
         <Spinner
             android:id="@+id/sHospitalCode"
@@ -74,10 +79,10 @@
             android:layout_marginTop="@dimen/medium_margin"
             android:backgroundTint="@color/colorWhite"
             android:popupBackground="@drawable/bg_gradient"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvHospitalCode"
             app:alreadyLoaded="@{loading}"
-            app:fadeIn="@{700}" />
+            app:fadeIn="@{600}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvHospitalCode" />
 
         <TextView
             android:id="@+id/tvApplicatorCode"
@@ -86,11 +91,11 @@
             android:layout_marginTop="@dimen/extra_margin"
             android:text="@string/choose_applicator"
             android:textSize="@dimen/title_size"
+            app:alreadyLoaded="@{loading}"
+            app:fadeIn="@{800}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sHospitalCode"
-            app:alreadyLoaded="@{loading}"
-            app:fadeIn="@{900}" />
+            app:layout_constraintTop_toBottomOf="@+id/sHospitalCode" />
 
         <Spinner
             android:id="@+id/sApplicatorCode"
@@ -99,37 +104,21 @@
             android:layout_marginTop="@dimen/medium_margin"
             android:backgroundTint="@color/colorWhite"
             android:popupBackground="@drawable/bg_gradient"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvApplicatorCode"
             app:alreadyLoaded="@{loading}"
-            app:fadeIn="@{1000}" />
-
-        <Button
-            android:id="@+id/btBackCode"
-            style="@style/AppTheme.SecondaryButtonTheme"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/button_height"
-            android:layout_marginTop="@dimen/extra_margin"
-            android:text="@string/go_back"
-            app:layout_constraintEnd_toStartOf="@+id/btContinueCode"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:fadeIn="@{800}"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sApplicatorCode"
-            app:alreadyLoaded="@{loading}"
-            app:fadeIn="@{1200}" />
+            app:layout_constraintTop_toBottomOf="@+id/tvApplicatorCode" />
 
-        <Button
-            android:id="@+id/btContinueCode"
-            style="@style/AppTheme.ButtonTheme"
+        <com.matheus.cophat.ui.base.view.BottomButtonsView
+            android:id="@+id/bbvCode"
             android:layout_width="0dp"
-            android:layout_height="@dimen/button_height"
-            android:text="@string/advance"
+            android:layout_height="@dimen/bottom_button_height"
+            app:alreadyLoaded="@{loading}"
+            app:bbv_primary_enabled="false"
+            app:fadeIn="@{1000}"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/btBackCode"
-            app:layout_constraintTop_toTopOf="@+id/btBackCode"
-            app:alreadyLoaded="@{loading}"
-            app:fadeIn="@{1250}" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sApplicatorCode" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

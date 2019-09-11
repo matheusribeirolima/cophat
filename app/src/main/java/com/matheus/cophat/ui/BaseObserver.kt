@@ -4,8 +4,8 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
-import com.matheus.cophat.ui.base.ErrorDialog
-import com.matheus.cophat.ui.base.LoadingDialog
+import com.matheus.cophat.ui.base.dialog.ErrorDialog
+import com.matheus.cophat.ui.base.dialog.LoadingDialog
 
 class BaseObserver constructor(
     private val baseViewModel: BaseViewModel,
@@ -13,7 +13,7 @@ class BaseObserver constructor(
 ) {
 
     fun observeChanges(owner: LifecycleOwner) {
-        baseViewModel.handleLoading.observe(
+        baseViewModel.isLoading.observe(
             owner,
             Observer { shouldLoading ->
                 if (shouldLoading) {

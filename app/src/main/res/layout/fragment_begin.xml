@@ -62,7 +62,7 @@
             app:fadeIn="@{500}"
             tools:text="@string/cophat_ca_desc" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btFormBegin"
             style="@style/AppTheme.ButtonTheme"
             android:layout_width="0dp"
@@ -76,7 +76,7 @@
             app:fadeIn="@{700}"
             tools:text="@string/initiate_questionnaire" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btListFormsBegin"
             style="@style/AppTheme.ButtonTheme"
             android:layout_width="0dp"
@@ -89,7 +89,7 @@
             app:alreadyLoaded="@{loading}"
             app:fadeIn="@{800}" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btConfigureBegin"
             style="@style/AppTheme.ButtonTheme"
             android:layout_width="0dp"

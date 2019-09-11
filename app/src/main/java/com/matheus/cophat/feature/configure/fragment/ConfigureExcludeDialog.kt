@@ -9,9 +9,10 @@ import com.matheus.cophat.feature.configure.viewmodel.ConfigureViewModel
 import com.matheus.cophat.helper.showToast
 import com.matheus.cophat.ui.BaseDialog
 import com.matheus.cophat.ui.BaseViewModel
+import com.matheus.cophat.ui.base.view.BottomButtonsListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class ConfigureExcludeDialog : BaseDialog<DialogConfigureExcludeBinding>(){
+class ConfigureExcludeDialog : BaseDialog<DialogConfigureExcludeBinding>() {
 
     private val viewModel: ConfigureViewModel by viewModel()
 
@@ -42,12 +43,15 @@ class ConfigureExcludeDialog : BaseDialog<DialogConfigureExcludeBinding>(){
     }
 
     private fun configureListeners() {
-        binding.btCancelExclude.setOnClickListener {
-            dismiss()
-        }
+        binding.bbvExclude.setBottomButtonsListener(object :
+            BottomButtonsListener {
+            override fun onPrimaryClick() {
+                viewModel.removeApplicator(args.key)
+            }
 
-        binding.btConfirmExclude.setOnClickListener {
-            viewModel.removeApplicator(args.key)
-        }
+            override fun onSecondaryClick() {
+                dismiss()
+            }
+        })
     }
 }

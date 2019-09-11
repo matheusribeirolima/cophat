@@ -5,7 +5,7 @@ import com.matheus.cophat.databinding.FragmentTutorialBinding
 import com.matheus.cophat.feature.children.viewmodel.ChildrenViewModel
 import com.matheus.cophat.ui.BaseFragment
 import com.matheus.cophat.ui.BaseViewModel
-import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import com.matheus.cophat.ui.base.view.BottomButtonsListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class TutorialFragment : BaseFragment<FragmentTutorialBinding>() {
@@ -21,12 +21,18 @@ class TutorialFragment : BaseFragment<FragmentTutorialBinding>() {
     }
 
     override fun initBinding() {
-        binding.loading = viewModel.handleLoading
+        binding.loading = viewModel.isLoading
 
-        binding.btContinueTutorial.setOnClickListener {
-            //findNavController().navigate(R.id.)
-        }
+        binding.bbvTutorial.setBottomButtonsListener(object :
+            BottomButtonsListener {
+            override fun onPrimaryClick() {
+                //findNavController().navigate(R.id.)
+            }
 
-        binding.btBackTutorial.setOnClickListener { activity?.onBackPressed() }
+            override fun onSecondaryClick() {
+                activity?.onBackPressed()
+
+            }
+        })
     }
 }

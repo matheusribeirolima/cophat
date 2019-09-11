@@ -34,7 +34,7 @@ class ApplicatorFragment : BaseFragment<FragmentApplicatorBinding>(), Applicator
 
         adapter.applicatorListener = this
 
-        binding.loading = viewModel.handleLoading
+        binding.loading = viewModel.isLoading
 
         binding.rvApplicator.adapter = adapter
 
