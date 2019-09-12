@@ -20,11 +20,8 @@ class IntroViewModel(
 ) : BaseViewModel() {
 
     val beginPresenter = MutableLiveData<BeginPresenter>()
-    val applicators = MutableLiveData<List<Applicator>>()
-    val hospitals = MutableLiveData<List<Hospital>>()
-    val generateCodePresenter = GenerateCodePresenter()
 
-    fun initializeBegin() {
+    override fun initialize() {
         viewModelScope.launch(context = Dispatchers.IO) {
             isLoading.postValue(true)
 
@@ -60,45 +57,6 @@ class IntroViewModel(
                 handleError.postValue(e)
             } finally {
                 isLoading.postValue(false)
-            }
-        }
-    }
-
-    fun initializeGenerateCode() {
-        viewModelScope.launch(context = Dispatchers.IO) {
-            try {
-                isLoading.postValue(true)
-                hospitals.postValue(
-                    repository.getDatabaseChild("hospital", Hospital::class.java)
-                )
-                applicators.postValue(
-                    repository.getDatabaseChild("applicator", Applicator::class.java)
-                )
-            } catch (e: DatabaseException) {
-                handleError.postValue(e)
-            } finally {
-                isLoading.postValue(false)
-            }
-        }
-    }
-
-    fun chooseNav(): Int {
-        return if (isChildren) {
-            R.id.action_generateCodeFragment_to_children_navigation
-        } else {
-            R.id.action_generateCodeFragment_to_parents_navigation
-        }
-    }
-
-    fun validatePresenter(presenter: GenerateCodePresenter?) {
-        presenter?.let {
-            if (presenter.child.isNotEmpty() &&
-                presenter.applicator.isNotEmpty() &&
-                presenter.hospital.isNotEmpty()
-            ) {
-                isButtonEnabled.postValue(true)
-            } else {
-                isButtonEnabled.postValue(false)
             }
         }
     }

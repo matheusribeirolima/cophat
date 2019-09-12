@@ -9,4 +9,7 @@ class QuestionnairesViewModel(
     private val resourceManager: ResourceManager
 ) : BaseViewModel() {
 
+    override fun initialize() {
+
+    }
 }

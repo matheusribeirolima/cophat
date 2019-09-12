@@ -26,10 +26,11 @@
         tools:layout="@layout/fragment_begin">
         <action
             android:id="@+id/action_beginFragment_to_nav_questionnaires"
-            app:destination="@id/nav_questionnaires" />
-        <action
-            android:id="@+id/action_beginFragment_to_generateCodeFragment"
-            app:destination="@id/generateCodeFragment" />
+            app:destination="@id/nav_questionnaires"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_beginFragment_to_nav_configure"
             app:destination="@id/nav_configure"
@@ -37,21 +38,15 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_beginFragment_to_nav_generate"
+            app:destination="@id/nav_generate"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
-    <include app:graph="@navigation/nav_children" />
-    <include app:graph="@navigation/nav_parents" />
     <include app:graph="@navigation/nav_questionnaires" />
-    <fragment
-        android:id="@+id/generateCodeFragment"
-        android:name="com.matheus.cophat.feature.intro.fragment.GenerateCodeFragment"
-        android:label="GenerateCodeFragment"
-        tools:layout="@layout/fragment_generate_code">
-        <action
-            android:id="@+id/action_generateCodeFragment_to_children_navigation"
-            app:destination="@id/children_navigation" />
-        <action
-            android:id="@+id/action_generateCodeFragment_to_parents_navigation"
-            app:destination="@id/parents_navigation" />
-    </fragment>
     <include app:graph="@navigation/nav_configure" />
+    <include app:graph="@navigation/nav_generate" />
 </navigation>

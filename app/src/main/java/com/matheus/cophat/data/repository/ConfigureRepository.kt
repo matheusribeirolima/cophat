@@ -16,8 +16,7 @@ class ConfigureRepository(
     }
 
     suspend fun saveApplicator(name: String, contact: String) {
-        database.child("applicator").push()
-            .setValue(Applicator(name, contact)).await()
+        database.child("applicator").push().setValue(Applicator(name, contact)).await()
     }
 
     suspend fun updateApplicator(name: String, contact: String, key: String) {

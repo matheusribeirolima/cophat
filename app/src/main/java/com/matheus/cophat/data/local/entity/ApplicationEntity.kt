@@ -6,14 +6,14 @@ import java.util.*
 
 @Entity(tableName = "application")
 data class ApplicationEntity(
-    @PrimaryKey
-    var applicationId: String,
-    var hospital: Hospital,
-    var respondent: Respondent,
-    var applicator: Applicator,
-    var questionnaire: Questionnaire,
-    var questions: List<Question>,
-    var date: Date,
-    var startHour: Date,
-    var endHour: Date
+    @PrimaryKey(autoGenerate = true)
+    var applicationId: Int = 0,
+    var hospital: Hospital? = null,
+    var respondent: Respondent? = null,
+    var applicator: Applicator? = null,
+    var questionnaireType: QuestionnaireType? = null,
+    var questions: List<Question>? = null,
+    var date: Date? = null,
+    var startHour: Date? = null,
+    var endHour: Date? = null
 )

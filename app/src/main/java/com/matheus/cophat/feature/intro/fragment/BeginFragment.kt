@@ -29,15 +29,14 @@ class BeginFragment : BaseFragment<FragmentBeginBinding>() {
 
         configureListeners()
 
-        viewModel.initializeBegin()
+        viewModel.initialize()
 
-        viewModel.beginPresenter.observe(this,
-            Observer { binding.presenter = it })
+        viewModel.beginPresenter.observe(this, Observer { binding.presenter = it })
     }
 
     private fun configureListeners() {
         binding.btFormBegin.setOnClickListener {
-            findNavController().navigate(R.id.action_beginFragment_to_generateCodeFragment)
+            findNavController().navigate(R.id.action_beginFragment_to_nav_generate)
         }
 
         binding.btListFormsBegin.setOnClickListener {

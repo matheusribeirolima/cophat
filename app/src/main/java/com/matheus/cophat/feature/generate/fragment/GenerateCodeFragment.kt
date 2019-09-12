@@ -1,4 +1,4 @@
-package com.matheus.cophat.feature.intro.fragment
+package com.matheus.cophat.feature.generate.fragment
 
 import android.content.Context
 import android.view.View
@@ -9,7 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.matheus.cophat.R
 import com.matheus.cophat.databinding.FragmentGenerateCodeBinding
-import com.matheus.cophat.feature.intro.viewmodel.IntroViewModel
+import com.matheus.cophat.feature.generate.viewmodel.GenerateCodeViewModel
 import com.matheus.cophat.helper.CustomSpinnerListener
 import com.matheus.cophat.helper.OnOnlyItemSelectedListener
 import com.matheus.cophat.ui.BaseFragment
@@ -19,7 +19,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class GenerateCodeFragment : BaseFragment<FragmentGenerateCodeBinding>() {
 
-    private val viewModel: IntroViewModel by viewModel()
+    private val viewModel: GenerateCodeViewModel by viewModel()
 
     override fun getLayout(): Int {
         return R.layout.fragment_generate_code
@@ -43,7 +43,7 @@ class GenerateCodeFragment : BaseFragment<FragmentGenerateCodeBinding>() {
         configureListeners()
         configureObservers()
 
-        viewModel.initializeGenerateCode()
+        viewModel.initialize()
     }
 
     private fun <T> generateAdapter(context: Context, list: List<T>): ArrayAdapter<T> {
@@ -58,10 +58,10 @@ class GenerateCodeFragment : BaseFragment<FragmentGenerateCodeBinding>() {
     }
 
     private fun configureListeners() {
-        binding.bbvCode.setBottomButtonsListener(object :
-            BottomButtonsListener {
+        binding.bbvCode.setBottomButtonsListener(object : BottomButtonsListener {
             override fun onPrimaryClick() {
-                findNavController().navigate(viewModel.chooseNav())
+                viewModel.test()
+                //findNavController().navigate(viewModel.chooseNav())
             }
 
             override fun onSecondaryClick() {

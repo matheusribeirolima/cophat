@@ -8,4 +8,8 @@ class ParentsViewModel(
     private val repository: IntroRepository,
     private val resourceManager: ResourceManager
 ) : BaseViewModel() {
+
+    override fun initialize() {
+
+    }
 }

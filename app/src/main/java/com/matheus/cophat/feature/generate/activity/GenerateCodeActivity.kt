@@ -1,18 +1,18 @@
-package com.matheus.cophat.feature.children.activity
+package com.matheus.cophat.feature.generate.activity
 
 import com.matheus.cophat.R
-import com.matheus.cophat.databinding.ActivityChildrenBinding
+import com.matheus.cophat.databinding.ActivityGenerateCodeBinding
 import com.matheus.cophat.feature.children.viewmodel.ChildrenViewModel
 import com.matheus.cophat.ui.BaseActivity
 import com.matheus.cophat.ui.BaseViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class ChildrenActivity : BaseActivity<ActivityChildrenBinding>() {
+class GenerateCodeActivity : BaseActivity<ActivityGenerateCodeBinding>() {
 
     private val viewModel: ChildrenViewModel by viewModel()
 
     override fun getLayout(): Int {
-        return R.layout.activity_children
+        return R.layout.activity_generate_code
     }
 
     override fun getViewModel(): BaseViewModel {

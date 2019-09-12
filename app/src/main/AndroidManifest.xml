@@ -13,7 +13,6 @@
         android:icon="${appIcon}"
         android:label="${appLabel}"
         android:theme="@style/AppTheme">
-        <activity android:name=".feature.configure.activity.ConfigureActivity"></activity>
         <activity
             android:name=".feature.intro.activity.IntroActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -25,6 +24,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".feature.generate.activity.GenerateCodeActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize" />
+        <activity
+            android:name=".feature.configure.activity.ConfigureActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize" />
         <activity
             android:name=".feature.questionnaires.activity.QuestionnairesActivity"
             android:configChanges="orientation|keyboardHidden|screenSize" />

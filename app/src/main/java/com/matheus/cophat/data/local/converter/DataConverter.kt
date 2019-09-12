@@ -55,13 +55,13 @@ class DataConverter {
     }
 
     @TypeConverter
-    fun toQuestionnaire(questionnaire: String?): Questionnaire? {
-        return questionnaire?.let { Questionnaire.valueOf(it) }
+    fun toQuestionnaire(questionnaire: String?): QuestionnaireType? {
+        return questionnaire?.let { QuestionnaireType.valueOf(it) }
     }
 
     @TypeConverter
-    fun fromQuestionnaire(questionnaire: Questionnaire?): String? {
-        return questionnaire?.toString()
+    fun fromQuestionnaire(questionnaireType: QuestionnaireType?): String? {
+        return questionnaireType?.toString()
     }
 
     @TypeConverter

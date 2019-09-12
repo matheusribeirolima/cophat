@@ -3,6 +3,7 @@ package com.matheus.cophat.di
 import com.matheus.cophat.data.repository.*
 import com.matheus.cophat.feature.children.viewmodel.ChildrenViewModel
 import com.matheus.cophat.feature.configure.viewmodel.ConfigureViewModel
+import com.matheus.cophat.feature.generate.viewmodel.GenerateCodeViewModel
 import com.matheus.cophat.feature.intro.viewmodel.IntroViewModel
 import com.matheus.cophat.feature.parents.viewmodel.ParentsViewModel
 import com.matheus.cophat.feature.questionnaires.viewmodel.QuestionnairesViewModel
@@ -40,4 +41,9 @@ val viewModuleModule = module {
         ConfigureRepository(get(), get())
     }
     viewModel { ConfigureViewModel(get(), get()) }
+
+    single {
+        GenerateCodeRepository(get(), get())
+    }
+    viewModel { GenerateCodeViewModel(get(), get()) }
 }

@@ -10,6 +10,10 @@ class ErrorViewModel(private val resourceManager: ResourceManager) : BaseViewMod
 
     val errorMessage = MutableLiveData<String>()
 
+    override fun initialize() {
+
+    }
+
     fun handleThrowable(throwable: Throwable) {
         if (throwable is DatabaseException) {
             errorMessage.value = resourceManager.getString(R.string.firebase_error)

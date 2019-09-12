@@ -12,4 +12,5 @@ abstract class BaseViewModel : ViewModel() {
     val hasPermission = MutableLiveData<Boolean>()
     val handleError = MutableLiveData<Throwable>()
 
+    abstract fun initialize()
 }

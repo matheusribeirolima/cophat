@@ -23,7 +23,7 @@ class ConfigureViewModel(
     val applicatorsPresenter = MutableLiveData<List<ItemApplicatorPresenter>>()
     val statusApplicator = MutableLiveData<String>()
 
-    fun initialize() {
+    override fun initialize() {
         viewModelScope.launch(context = Dispatchers.IO) {
             try {
                 isLoading.postValue(true)
