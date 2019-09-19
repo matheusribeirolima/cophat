@@ -4,6 +4,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
+import kotlinx.coroutines.tasks.await
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
@@ -12,7 +13,7 @@ abstract class BaseRepository {
 
     abstract fun getDatabase(): DatabaseReference
 
-    suspend fun <T> getDatabaseChild(child: String, dataType: Class<T>): List<T> =
+    suspend fun <T> getDatabaseChild(child: FirebaseChild, dataType: Class<T>): List<T> =
         suspendCoroutine { d ->
             val children = ArrayList<T>()
             getDatabase().addListenerForSingleValueEvent(object : ValueEventListener {
@@ -22,7 +23,7 @@ abstract class BaseRepository {
 
                 override fun onDataChange(snapshot: DataSnapshot) {
                     try {
-                        for (dataSnapshot in snapshot.child(child).children) {
+                        for (dataSnapshot in snapshot.child(child.pathName).children) {
                             dataSnapshot.getValue(dataType)?.let { children.add(it) }
                         }
 
@@ -34,7 +35,10 @@ abstract class BaseRepository {
             })
         }
 
-    suspend fun <T> getDatabaseChildHash(child: String, dataType: Class<T>): HashMap<String, T> =
+    suspend fun <T> getDatabaseChildHash(
+        child: FirebaseChild,
+        dataType: Class<T>
+    ): HashMap<String, T> =
         suspendCoroutine { d ->
             val children = HashMap<String, T>()
             getDatabase().addListenerForSingleValueEvent(object : ValueEventListener {
@@ -44,7 +48,7 @@ abstract class BaseRepository {
 
                 override fun onDataChange(snapshot: DataSnapshot) {
                     try {
-                        for (dataSnapshot in snapshot.child(child).children) {
+                        for (dataSnapshot in snapshot.child(child.pathName).children) {
                             dataSnapshot.getValue(dataType)?.let { value ->
                                 dataSnapshot.key?.let { key ->
                                     children[key] = value
@@ -60,20 +64,23 @@ abstract class BaseRepository {
             })
         }
 
-    suspend fun updateChild(child: String, key: String, updated: Any): Void? =
+    suspend fun addChild(child: FirebaseChild, value: Any): Void? =
+        getDatabase().child(child.pathName).push().setValue(value).await()
+
+    suspend fun updateChild(child: FirebaseChild, key: String, updated: Any): Void? =
         suspendCoroutine { d ->
             val childUpdates = HashMap<String, Any>()
-            childUpdates["/$child/$key"] = updated
+            childUpdates["/${child.pathName}/$key"] = updated
 
             getDatabase().updateChildren(childUpdates)
                 .addOnCompleteListener { d.resume(null) }
                 .addOnFailureListener { d.resumeWithException(it) }
         }
 
-    suspend fun removeChild(child: String, key: String): Void? =
+    suspend fun removeChild(child: FirebaseChild, key: String): Void? =
         suspendCoroutine { d ->
             val childUpdates = HashMap<String, Any?>()
-            childUpdates["/$child/$key"] = null
+            childUpdates["/${child.pathName}/$key"] = null
 
             getDatabase().updateChildren(childUpdates)
                 .addOnCompleteListener { d.resume(null) }

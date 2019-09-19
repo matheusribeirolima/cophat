@@ -30,7 +30,7 @@ class ApplicatorFragment : BaseFragment<FragmentApplicatorBinding>(), Applicator
     override fun initBinding() {
         viewModel.initialize()
 
-        viewModel.applicatorsPresenter.observe(this, Observer { adapter.setItems(it) })
+        configureObservers()
 
         adapter.applicatorListener = this
 
@@ -47,11 +47,19 @@ class ApplicatorFragment : BaseFragment<FragmentApplicatorBinding>(), Applicator
         }
     }
 
+    private fun configureObservers() {
+        viewModel.applicatorPresenter.observe(this,
+            Observer {
+
+                adapter.setItems(it.applicators)
+            })
+    }
+
     override fun onEdit(item: ItemApplicatorPresenter) {
         findNavController().navigate(
             ApplicatorFragmentDirections.actionApplicatorFragmentToApplicatorDialog(
                 viewModel.getEditApplicator(item),
-                item.applicatorDatabaseKey
+                item.applicatorFirebaseKey
             )
         )
     }
@@ -59,7 +67,7 @@ class ApplicatorFragment : BaseFragment<FragmentApplicatorBinding>(), Applicator
     override fun onRemove(item: ItemApplicatorPresenter) {
         findNavController().navigate(
             ApplicatorFragmentDirections.actionApplicatorFragmentToConfigureExcludeDialog(
-                item.applicatorDatabaseKey
+                item.applicatorFirebaseKey
             )
         )
     }

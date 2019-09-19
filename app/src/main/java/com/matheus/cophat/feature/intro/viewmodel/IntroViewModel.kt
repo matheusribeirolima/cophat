@@ -4,10 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.database.DatabaseException
 import com.matheus.cophat.R
-import com.matheus.cophat.data.local.entity.Applicator
-import com.matheus.cophat.data.local.entity.Hospital
 import com.matheus.cophat.data.presenter.BeginPresenter
-import com.matheus.cophat.data.presenter.GenerateCodePresenter
 import com.matheus.cophat.data.repository.IntroRepository
 import com.matheus.cophat.helper.ResourceManager
 import com.matheus.cophat.ui.BaseViewModel

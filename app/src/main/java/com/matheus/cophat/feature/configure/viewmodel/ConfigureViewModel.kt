@@ -4,8 +4,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.database.DatabaseException
 import com.matheus.cophat.R
-import com.matheus.cophat.data.local.entity.Applicator
 import com.matheus.cophat.data.presenter.ApplicatorConfigurePresenter
+import com.matheus.cophat.data.presenter.ApplicatorPresenter
 import com.matheus.cophat.data.presenter.ItemApplicatorPresenter
 import com.matheus.cophat.data.repository.ConfigureRepository
 import com.matheus.cophat.helper.ResourceManager
@@ -20,7 +20,7 @@ class ConfigureViewModel(
     private val resourceManager: ResourceManager
 ) : BaseViewModel() {
 
-    val applicatorsPresenter = MutableLiveData<List<ItemApplicatorPresenter>>()
+    val applicatorPresenter = MutableLiveData<ApplicatorPresenter>()
     val statusApplicator = MutableLiveData<String>()
 
     override fun initialize() {
@@ -28,17 +28,14 @@ class ConfigureViewModel(
             try {
                 isLoading.postValue(true)
 
-                val list = ArrayList<ItemApplicatorPresenter>()
-                repository.getDatabaseChildHash("applicator", Applicator::class.java)
-                    .forEach { (key, value) ->
-                        list.add(ItemApplicatorPresenter(value.name, value.contact, key))
-                    }
-
+                val list = repository.getApplicators()
                 for (i in list) {
                     i.applicatorDividerVisibility = (i != list.last()).visibleOrGone()
                 }
 
-                applicatorsPresenter.postValue(list)
+                applicatorPresenter.postValue(
+                    ApplicatorPresenter(list.isEmpty().visibleOrGone(), list)
+                )
             } catch (e: DatabaseException) {
                 handleError.postValue(e)
             } finally {

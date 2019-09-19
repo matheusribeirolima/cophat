@@ -19,26 +19,6 @@ class DataConverter {
     }
 
     @TypeConverter
-    fun toApplicator(applicator: String?): Applicator? {
-        return applicator?.let { Gson().fromJson(applicator, Applicator::class.java) }
-    }
-
-    @TypeConverter
-    fun fromApplicator(applicator: Applicator?): String? {
-        return Gson().toJson(applicator)
-    }
-
-    @TypeConverter
-    fun toHospital(hospital: String?): Hospital? {
-        return hospital?.let { Gson().fromJson(hospital, Hospital::class.java) }
-    }
-
-    @TypeConverter
-    fun fromHospital(hospital: Hospital?): String? {
-        return Gson().toJson(hospital)
-    }
-
-    @TypeConverter
     fun toQuestions(questions: String?): List<Question>? {
         return questions?.let {
             val type = object : TypeToken<List<Question>>() {}.type
@@ -52,16 +32,6 @@ class DataConverter {
             val type = object : TypeToken<List<Question>>() {}.type
             return Gson().toJson(questions, type)
         }
-    }
-
-    @TypeConverter
-    fun toQuestionnaire(questionnaire: String?): QuestionnaireType? {
-        return questionnaire?.let { QuestionnaireType.valueOf(it) }
-    }
-
-    @TypeConverter
-    fun fromQuestionnaire(questionnaireType: QuestionnaireType?): String? {
-        return questionnaireType?.toString()
     }
 
     @TypeConverter

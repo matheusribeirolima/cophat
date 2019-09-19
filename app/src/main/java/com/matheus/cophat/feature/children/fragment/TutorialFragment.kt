@@ -1,5 +1,6 @@
 package com.matheus.cophat.feature.children.fragment
 
+import androidx.lifecycle.Observer
 import com.matheus.cophat.R
 import com.matheus.cophat.databinding.FragmentTutorialBinding
 import com.matheus.cophat.feature.children.viewmodel.ChildrenViewModel
@@ -23,15 +24,19 @@ class TutorialFragment : BaseFragment<FragmentTutorialBinding>() {
     override fun initBinding() {
         binding.loading = viewModel.isLoading
 
-        binding.bbvTutorial.setBottomButtonsListener(object :
-            BottomButtonsListener {
+        viewModel.initialize()
+
+        viewModel.patientName.observe(this, Observer {
+            binding.tvIntroTutorial.text = getString(R.string.lets_learn, it)
+        })
+
+        binding.bbvTutorial.setBottomButtonsListener(object : BottomButtonsListener {
             override fun onPrimaryClick() {
                 //findNavController().navigate(R.id.)
             }
 
             override fun onSecondaryClick() {
                 activity?.onBackPressed()
-
             }
         })
     }

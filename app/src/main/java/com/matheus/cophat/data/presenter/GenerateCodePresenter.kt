@@ -1,19 +1,16 @@
 package com.matheus.cophat.data.presenter
 
-import android.os.Parcelable
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.databinding.library.baseAdapters.BR
-import kotlinx.android.parcel.IgnoredOnParcel
-import kotlinx.android.parcel.Parcelize
+import com.matheus.cophat.data.local.entity.Applicator
+import com.matheus.cophat.data.local.entity.Hospital
 
-@Parcelize
 data class GenerateCodePresenter(
     private var _child: String = "",
-    private var _hospital: String = "",
-    private var _applicator: String = ""
-) : Parcelable, BaseObservable() {
-    @IgnoredOnParcel
+    private var _hospital: Hospital = Hospital(),
+    private var _applicator: Applicator = Applicator()
+) : BaseObservable() {
     @get:Bindable
     var child
         get() = _child
@@ -22,7 +19,6 @@ data class GenerateCodePresenter(
             notifyPropertyChanged(BR.child)
         }
 
-    @IgnoredOnParcel
     @get:Bindable
     var hospital
         get() = _hospital
@@ -31,7 +27,6 @@ data class GenerateCodePresenter(
             notifyPropertyChanged(BR.hospital)
         }
 
-    @IgnoredOnParcel
     @get:Bindable
     var applicator
         get() = _applicator

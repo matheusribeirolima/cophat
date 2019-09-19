@@ -1,10 +1,7 @@
 package com.matheus.cophat
 
 import android.app.Application
-import com.matheus.cophat.di.dataModule
-import com.matheus.cophat.di.appModule
-import com.matheus.cophat.di.networkModule
-import com.matheus.cophat.di.viewModuleModule
+import com.matheus.cophat.di.*
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidFileProperties
 import org.koin.android.ext.koin.androidLogger
@@ -19,7 +16,7 @@ class CophatApplication : Application() {
             androidLogger()
             androidContext(this@CophatApplication)
             androidFileProperties()
-            modules(listOf(networkModule, dataModule, appModule, viewModuleModule))
+            modules(listOf(networkModule, dataModule, appModule, viewModelModule, repositoryModule))
         }
     }
 }
