@@ -22,7 +22,23 @@ class TutorialFragment : BaseFragment<FragmentTutorialBinding>() {
     }
 
     override fun initBinding() {
-        binding.loading = viewModel.isLoading
+        setViews(
+            binding.tvIntroTutorial,
+            binding.tvTitleTutorial,
+            binding.tvSubtitleTutorial,
+            binding.tvHappyTutorial,
+            binding.tvSadTutorial,
+            binding.tvScaredTutorial,
+            binding.tvAngryTutorial,
+            binding.tvTitleThermTutorial,
+            binding.tvSubtitleThermTutorial,
+            binding.tvThermometer1Tutorial,
+            binding.tvThermometer2Tutorial,
+            binding.tvThermometer3Tutorial,
+            binding.tvThermometer4Tutorial,
+            binding.tvThermometer5Tutorial,
+            binding.bbvTutorial
+        )
 
         viewModel.initialize()
 

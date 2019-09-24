@@ -28,13 +28,18 @@ class ApplicatorFragment : BaseFragment<FragmentApplicatorBinding>(), Applicator
     }
 
     override fun initBinding() {
+        setViews(
+            binding.tvTitleApplicator,
+            binding.tvSubtitleApplicator,
+            binding.rvApplicator,
+            binding.ivAddApplicator
+        )
+
         viewModel.initialize()
 
         configureObservers()
 
         adapter.applicatorListener = this
-
-        binding.loading = viewModel.isLoading
 
         binding.rvApplicator.adapter = adapter
 

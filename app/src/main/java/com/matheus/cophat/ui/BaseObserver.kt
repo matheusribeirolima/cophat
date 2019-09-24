@@ -1,5 +1,6 @@
 package com.matheus.cophat.ui
 
+import android.view.View
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.LifecycleOwner
@@ -12,6 +13,8 @@ class BaseObserver constructor(
     private val fragmentManager: FragmentManager?
 ) {
 
+    val views = ArrayList<View>()
+
     fun observeChanges(owner: LifecycleOwner) {
         baseViewModel.isLoading.observe(
             owner,
@@ -20,10 +23,28 @@ class BaseObserver constructor(
                     showLoading()
                 } else {
                     hideLoading()
+                    fadeIn()
                 }
             })
 
         baseViewModel.handleError.observe(owner, Observer { handleError(it) })
+    }
+
+    fun setViews(binding: Array<out View>) {
+        views.clear()
+        views.addAll(binding)
+
+        for (view in views) {
+            view.alpha = 0f
+        }
+    }
+
+    private fun fadeIn() {
+        var delay = 0L
+        for (view in views) {
+            view.animate().alpha(1f).setStartDelay(delay).start()
+            delay += 100L
+        }
     }
 
     private fun showLoading() {
@@ -31,8 +52,7 @@ class BaseObserver constructor(
     }
 
     private fun hideLoading() {
-        fragmentManager?.findFragmentByTag(LoadingDialog.TAG)
-            ?.let { (it as DialogFragment).dismiss() }
+        (fragmentManager?.findFragmentByTag(LoadingDialog.TAG) as DialogFragment?)?.dismiss()
     }
 
     private fun handleError(throwable: Throwable) {

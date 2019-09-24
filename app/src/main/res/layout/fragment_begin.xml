@@ -7,10 +7,6 @@
         <variable
             name="presenter"
             type="com.matheus.cophat.data.presenter.BeginPresenter" />
-
-        <variable
-            name="loading"
-            type="androidx.lifecycle.MutableLiveData&lt;Boolean&gt;" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -28,8 +24,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:alreadyLoaded="@{loading}"
-            app:fadeIn="@{100}"
             tools:src="@drawable/ic_launcher" />
 
         <TextView
@@ -43,8 +37,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ivImageBegin"
-            app:alreadyLoaded="@{loading}"
-            app:fadeIn="@{300}"
             tools:text="@string/cophat_ca" />
 
         <TextView
@@ -58,8 +50,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvTitleBegin"
-            app:alreadyLoaded="@{loading}"
-            app:fadeIn="@{500}"
             tools:text="@string/cophat_ca_desc" />
 
         <androidx.appcompat.widget.AppCompatButton
@@ -72,8 +62,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvSubtitleBegin"
-            app:alreadyLoaded="@{loading}"
-            app:fadeIn="@{700}"
             tools:text="@string/initiate_questionnaire" />
 
         <androidx.appcompat.widget.AppCompatButton
@@ -85,9 +73,7 @@
             android:text="@string/list_questionnaires"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btFormBegin"
-            app:alreadyLoaded="@{loading}"
-            app:fadeIn="@{800}" />
+            app:layout_constraintTop_toBottomOf="@+id/btFormBegin" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btConfigureBegin"
@@ -98,9 +84,7 @@
             android:text="@string/configurations"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btListFormsBegin"
-            app:alreadyLoaded="@{loading}"
-            app:fadeIn="@{900}" />
+            app:layout_constraintTop_toBottomOf="@+id/btListFormsBegin" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

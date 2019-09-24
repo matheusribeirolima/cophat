@@ -27,6 +27,10 @@ abstract class BaseDialog<T : ViewDataBinding> : DialogFragment() {
 
     abstract fun initBinding()
 
+    fun setViews(vararg views: View) {
+        baseObserver.setViews(views)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -38,6 +42,7 @@ abstract class BaseDialog<T : ViewDataBinding> : DialogFragment() {
         context?.let { dialog?.window?.setBackgroundDrawable(ContextCompat.getDrawable(it, R.drawable.bg_gradient)) }
         binding = DataBindingUtil.inflate(inflater, getLayout(), container, false)
         binding.lifecycleOwner = this
+
         return binding.root
     }
 

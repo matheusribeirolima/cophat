@@ -22,6 +22,10 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
 
     abstract fun initBinding()
 
+    fun setViews(vararg views: View) {
+        baseObserver.setViews(views)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -29,9 +33,14 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
         baseObserver.observeChanges(this)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         binding = DataBindingUtil.inflate(inflater, getLayout(), container, false)
         binding.lifecycleOwner = this
+
         return binding.root
     }
 

@@ -32,7 +32,16 @@ class GenerateCodeFragment : BaseFragment<FragmentGenerateCodeBinding>() {
     }
 
     override fun initBinding() {
-        binding.loading = viewModel.isLoading
+        setViews(
+            binding.tvTitleCode,
+            binding.tvChildCode,
+            binding.etChildCode,
+            binding.tvHospitalCode,
+            binding.sHospitalCode,
+            binding.tvApplicatorCode,
+            binding.sApplicatorCode,
+            binding.bbvCode
+        )
         binding.presenter = viewModel.presenter
 
         binding.presenter?.addOnPropertyChangedCallback(object :

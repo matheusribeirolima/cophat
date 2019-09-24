@@ -4,9 +4,6 @@
 
     <data>
 
-        <variable
-            name="loading"
-            type="androidx.lifecycle.MutableLiveData&lt;Boolean&gt;" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -22,8 +19,6 @@
             android:text="@string/configurations"
             android:textSize="@dimen/title_size"
             android:textStyle="bold"
-            app:alreadyLoaded="@{loading}"
-            app:fadeIn="@{100}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -36,8 +31,6 @@
             android:gravity="center"
             android:text="@string/edit_or_remove_applicator"
             android:textSize="@dimen/large_size"
-            app:alreadyLoaded="@{loading}"
-            app:fadeIn="@{300}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvTitleApplicator" />
@@ -49,8 +42,6 @@
             android:layout_marginTop="@dimen/big_margin"
             android:maxHeight="560dp"
             android:orientation="vertical"
-            app:alreadyLoaded="@{loading}"
-            app:fadeIn="@{500}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -66,8 +57,6 @@
             android:background="?android:selectableItemBackgroundBorderless"
             android:contentDescription="@string/add"
             android:src="@drawable/ic_plus"
-            app:alreadyLoaded="@{loading}"
-            app:fadeIn="@{700}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/rvApplicator" />

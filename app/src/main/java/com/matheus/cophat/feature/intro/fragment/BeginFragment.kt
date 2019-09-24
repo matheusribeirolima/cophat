@@ -25,7 +25,14 @@ class BeginFragment : BaseFragment<FragmentBeginBinding>() {
     override fun initBinding() {
         activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
 
-        binding.loading = viewModel.isLoading
+        setViews(
+            binding.ivImageBegin,
+            binding.tvTitleBegin,
+            binding.tvSubtitleBegin,
+            binding.btFormBegin,
+            binding.btListFormsBegin,
+            binding.btConfigureBegin
+        )
 
         configureListeners()
 

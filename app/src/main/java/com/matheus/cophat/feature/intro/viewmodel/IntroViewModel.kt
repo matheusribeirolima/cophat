@@ -20,14 +20,16 @@ class IntroViewModel(
 
     override fun initialize() {
         viewModelScope.launch(context = Dispatchers.IO) {
-            isLoading.postValue(true)
-
-            val presenterImage: Int
-            val presenterTitle: String
-            val presenterSubtitle: String
-            val presenterButton: String
-
             try {
+                isLoading.postValue(true)
+
+                val presenterImage: Int
+                val presenterTitle: String
+                val presenterSubtitle: String
+                val presenterButton: String = if (repository.isEmpty())
+                    resourceManager.getString(R.string.initiate_questionnaire) else
+                    resourceManager.getString(R.string.continue_questionnaire)
+
                 if (isChildren) {
                     presenterImage = R.drawable.ic_launcher
                     presenterTitle = resourceManager.getString(R.string.cophat_ca)
@@ -37,10 +39,6 @@ class IntroViewModel(
                     presenterTitle = resourceManager.getString(R.string.cophat_p)
                     presenterSubtitle = resourceManager.getString(R.string.cophat_p_desc)
                 }
-
-                presenterButton = if (repository.isEmpty())
-                    resourceManager.getString(R.string.initiate_questionnaire) else
-                    resourceManager.getString(R.string.continue_questionnaire)
 
                 beginPresenter.postValue(
                     BeginPresenter(
