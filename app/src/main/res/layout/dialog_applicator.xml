@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".feature.configure.fragment.ApplicatorDialog">
 
     <data>
 
@@ -14,6 +15,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:padding="@dimen/default_padding">
 
         <TextView
@@ -42,53 +46,45 @@
             app:layout_constraintTop_toBottomOf="@+id/tvTitleDialogApplicator"
             tools:text="@string/add_desc_applicator" />
 
-        <TextView
-            android:id="@+id/tvNameDialogApplicator"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilNameApplicator"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/extra_margin"
-            android:text="@string/name_applicator"
-            android:textSize="@dimen/title_size"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvSubtitleDialogApplicator" />
-
-        <EditText
-            android:id="@+id/etNameDialogApplicator"
-            style="@style/AppTheme.EditTextTheme"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/medium_margin"
             android:hint="@string/complete_name"
-            android:inputType="textCapWords"
-            android:text="@={presenter.name}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvNameDialogApplicator" />
+            app:layout_constraintTop_toBottomOf="@+id/tvSubtitleDialogApplicator">
 
-        <TextView
-            android:id="@+id/tvContactDialogApplicator"
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#00000000"
+                android:inputType="textCapWords"
+                android:text="@={presenter.name}"
+                android:textSize="@dimen/large_size" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilEmailApplicator"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/extra_margin"
-            android:text="@string/contact_applicator"
-            android:textSize="@dimen/title_size"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etNameDialogApplicator" />
-
-        <EditText
-            android:id="@+id/etContactApplicator"
-            style="@style/AppTheme.EditTextTheme"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/medium_margin"
             android:hint="@string/email"
-            android:inputType="textEmailAddress"
-            android:text="@={presenter.contact}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvContactDialogApplicator" />
+            app:layout_constraintTop_toBottomOf="@+id/tilNameApplicator">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#00000000"
+                android:inputType="textEmailAddress"
+                android:text="@={presenter.contact}"
+                android:textSize="@dimen/large_size" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <com.matheus.cophat.ui.base.view.BottomButtonsView
             android:id="@+id/bbvApplicator"
@@ -99,7 +95,7 @@
             app:bbv_secondary_name="@string/cancel"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etContactApplicator" />
+            app:layout_constraintTop_toBottomOf="@+id/tilEmailApplicator" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

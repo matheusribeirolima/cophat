@@ -35,6 +35,9 @@
     <string name="advance">Avançar</string>
     <string name="go_back">Voltar</string>
     <string name="child_name">Qual o nome da criança?</string>
+    <string name="child_gender">Qual o sexo da criança?</string>
+    <string name="male">Masculino</string>
+    <string name="female">Feminino</string>
     <string name="complete_name">Nome completo</string>
     <string name="choose_hospital">Escolha o hospital:</string>
     <string name="choose_applicator">Escolha o aplicador:</string>
@@ -47,9 +50,7 @@
     <string name="edit_applicator">Editar aplicador</string>
     <string name="add_desc_applicator">Insira abaixo o nome e o e-mail do aplicador que deseja cadastrar</string>
     <string name="edit_desc_applicator">Altere abaixo o nome ou o e-mail do aplicador selecionado</string>
-    <string name="name_applicator">Qual o nome do aplicador?</string>
-    <string name="contact_applicator">Qual o contato do aplicador?</string>
-    <string name="email">e-mail</string>
+    <string name="email">E-mail</string>
     <string name="cancel">Cancelar</string>
     <string name="save">Salvar</string>
     <string name="success_register">Cadastro realizado com sucesso!</string>
@@ -57,4 +58,6 @@
     <string name="confirm">Confirmar</string>
     <string name="are_you_sure">Tem certeza que deseja prosseguir?\nEsta ação não poderá ser desfeita.</string>
     <string name="success_remove">Remoção realizada com sucesso!</string>
+    <string name="id_form">Ficha de Identificação</string>
+    <string name="patient_parents">Primeiramente, me conte um pouco sobre os pais %1$s</string>
 </resources>

@@ -21,6 +21,7 @@ class GenerateCodeViewModel(private val repository: GenerateCodeRepository) : Ba
     val applicators = MutableLiveData<List<Applicator>>()
     val hospitals = MutableLiveData<List<Hospital>>()
     val presenter = GenerateCodePresenter()
+    val navigate = MutableLiveData<Int>()
 
     override fun initialize() {
         viewModelScope.launch(context = Dispatchers.IO) {
@@ -62,6 +63,7 @@ class GenerateCodeViewModel(private val repository: GenerateCodeRepository) : Ba
                 repository.addOrUpdateParentQuestionnaire(familyId, application, questionnaire)
             }
             repository.saveApplicationLocally(application)
+            chooseDestination()
         } catch (e: DatabaseException) {
             handleError.postValue(e)
         } finally {
@@ -82,18 +84,25 @@ class GenerateCodeViewModel(private val repository: GenerateCodeRepository) : Ba
 
     private fun generateApplicationEntity(): ApplicationEntity {
         return ApplicationEntity(
-            respondent = Respondent(patientName = presenter.child),
+            respondent = generateRespondent(),
             hospital = presenter.hospital.name,
             applicator = presenter.applicator.name,
             date = Calendar.getInstance().toString("dd/MM/yyyy")
         )
     }
 
-    fun chooseNav(): Int {
-        return if (isChildren) {
-            R.id.action_generateCodeFragment_to_children_navigation
+    private fun generateRespondent(): Respondent {
+        return Respondent(
+            patientName = presenter.child,
+            gender = presenter.gender.genderType
+        )
+    }
+
+    private fun chooseDestination() {
+        if (isChildren) {
+            navigate.postValue(R.id.action_generateCodeFragment_to_children_navigation)
         } else {
-            R.id.action_generateCodeFragment_to_parents_navigation
+            navigate.postValue(R.id.action_generateCodeFragment_to_parents_navigation)
         }
     }
 }

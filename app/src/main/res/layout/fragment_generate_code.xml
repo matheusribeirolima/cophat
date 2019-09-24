@@ -1,5 +1,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".feature.generate.fragment.GenerateCodeFragment">
 
     <data>
 
@@ -11,6 +13,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:clickable="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:padding="@dimen/default_padding">
 
         <TextView
@@ -25,29 +30,64 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tvChildCode"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilChildCode"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/extra_margin"
-            android:text="@string/child_name"
+            android:hint="@string/child_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitleCode">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#00000000"
+                android:inputType="textCapWords"
+                android:text="@={presenter.child}"
+                android:textSize="@dimen/large_size" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/tvGenderCode"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/extra_margin"
+            android:text="@string/child_gender"
             android:textSize="@dimen/title_size"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvTitleCode" />
+            app:layout_constraintTop_toBottomOf="@+id/tilChildCode" />
 
-        <EditText
-            android:id="@+id/etChildCode"
-            style="@style/AppTheme.EditTextTheme"
+        <RadioGroup
+            android:id="@+id/rgGenderCode"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/medium_margin"
-            android:hint="@string/complete_name"
-            android:inputType="textCapWords"
-            android:text="@={presenter.child}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvChildCode" />
+            app:layout_constraintTop_toBottomOf="@+id/tvGenderCode">
+
+            <RadioButton
+                android:id="@+id/rbMaleCode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/colorWhite"
+                android:checked="true"
+                android:text="@string/male"
+                android:textSize="@dimen/large_size" />
+
+            <RadioButton
+                android:id="@+id/rbFemaleCode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/colorWhite"
+                android:text="@string/female"
+                android:textSize="@dimen/large_size" />
+
+        </RadioGroup>
 
         <TextView
             android:id="@+id/tvHospitalCode"
@@ -58,7 +98,7 @@
             android:textSize="@dimen/title_size"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etChildCode" />
+            app:layout_constraintTop_toBottomOf="@+id/rgGenderCode" />
 
         <Spinner
             android:id="@+id/sHospitalCode"

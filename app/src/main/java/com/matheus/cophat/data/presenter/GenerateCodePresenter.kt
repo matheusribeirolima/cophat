@@ -4,10 +4,12 @@ import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.databinding.library.baseAdapters.BR
 import com.matheus.cophat.data.local.entity.Applicator
+import com.matheus.cophat.data.local.entity.GenderType
 import com.matheus.cophat.data.local.entity.Hospital
 
 data class GenerateCodePresenter(
     private var _child: String = "",
+    private var _gender: GenderType = GenderType.MALE,
     private var _hospital: Hospital = Hospital(),
     private var _applicator: Applicator = Applicator()
 ) : BaseObservable() {
@@ -17,6 +19,14 @@ data class GenerateCodePresenter(
         set(value) {
             _child = value
             notifyPropertyChanged(BR.child)
+        }
+
+    @get:Bindable
+    var gender
+        get() = _gender
+        set(value) {
+            _gender = value
+            notifyPropertyChanged(BR.gender)
         }
 
     @get:Bindable

@@ -34,16 +34,6 @@ class ApplicatorDialog : BaseDialog<DialogApplicatorBinding>() {
     override fun initBinding() {
         isCancelable = false
 
-        setViews(
-            binding.tvTitleDialogApplicator,
-            binding.tvSubtitleDialogApplicator,
-            binding.tvNameDialogApplicator,
-            binding.etNameDialogApplicator,
-            binding.tvContactDialogApplicator,
-            binding.etContactApplicator,
-            binding.bbvApplicator
-        )
-
         binding.presenter = args.presenter
 
         binding.presenter?.addOnPropertyChangedCallback(object :

@@ -1,6 +1,6 @@
 package com.matheus.cophat.data.local.entity
 
-enum class Answer(val chosenAnswer: String, val chosenAnswerPoints: Int) {
+enum class AnswerType(val chosenAnswer: String, val chosenAnswerPoints: Int) {
     ANSWER_01("Nunca", 0),
     ANSWER_02("Quase nunca", 1),
     ANSWER_03("Às vezes", 2),
@@ -9,3 +9,5 @@ enum class Answer(val chosenAnswer: String, val chosenAnswerPoints: Int) {
     ANSWER_06("Não", 0),
     ANSWER_07("Sim", 1)
 }
+
+data class Answer(val chosenAnswer: String, val chosenAnswerPoints: Int)

@@ -11,6 +11,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 import com.matheus.cophat.R
+import com.matheus.cophat.helper.hideKeyboard
 
 abstract class BaseDialog<T : ViewDataBinding> : DialogFragment() {
 
@@ -42,6 +43,7 @@ abstract class BaseDialog<T : ViewDataBinding> : DialogFragment() {
         context?.let { dialog?.window?.setBackgroundDrawable(ContextCompat.getDrawable(it, R.drawable.bg_gradient)) }
         binding = DataBindingUtil.inflate(inflater, getLayout(), container, false)
         binding.lifecycleOwner = this
+        binding.root.setOnFocusChangeListener { v, hasFocus -> if (hasFocus) v.hideKeyboard() }
 
         return binding.root
     }

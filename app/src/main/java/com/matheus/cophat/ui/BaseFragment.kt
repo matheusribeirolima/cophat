@@ -8,6 +8,7 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import com.matheus.cophat.helper.hideKeyboard
 
 abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
 
@@ -40,6 +41,7 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
     ): View? {
         binding = DataBindingUtil.inflate(inflater, getLayout(), container, false)
         binding.lifecycleOwner = this
+        binding.root.setOnFocusChangeListener { v, hasFocus -> if (hasFocus) v.hideKeyboard() }
 
         return binding.root
     }

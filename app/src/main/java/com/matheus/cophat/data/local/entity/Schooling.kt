@@ -1,6 +1,6 @@
 package com.matheus.cophat.data.local.entity
 
-enum class Schooling(val schooling: String, val schoolingPoints: Int) {
+enum class SchoolingType(val schooling: String, val schoolingPoints: Int) {
     PRE("Pré", 1),
     FIRST_YEAR("1º ano", 2),
     SECOND_YEAR("2º ano", 3),
@@ -12,3 +12,5 @@ enum class Schooling(val schooling: String, val schoolingPoints: Int) {
     EIGHTH_YEAR("8º ano", 9),
     NINTH_YEAR("9º ano", 10)
 }
+
+data class Schooling(val schoolingType: String, val schoolingPoints: Int)

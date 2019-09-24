@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.matheus.cophat.R
+import com.matheus.cophat.data.local.entity.GenderType
 import com.matheus.cophat.databinding.FragmentGenerateCodeBinding
 import com.matheus.cophat.feature.generate.viewmodel.GenerateCodeViewModel
 import com.matheus.cophat.helper.CustomSpinnerListener
@@ -34,8 +35,9 @@ class GenerateCodeFragment : BaseFragment<FragmentGenerateCodeBinding>() {
     override fun initBinding() {
         setViews(
             binding.tvTitleCode,
-            binding.tvChildCode,
-            binding.etChildCode,
+            binding.tilChildCode,
+            binding.tvGenderCode,
+            binding.rgGenderCode,
             binding.tvHospitalCode,
             binding.sHospitalCode,
             binding.tvApplicatorCode,
@@ -69,11 +71,17 @@ class GenerateCodeFragment : BaseFragment<FragmentGenerateCodeBinding>() {
     }
 
     private fun configureListeners() {
+        binding.rgGenderCode.setOnCheckedChangeListener { _, checkedId ->
+            when (checkedId) {
+                binding.rbMaleCode.id -> binding.presenter?.gender = GenderType.MALE
+                binding.rbFemaleCode.id -> binding.presenter?.gender = GenderType.FEMALE
+            }
+        }
+
         binding.bbvCode.setBottomButtonsListener(object : BottomButtonsListener {
             override fun onPrimaryClick() {
                 lifecycleScope.launch {
                     viewModel.initiateQuestionnaire()
-                    findNavController().navigate(viewModel.chooseNav())
                 }
             }
 
@@ -84,6 +92,10 @@ class GenerateCodeFragment : BaseFragment<FragmentGenerateCodeBinding>() {
     }
 
     private fun configureObservers() {
+        viewModel.navigate.observe(this, Observer {
+            findNavController().navigate(it)
+        })
+
         viewModel.isButtonEnabled.observe(this, Observer {
             binding.bbvCode.updatePrimaryButton(it)
         })
