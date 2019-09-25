@@ -59,5 +59,22 @@
     <string name="are_you_sure">Tem certeza que deseja prosseguir?\nEsta ação não poderá ser desfeita.</string>
     <string name="success_remove">Remoção realizada com sucesso!</string>
     <string name="id_form">Ficha de Identificação</string>
-    <string name="patient_parents">Primeiramente, me conte um pouco sobre os pais %1$s</string>
+    <string name="patient_parents">Primeiramente, me conte um pouco sobre os pais</string>
+    <string name="mother_profession">Qual a profissão da mãe?</string>
+    <string name="father_profession">Qual a profissão do pai?</string>
+    <string name="marital_status">Qual o estado civil dos pais?</string>
+    <string name="married">Casado</string>
+    <string name="amassed">Amasiado</string>
+    <string name="divorced">Divorciado/Separado</string>
+    <string name="single">Solteiro</string>
+    <string name="widower">Viúvo</string>
+    <string name="family_religion">Qual a religião da família?</string>
+    <string name="catholic">Católica</string>
+    <string name="evangelical">Evangélica</string>
+    <string name="spiritist">Espírita</string>
+    <string name="other">Outra</string>
+    <string name="other_religion">Outra religião</string>
+    <string name="none">Nenhuma</string>
+    <string name="male_treatment">" do "</string>
+    <string name="female_treatment">" da "</string>
 </resources>

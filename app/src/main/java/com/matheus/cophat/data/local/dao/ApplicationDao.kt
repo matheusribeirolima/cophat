@@ -9,8 +9,8 @@ interface ApplicationDao {
     @Query("SELECT * FROM application")
     suspend fun getAllApplications(): List<ApplicationEntity>
 
-    @Query("SELECT * FROM application ORDER BY applicationId DESC LIMIT 1")
-    suspend fun getApplication(): ApplicationEntity
+    @Query("SELECT * FROM application LIMIT 1")
+    suspend fun getApplication(): ApplicationEntity?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertApplication(applicationEntity: ApplicationEntity)

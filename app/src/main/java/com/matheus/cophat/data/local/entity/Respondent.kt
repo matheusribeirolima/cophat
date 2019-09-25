@@ -1,7 +1,6 @@
 package com.matheus.cophat.data.local.entity
 
 data class Respondent(
-    var code: String? = null,
     var motherProfession: String? = null,
     var fatherProfession: String? = null,
     var maritalStatus: String? = null,

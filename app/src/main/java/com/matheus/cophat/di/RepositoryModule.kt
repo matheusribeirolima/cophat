@@ -28,4 +28,8 @@ val repositoryModule = module {
     single {
         GenerateCodeRepository(get(), get())
     }
+
+    single {
+        RegisterRepository(get(), get())
+    }
 }

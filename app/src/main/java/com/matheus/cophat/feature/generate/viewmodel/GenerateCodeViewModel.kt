@@ -54,13 +54,12 @@ class GenerateCodeViewModel(private val repository: GenerateCodeRepository) : Ba
             isLoading.postValue(true)
 
             val familyId = generateFamilyId()
-            val application = generateApplicationEntity()
-            val questionnaire = repository.getQuestionnaireByFamilyId(familyId)
+            val application = generateApplicationEntity(familyId)
 
             if (isChildren) {
-                repository.addOrUpdateChildQuestionnaire(familyId, application, questionnaire)
+                repository.addChildQuestionnaire(familyId, application)
             } else {
-                repository.addOrUpdateParentQuestionnaire(familyId, application, questionnaire)
+                repository.addParentQuestionnaire(familyId, application)
             }
             repository.saveApplicationLocally(application)
             chooseDestination()
@@ -82,8 +81,9 @@ class GenerateCodeViewModel(private val repository: GenerateCodeRepository) : Ba
         return childInitials + presenter.hospital.code + nowFormatted
     }
 
-    private fun generateApplicationEntity(): ApplicationEntity {
+    private fun generateApplicationEntity(familyId: String): ApplicationEntity {
         return ApplicationEntity(
+            familyId = familyId,
             respondent = generateRespondent(),
             hospital = presenter.hospital.name,
             applicator = presenter.applicator.name,
@@ -100,9 +100,9 @@ class GenerateCodeViewModel(private val repository: GenerateCodeRepository) : Ba
 
     private fun chooseDestination() {
         if (isChildren) {
-            navigate.postValue(R.id.action_generateCodeFragment_to_children_navigation)
+            navigate.postValue(R.id.action_generateCodeFragment_to_nav_children)
         } else {
-            navigate.postValue(R.id.action_generateCodeFragment_to_parents_navigation)
+            navigate.postValue(R.id.action_generateCodeFragment_to_nav_register)
         }
     }
 }

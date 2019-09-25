@@ -11,6 +11,6 @@ class ChildrenRepository(private val database: DatabaseReference, private val da
     }
 
     suspend fun getPatientName(): String? {
-        return dao.getApplication().respondent?.patientName
+        return dao.getApplication()?.respondent?.patientName
     }
 }

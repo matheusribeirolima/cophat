@@ -45,8 +45,12 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_beginFragment_to_nav_register"
+            app:destination="@id/nav_register" />
     </fragment>
     <include app:graph="@navigation/nav_questionnaires" />
     <include app:graph="@navigation/nav_configure" />
     <include app:graph="@navigation/nav_generate" />
+    <include app:graph="@navigation/nav_register" />
 </navigation>

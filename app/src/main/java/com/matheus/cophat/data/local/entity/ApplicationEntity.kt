@@ -8,8 +8,8 @@ import com.google.firebase.database.IgnoreExtraProperties
 @IgnoreExtraProperties
 @Entity(tableName = "application")
 data class ApplicationEntity(
-    @PrimaryKey(autoGenerate = true)
-    @get:Exclude var applicationId: Int = 0,
+    @PrimaryKey
+    @get:Exclude var familyId: String = "",
     var hospital: String? = null,
     var respondent: Respondent? = null,
     var applicator: String? = null,

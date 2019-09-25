@@ -10,135 +10,140 @@
             type="com.matheus.cophat.data.presenter.GenerateCodePresenter" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clickable="true"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        android:padding="@dimen/default_padding">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/tvTitleCode"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/insert_data_before"
-            android:textSize="@dimen/title_size"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:clickable="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:padding="@dimen/default_padding">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilChildCode"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/extra_margin"
-            android:hint="@string/child_name"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvTitleCode">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#00000000"
-                android:inputType="textCapWords"
-                android:text="@={presenter.child}"
-                android:textSize="@dimen/large_size" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <TextView
-            android:id="@+id/tvGenderCode"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/extra_margin"
-            android:text="@string/child_gender"
-            android:textSize="@dimen/title_size"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tilChildCode" />
-
-        <RadioGroup
-            android:id="@+id/rgGenderCode"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/medium_margin"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvGenderCode">
-
-            <RadioButton
-                android:id="@+id/rbMaleCode"
+            <TextView
+                android:id="@+id/tvTitleCode"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/colorWhite"
-                android:checked="true"
-                android:text="@string/male"
-                android:textSize="@dimen/large_size" />
+                android:gravity="center"
+                android:text="@string/insert_data_before"
+                android:textSize="@dimen/title_size"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <RadioButton
-                android:id="@+id/rbFemaleCode"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilChildCode"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/big_margin"
+                android:hint="@string/child_name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvTitleCode">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#00000000"
+                    android:inputType="textCapWords"
+                    android:text="@={presenter.child}"
+                    android:textSize="@dimen/large_size" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/tvGenderCode"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/extra_margin"
+                android:text="@string/child_gender"
+                android:textSize="@dimen/title_size"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tilChildCode" />
+
+            <RadioGroup
+                android:id="@+id/rgGenderCode"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/medium_margin"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvGenderCode">
+
+                <RadioButton
+                    android:id="@+id/rbMaleCode"
+                    style="@style/AppTheme.RadioButtonTheme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="@string/male" />
+
+                <RadioButton
+                    android:id="@+id/rbFemaleCode"
+                    style="@style/AppTheme.RadioButtonTheme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/female" />
+
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/tvHospitalCode"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/extra_margin"
+                android:text="@string/choose_hospital"
+                android:textSize="@dimen/title_size"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rgGenderCode" />
+
+            <Spinner
+                android:id="@+id/sHospitalCode"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/colorWhite"
-                android:text="@string/female"
-                android:textSize="@dimen/large_size" />
+                android:layout_marginTop="@dimen/medium_margin"
+                android:backgroundTint="@color/colorWhite"
+                android:popupBackground="@drawable/bg_gradient"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvHospitalCode" />
 
-        </RadioGroup>
+            <TextView
+                android:id="@+id/tvApplicatorCode"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/extra_margin"
+                android:text="@string/choose_applicator"
+                android:textSize="@dimen/title_size"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sHospitalCode" />
 
-        <TextView
-            android:id="@+id/tvHospitalCode"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/extra_margin"
-            android:text="@string/choose_hospital"
-            android:textSize="@dimen/title_size"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rgGenderCode" />
+            <Spinner
+                android:id="@+id/sApplicatorCode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/medium_margin"
+                android:backgroundTint="@color/colorWhite"
+                android:popupBackground="@drawable/bg_gradient"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvApplicatorCode" />
 
-        <Spinner
-            android:id="@+id/sHospitalCode"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/medium_margin"
-            android:backgroundTint="@color/colorWhite"
-            android:popupBackground="@drawable/bg_gradient"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvHospitalCode" />
+            <com.matheus.cophat.ui.base.view.BottomButtonsView
+                android:id="@+id/bbvCode"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/bottom_button_height"
+                app:bbv_primary_enabled="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sApplicatorCode" />
 
-        <TextView
-            android:id="@+id/tvApplicatorCode"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/extra_margin"
-            android:text="@string/choose_applicator"
-            android:textSize="@dimen/title_size"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sHospitalCode" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <Spinner
-            android:id="@+id/sApplicatorCode"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/medium_margin"
-            android:backgroundTint="@color/colorWhite"
-            android:popupBackground="@drawable/bg_gradient"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvApplicatorCode" />
+    </ScrollView>
 
-        <com.matheus.cophat.ui.base.view.BottomButtonsView
-            android:id="@+id/bbvCode"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/bottom_button_height"
-            app:bbv_primary_enabled="false"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sApplicatorCode" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

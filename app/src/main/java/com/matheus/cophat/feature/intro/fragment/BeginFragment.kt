@@ -43,7 +43,7 @@ class BeginFragment : BaseFragment<FragmentBeginBinding>() {
 
     private fun configureListeners() {
         binding.btFormBegin.setOnClickListener {
-            findNavController().navigate(R.id.action_beginFragment_to_nav_generate)
+            findNavController().navigate(viewModel.chooseNavigation())
         }
 
         binding.btListFormsBegin.setOnClickListener {

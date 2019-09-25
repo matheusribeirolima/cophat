@@ -10,8 +10,8 @@ class ResourceManager constructor(var context: Context) {
         return context.resources.getString(stringRes)
     }
 
-    fun getString(stringRes: Int, vararg textToFormat: Any): String {
-        return context.resources.getString(stringRes, *textToFormat)
+    fun getString(stringRes: Int, vararg formatArgs: Any): String {
+        return context.resources.getString(stringRes, formatArgs)
     }
 
     fun getDrawable(drawableRes: Int): Drawable? {

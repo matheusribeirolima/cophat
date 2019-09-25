@@ -25,58 +25,27 @@ class GenerateCodeRepository(
         return getDatabaseChild(FirebaseChild.APPLICATORS, Applicator::class.java)
     }
 
-    suspend fun getQuestionnaireByFamilyId(familyId: String): QuestionnairePresenter? {
-        return try {
-            getDatabaseChildHash(FirebaseChild.QUESTIONNAIRES, Questionnaire::class.java)
-                .filter { it.value.familyId == familyId }
-                .map { (key, value) -> QuestionnairePresenter(value, key) }
-                .first()
-        } catch (e: Exception) {
-            null
-        }
-    }
-
     suspend fun saveApplicationLocally(application: ApplicationEntity) {
         dao.insertApplication(application)
     }
 
-    suspend fun addOrUpdateChildQuestionnaire(
+    suspend fun addChildQuestionnaire(
         familyId: String,
-        application: ApplicationEntity,
-        questionnaire: QuestionnairePresenter? = null
+        application: ApplicationEntity
     ) {
-        if (questionnaire == null) {
-            addChild(
-                FirebaseChild.QUESTIONNAIRES,
-                Questionnaire(familyId, childApplication = application)
-            )
-        } else {
-            questionnaire.questionnaire.childApplication = application
-            updateChild(
-                FirebaseChild.QUESTIONNAIRES,
-                questionnaire.questionnaireFirebaseKey,
-                questionnaire.questionnaire
-            )
-        }
+        addChild(
+            FirebaseChild.QUESTIONNAIRES,
+            Questionnaire(familyId, childApplication = application)
+        )
     }
 
-    suspend fun addOrUpdateParentQuestionnaire(
+    suspend fun addParentQuestionnaire(
         familyId: String,
-        application: ApplicationEntity,
-        questionnaire: QuestionnairePresenter? = null
+        application: ApplicationEntity
     ) {
-        if (questionnaire == null) {
-            addChild(
-                FirebaseChild.QUESTIONNAIRES,
-                Questionnaire(familyId, parentApplication = application)
-            )
-        } else {
-            questionnaire.questionnaire.parentApplication = application
-            updateChild(
-                FirebaseChild.QUESTIONNAIRES,
-                questionnaire.questionnaireFirebaseKey,
-                questionnaire.questionnaire
-            )
-        }
+        addChild(
+            FirebaseChild.QUESTIONNAIRES,
+            Questionnaire(familyId, parentApplication = application)
+        )
     }
 }

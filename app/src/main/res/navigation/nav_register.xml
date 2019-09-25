@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_register"
+    app:startDestination="@id/registerParentsFragment">
+
+    <fragment
+        android:id="@+id/registerParentsFragment"
+        android:name="com.matheus.cophat.feature.register.fragment.RegisterParentsFragment"
+        android:label="RegisterParentsFragment"
+        tools:layout="@layout/fragment_register_parents" />
+</navigation>
