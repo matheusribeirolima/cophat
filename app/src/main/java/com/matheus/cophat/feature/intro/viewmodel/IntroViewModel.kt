@@ -6,6 +6,7 @@ import com.google.firebase.database.DatabaseException
 import com.matheus.cophat.R
 import com.matheus.cophat.data.local.entity.ApplicationEntity
 import com.matheus.cophat.data.presenter.BeginPresenter
+import com.matheus.cophat.data.presenter.StepsPresenter
 import com.matheus.cophat.data.repository.IntroRepository
 import com.matheus.cophat.helper.ResourceManager
 import com.matheus.cophat.ui.BaseViewModel
@@ -60,11 +61,20 @@ class IntroViewModel(
         }
     }
 
-    fun chooseNavigation() : Int {
-        return if (application == null) {
-            R.id.action_beginFragment_to_nav_generate
-        } else {
-            R.id.action_beginFragment_to_nav_register
+    fun chooseNavigation(): StepsPresenter {
+        return when {
+            application == null ->
+                StepsPresenter.GENERATE_CODE_STEP_0
+            application?.respondent?.motherProfession == null ->
+                StepsPresenter.REGISTER_PARENTS_STEP_1
+            application?.respondent?.medicalRecords == null ->
+                StepsPresenter.REGISTER_PATIENT_STEP_2
+            application?.respondent?.diagnosis == null ->
+                StepsPresenter.REGISTER_INTERNAL_STEP_3
+            application?.respondent?.schooling == null ->
+                StepsPresenter.REGISTER_SCHOOL_STEP_4
+            else ->
+                StepsPresenter.GENERATE_CODE_STEP_0
         }
     }
 }

@@ -4,6 +4,7 @@ import android.view.WindowManager
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.matheus.cophat.R
+import com.matheus.cophat.data.presenter.StepsPresenter
 import com.matheus.cophat.databinding.FragmentBeginBinding
 import com.matheus.cophat.feature.intro.viewmodel.IntroViewModel
 import com.matheus.cophat.ui.BaseFragment
@@ -43,7 +44,26 @@ class BeginFragment : BaseFragment<FragmentBeginBinding>() {
 
     private fun configureListeners() {
         binding.btFormBegin.setOnClickListener {
-            findNavController().navigate(viewModel.chooseNavigation())
+            when (viewModel.chooseNavigation()) {
+                StepsPresenter.GENERATE_CODE_STEP_0 ->
+                    findNavController().navigate(R.id.action_beginFragment_to_nav_generate)
+                StepsPresenter.REGISTER_PARENTS_STEP_1 ->
+                    findNavController().navigate(
+                        BeginFragmentDirections.actionBeginFragmentToRegisterActivity(1)
+                    )
+                StepsPresenter.REGISTER_PATIENT_STEP_2 ->
+                    findNavController().navigate(
+                        BeginFragmentDirections.actionBeginFragmentToRegisterActivity(2)
+                    )
+                StepsPresenter.REGISTER_INTERNAL_STEP_3 ->
+                    findNavController().navigate(
+                        BeginFragmentDirections.actionBeginFragmentToRegisterActivity(3)
+                    )
+                StepsPresenter.REGISTER_SCHOOL_STEP_4 ->
+                    findNavController().navigate(
+                        BeginFragmentDirections.actionBeginFragmentToRegisterActivity(4)
+                    )
+            }
         }
 
         binding.btListFormsBegin.setOnClickListener {
