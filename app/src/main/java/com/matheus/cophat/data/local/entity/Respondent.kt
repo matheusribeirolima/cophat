@@ -7,7 +7,7 @@ data class Respondent(
     var religion: String? = null,
     var patientName: String? = null,
     var medicalRecords: String? = null,
-    var birthDate: String? = null,
+    var birthday: String? = null,
     var age: Int? = null,
     var gender: String? = null,
     var diagnosis: String? = null,
@@ -15,9 +15,9 @@ data class Respondent(
     var internedDays: Int? = null,
     var hospitalizations: Int? = null,
     var schooling: String? = null,
-    var schoolFrequency: String? = null,
-    var liveInThisCity: String? = null,
+    var schoolFrequency: Boolean? = null,
+    var liveInThisCity: Boolean? = null,
     var home: String? = null,
-    var monthlyIncome: Float? = null,
+    var monthlyIncome: String? = null,
     var educationDegree: String? = null
 )

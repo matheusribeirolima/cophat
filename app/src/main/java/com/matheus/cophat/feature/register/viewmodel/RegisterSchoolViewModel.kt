@@ -1,25 +1,26 @@
 package com.matheus.cophat.feature.register.viewmodel
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.database.DatabaseException
 import com.matheus.cophat.R
 import com.matheus.cophat.data.local.entity.ApplicationEntity
 import com.matheus.cophat.data.local.entity.GenderType
-import com.matheus.cophat.data.local.entity.ReligionType
-import com.matheus.cophat.data.presenter.RegisterParentsPresenter
+import com.matheus.cophat.data.presenter.RegisterSchoolPresenter
 import com.matheus.cophat.data.repository.RegisterRepository
 import com.matheus.cophat.helper.ResourceManager
 import com.matheus.cophat.ui.BaseViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class RegisterViewModel(
+class RegisterSchoolViewModel(
     private val repository: RegisterRepository,
     private val resourceManager: ResourceManager
 ) : BaseViewModel() {
 
-    val presenter = RegisterParentsPresenter()
+    val presenter = RegisterSchoolPresenter()
     var application: ApplicationEntity? = null
+    val navigate = MutableLiveData<Int>()
 
     override fun initialize() {
         viewModelScope.launch(context = Dispatchers.IO) {
@@ -38,9 +39,8 @@ class RegisterViewModel(
     }
 
     fun validatePresenter() {
-        if (presenter.motherProfession.isNotEmpty() &&
-            presenter.fatherProfession.isNotEmpty() &&
-            (presenter.religionType != ReligionType.OTHER || presenter.religion.isNotEmpty())
+        if (presenter.address.isNotEmpty() &&
+            presenter.income.isNotEmpty()
         ) {
             isButtonEnabled.postValue(true)
         } else {
@@ -57,14 +57,16 @@ class RegisterViewModel(
                     val questionnaire = repository.getQuestionnaireByFamilyId(application.familyId)
 
                     val respondent = application.respondent
-                    respondent?.motherProfession = presenter.motherProfession
-                    respondent?.fatherProfession = presenter.fatherProfession
-                    respondent?.maritalStatus = presenter.maritalStatus.maritalStatus
-                    respondent?.religion = if (presenter.religionType != ReligionType.OTHER)
-                        presenter.religionType.religion else presenter.religion
+                    respondent?.schooling = presenter.schooling.schooling
+                    respondent?.schoolFrequency = presenter.outYes
+                    respondent?.liveInThisCity = presenter.residentYes
+                    respondent?.home = presenter.address
+                    respondent?.monthlyIncome = presenter.income
+                    respondent?.educationDegree = presenter.education.education
 
                     repository.updateParentQuestionnaire(application, questionnaire)
                     repository.updateApplicationLocally(application)
+                    //navigate.postValue(R.id.)
                 }
             } catch (e: DatabaseException) {
                 handleError.postValue(e)
@@ -79,6 +81,6 @@ class RegisterViewModel(
             resourceManager.getString(R.string.male_treatment) else resourceManager.getString(R.string.female_treatment)
         val name = application?.respondent?.patientName
 
-        return resourceManager.getString(R.string.patient_parents) + treatment + name
+        return resourceManager.getString(R.string.finalize_register) + treatment + name
     }
 }

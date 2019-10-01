@@ -4,14 +4,14 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.navArgs
 import com.matheus.cophat.R
 import com.matheus.cophat.databinding.ActivityRegisterBinding
-import com.matheus.cophat.feature.register.viewmodel.RegisterViewModel
+import com.matheus.cophat.feature.register.viewmodel.RegisterParentsViewModel
 import com.matheus.cophat.ui.BaseActivity
 import com.matheus.cophat.ui.BaseViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class RegisterActivity : BaseActivity<ActivityRegisterBinding>() {
 
-    private val viewModel: RegisterViewModel by viewModel()
+    private val viewModel: RegisterParentsViewModel by viewModel()
 
     private val args: RegisterActivityArgs by navArgs()
 
@@ -29,10 +29,11 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>() {
         val graph =
             navHostFragment.navController.navInflater.inflate(R.navigation.nav_register)
 
-        if (args.step == 1) {
-            graph.startDestination = R.id.registerParentsFragment
-        } else if (args.step == 2) {
-            graph.startDestination = R.id.registerPatientFragment
+        when {
+            args.step == 1 -> graph.startDestination = R.id.registerParentsFragment
+            args.step == 2 -> graph.startDestination = R.id.registerPatientFragment
+            args.step == 3 -> graph.startDestination = R.id.registerInternalFragment
+            args.step == 4 -> graph.startDestination = R.id.registerSchoolFragment
         }
         navHostFragment.navController.graph = graph
     }

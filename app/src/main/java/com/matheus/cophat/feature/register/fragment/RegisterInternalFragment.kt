@@ -4,20 +4,19 @@ import androidx.databinding.Observable
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.matheus.cophat.R
-import com.matheus.cophat.databinding.FragmentRegisterPatientBinding
-import com.matheus.cophat.feature.register.viewmodel.RegisterPatientViewModel
-import com.matheus.cophat.helper.DateMask
+import com.matheus.cophat.databinding.FragmentRegisterInternalBinding
+import com.matheus.cophat.feature.register.viewmodel.RegisterInternalViewModel
 import com.matheus.cophat.ui.BaseFragment
 import com.matheus.cophat.ui.BaseViewModel
 import com.matheus.cophat.ui.base.view.BottomButtonsListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class RegisterPatientFragment : BaseFragment<FragmentRegisterPatientBinding>() {
+class RegisterInternalFragment : BaseFragment<FragmentRegisterInternalBinding>() {
 
-    private val viewModel: RegisterPatientViewModel by viewModel()
+    private val viewModel: RegisterInternalViewModel by viewModel()
 
     override fun getLayout(): Int {
-        return R.layout.fragment_register_patient
+        return R.layout.fragment_register_internal
     }
 
     override fun getViewModel(): BaseViewModel {
@@ -26,16 +25,13 @@ class RegisterPatientFragment : BaseFragment<FragmentRegisterPatientBinding>() {
 
     override fun initBinding() {
         setViews(
-            binding.tvTitlePatient,
-            binding.tvSubtitlePatient,
-            binding.tilNamePatient,
-            binding.tilMedicalRecordsPatient,
-            binding.tilBirthdayPatient,
-            binding.tilAgePatient,
-            binding.tvGenderPatient,
-            binding.rbMalePatient,
-            binding.rbFemalePatient,
-            binding.bbvPatient
+            binding.tvTitleInternal,
+            binding.tvSubtitleInternal,
+            binding.tilDiagnosisInternal,
+            binding.tilDiagnosisTimeInternal,
+            binding.tilDaysInternal,
+            binding.tilHospitalizationsInternal,
+            binding.bbvInternal
         )
         binding.presenter = viewModel.presenter
 
@@ -53,9 +49,7 @@ class RegisterPatientFragment : BaseFragment<FragmentRegisterPatientBinding>() {
     }
 
     private fun configureListeners() {
-        DateMask(binding.etBirthdayPatient)
-
-        binding.bbvPatient.setBottomButtonsListener(object : BottomButtonsListener {
+        binding.bbvInternal.setBottomButtonsListener(object : BottomButtonsListener {
             override fun onPrimaryClick() {
                 viewModel.updateApplication()
             }
@@ -68,7 +62,7 @@ class RegisterPatientFragment : BaseFragment<FragmentRegisterPatientBinding>() {
 
     private fun configureObservers() {
         viewModel.isButtonEnabled.observe(this, Observer {
-            binding.bbvPatient.updatePrimaryButton(it)
+            binding.bbvInternal.updatePrimaryButton(it)
         })
 
         viewModel.navigate.observe(this, Observer {

@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import com.matheus.cophat.R
 import com.matheus.cophat.data.presenter.BottomButtonPresenter
 import com.matheus.cophat.databinding.ViewBottomButtonsBinding
+import com.matheus.cophat.helper.hideKeyboard
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 
@@ -56,9 +57,11 @@ class BottomButtonsView @JvmOverloads constructor(
 
     private fun configureButtonsListener() {
         binding.btPrimary.setOnClickListener {
+            hideKeyboard()
             listener.onPrimaryClick()
         }
         binding.btSecondary.setOnClickListener {
+            hideKeyboard()
             listener.onSecondaryClick()
         }
     }

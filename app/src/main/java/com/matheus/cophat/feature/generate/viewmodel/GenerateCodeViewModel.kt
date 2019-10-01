@@ -55,11 +55,12 @@ class GenerateCodeViewModel(private val repository: GenerateCodeRepository) : Ba
 
             val familyId = generateFamilyId()
             val application = generateApplicationEntity(familyId)
+            val questionnaire = repository.getQuestionnaireByFamilyId(familyId)
 
             if (isChildren) {
-                repository.addChildQuestionnaire(familyId, application)
+                repository.addOrUpdateChildQuestionnaire(familyId, application, questionnaire)
             } else {
-                repository.addParentQuestionnaire(familyId, application)
+                repository.addOrUpdateParentQuestionnaire(familyId, application, questionnaire)
             }
             repository.saveApplicationLocally(application)
             chooseDestination()

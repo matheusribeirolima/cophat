@@ -58,12 +58,11 @@
                 app:layout_constraintTop_toBottomOf="@+id/tvSubtitleRegister">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    style="@style/AppTheme.EditTextTheme"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#00000000"
                     android:inputType="textCapSentences"
-                    android:text="@={presenter.motherProfession}"
-                    android:textSize="@dimen/large_size" />
+                    android:text="@={presenter.motherProfession}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -78,12 +77,11 @@
                 app:layout_constraintTop_toBottomOf="@+id/tilMotherRegister">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    style="@style/AppTheme.EditTextTheme"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#00000000"
                     android:inputType="textCapSentences"
-                    android:text="@={presenter.fatherProfession}"
-                    android:textSize="@dimen/large_size" />
+                    android:text="@={presenter.fatherProfession}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -190,9 +188,9 @@
                 <RadioButton
                     android:id="@+id/rbOtherRegister"
                     style="@style/AppTheme.RadioButtonTheme"
-                    android:text="@string/other"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:text="@string/other" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/tilOtherRegister"
@@ -202,13 +200,12 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etOtherRegister"
+                        style="@style/AppTheme.EditTextTheme"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="#00000000"
                         android:enabled="false"
                         android:inputType="textCapSentences"
-                        android:text="@={presenter.religion}"
-                        android:textSize="@dimen/large_size" />
+                        android:text="@={presenter.religion}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 

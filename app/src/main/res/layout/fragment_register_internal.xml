@@ -7,7 +7,7 @@
 
         <variable
             name="presenter"
-            type="com.matheus.cophat.data.presenter.RegisterPatientPresenter" />
+            type="com.matheus.cophat.data.presenter.RegisterInternalPresenter" />
     </data>
 
     <ScrollView
@@ -23,7 +23,7 @@
             android:padding="@dimen/default_padding">
 
             <TextView
-                android:id="@+id/tvTitlePatient"
+                android:id="@+id/tvTitleInternal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -35,7 +35,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/tvSubtitlePatient"
+                android:id="@+id/tvSubtitleInternal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/large_margin"
@@ -44,136 +44,95 @@
                 android:textSize="@dimen/large_size"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvTitlePatient"
-                tools:text="@string/confirm_patient" />
+                app:layout_constraintTop_toBottomOf="@+id/tvTitleInternal"
+                tools:text="@string/about_internal" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilNamePatient"
+                android:id="@+id/tilDiagnosisInternal"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/extra_margin"
-                android:hint="@string/patient_name"
+                android:hint="@string/diagnosis"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvSubtitlePatient">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    style="@style/AppTheme.EditTextTheme"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:enabled="false"
-                    android:inputType="textCapWords"
-                    android:text="@={presenter.name}" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilMedicalRecordsPatient"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/extra_margin"
-                android:hint="@string/medical_records"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tilNamePatient">
+                app:layout_constraintTop_toBottomOf="@+id/tvSubtitleInternal">
 
                 <com.google.android.material.textfield.TextInputEditText
                     style="@style/AppTheme.EditTextTheme"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textCapSentences"
-                    android:text="@={presenter.medicalRecords}" />
+                    android:text="@={presenter.diagnosis}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilBirthdayPatient"
+                android:id="@+id/tilDiagnosisTimeInternal"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/extra_margin"
-                android:layout_marginEnd="@dimen/medium_margin"
-                android:hint="@string/birth_patient"
-                app:layout_constraintEnd_toStartOf="@+id/tilAgePatient"
-                app:layout_constraintHorizontal_bias="0.5"
+                android:hint="@string/diagnosis_time"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tilMedicalRecordsPatient">
+                app:layout_constraintTop_toBottomOf="@+id/tilDiagnosisInternal">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etBirthdayPatient"
                     style="@style/AppTheme.EditTextTheme"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:maxLength="10"
-                    android:text="@={presenter.birthday}" />
+                    android:inputType="textCapSentences"
+                    android:text="@={presenter.diagnosisTime}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilAgePatient"
+                android:id="@+id/tilDaysInternal"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/medium_margin"
                 android:layout_marginTop="@dimen/extra_margin"
-                android:hint="@string/age_patient"
+                android:hint="@string/days_hospitalized"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/tilBirthdayPatient"
-                app:layout_constraintTop_toBottomOf="@+id/tilMedicalRecordsPatient">
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tilDiagnosisTimeInternal">
 
                 <com.google.android.material.textfield.TextInputEditText
                     style="@style/AppTheme.EditTextTheme"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="number"
-                    android:maxLength="2"
-                    android:text="@={presenter.age}" />
+                    android:maxLength="5"
+                    android:text="@={presenter.daysHospitalized}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <TextView
-                android:id="@+id/tvGenderPatient"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilHospitalizationsInternal"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/extra_margin"
-                android:text="@string/gender_patient"
-                android:textSize="@dimen/title_size"
+                android:hint="@string/hospitalizations"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tilAgePatient" />
+                app:layout_constraintTop_toBottomOf="@+id/tilDaysInternal">
 
-            <RadioButton
-                android:id="@+id/rbMalePatient"
-                style="@style/AppTheme.RadioButtonTheme"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:checked="@{presenter.male}"
-                android:enabled="false"
-                android:text="@string/male"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvGenderPatient" />
+                <com.google.android.material.textfield.TextInputEditText
+                    style="@style/AppTheme.EditTextTheme"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:maxLength="3"
+                    android:text="@={presenter.hospitalizations}" />
 
-            <RadioButton
-                android:id="@+id/rbFemalePatient"
-                style="@style/AppTheme.RadioButtonTheme"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:checked="@{presenter.female}"
-                android:enabled="false"
-                android:text="@string/female"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/rbMalePatient" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <com.matheus.cophat.ui.base.view.BottomButtonsView
-                android:id="@+id/bbvPatient"
+                android:id="@+id/bbvInternal"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/bottom_button_height"
                 app:bbv_primary_enabled="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/rbFemalePatient" />
+                app:layout_constraintTop_toBottomOf="@+id/tilHospitalizationsInternal" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

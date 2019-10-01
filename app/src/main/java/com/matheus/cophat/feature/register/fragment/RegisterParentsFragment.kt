@@ -3,12 +3,12 @@ package com.matheus.cophat.feature.register.fragment
 import androidx.databinding.Observable
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.navArgs
+import androidx.navigation.fragment.findNavController
 import com.matheus.cophat.R
 import com.matheus.cophat.data.local.entity.MaritalStatusType
 import com.matheus.cophat.data.local.entity.ReligionType
 import com.matheus.cophat.databinding.FragmentRegisterParentsBinding
-import com.matheus.cophat.feature.register.viewmodel.RegisterViewModel
+import com.matheus.cophat.feature.register.viewmodel.RegisterParentsViewModel
 import com.matheus.cophat.ui.BaseFragment
 import com.matheus.cophat.ui.BaseViewModel
 import com.matheus.cophat.ui.base.view.BottomButtonsListener
@@ -17,7 +17,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class RegisterParentsFragment : BaseFragment<FragmentRegisterParentsBinding>() {
 
-    private val viewModel: RegisterViewModel by viewModel()
+    private val viewModel: RegisterParentsViewModel by viewModel()
 
     override fun getLayout(): Int {
         return R.layout.fragment_register_parents
@@ -94,9 +94,7 @@ class RegisterParentsFragment : BaseFragment<FragmentRegisterParentsBinding>() {
 
         binding.bbvRegister.setBottomButtonsListener(object : BottomButtonsListener {
             override fun onPrimaryClick() {
-                lifecycleScope.launch {
-                    viewModel.updateApplication()
-                }
+                viewModel.updateApplication()
             }
 
             override fun onSecondaryClick() {
@@ -108,6 +106,10 @@ class RegisterParentsFragment : BaseFragment<FragmentRegisterParentsBinding>() {
     private fun configureObservers() {
         viewModel.isButtonEnabled.observe(this, Observer {
             binding.bbvRegister.updatePrimaryButton(it)
+        })
+
+        viewModel.navigate.observe(this, Observer {
+            findNavController().navigate(it)
         })
     }
 }

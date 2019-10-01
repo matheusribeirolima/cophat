@@ -57,12 +57,11 @@
             app:layout_constraintTop_toBottomOf="@+id/tvSubtitleDialogApplicator">
 
             <com.google.android.material.textfield.TextInputEditText
+                style="@style/AppTheme.EditTextTheme"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#00000000"
                 android:inputType="textCapWords"
-                android:text="@={presenter.name}"
-                android:textSize="@dimen/large_size" />
+                android:text="@={presenter.name}" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -77,12 +76,11 @@
             app:layout_constraintTop_toBottomOf="@+id/tilNameApplicator">
 
             <com.google.android.material.textfield.TextInputEditText
+                style="@style/AppTheme.EditTextTheme"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#00000000"
                 android:inputType="textEmailAddress"
-                android:text="@={presenter.contact}"
-                android:textSize="@dimen/large_size" />
+                android:text="@={presenter.contact}" />
 
         </com.google.android.material.textfield.TextInputLayout>
 

@@ -6,7 +6,10 @@ import com.matheus.cophat.feature.generate.viewmodel.GenerateCodeViewModel
 import com.matheus.cophat.feature.intro.viewmodel.IntroViewModel
 import com.matheus.cophat.feature.parents.viewmodel.ParentsViewModel
 import com.matheus.cophat.feature.questionnaires.viewmodel.QuestionnairesViewModel
-import com.matheus.cophat.feature.register.viewmodel.RegisterViewModel
+import com.matheus.cophat.feature.register.viewmodel.RegisterInternalViewModel
+import com.matheus.cophat.feature.register.viewmodel.RegisterParentsViewModel
+import com.matheus.cophat.feature.register.viewmodel.RegisterPatientViewModel
+import com.matheus.cophat.feature.register.viewmodel.RegisterSchoolViewModel
 import com.matheus.cophat.ui.base.dialog.ErrorViewModel
 import com.matheus.cophat.ui.base.view.BottomButtonsViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -29,5 +32,11 @@ val viewModelModule = module {
 
     viewModel { GenerateCodeViewModel(get()) }
 
-    viewModel { RegisterViewModel(get(), get()) }
+    viewModel { RegisterParentsViewModel(get(), get()) }
+
+    viewModel { RegisterPatientViewModel(get(), get()) }
+
+    viewModel { RegisterInternalViewModel(get(), get()) }
+
+    viewModel { RegisterSchoolViewModel(get(), get()) }
 }
