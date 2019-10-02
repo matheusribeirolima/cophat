@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_register"
-    app:startDestination="@id/registerParentsFragment"
-    tools:ignore="UnusedNavigation">
+    app:startDestination="@id/registerParentsFragment">
 
     <fragment
         android:id="@+id/registerParentsFragment"
@@ -17,7 +16,9 @@
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@+id/nav_register"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/registerPatientFragment"
@@ -30,7 +31,9 @@
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@+id/nav_register"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/registerInternalFragment"
@@ -43,7 +46,9 @@
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@+id/nav_register"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/registerSchoolFragment"

@@ -66,7 +66,7 @@ class RegisterInternalViewModel(
 
                     repository.updateParentQuestionnaire(application, questionnaire)
                     repository.updateApplicationLocally(application)
-                    navigate.postValue(R.id.action_registerPatientFragment_to_registerInternalFragment)
+                    navigate.postValue(R.id.action_registerInternalFragment_to_registerSchoolFragment)
                 }
             } catch (e: DatabaseException) {
                 handleError.postValue(e)

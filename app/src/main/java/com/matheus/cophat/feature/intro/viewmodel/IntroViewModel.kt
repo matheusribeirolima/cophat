@@ -33,8 +33,6 @@ class IntroViewModel(
                     resourceManager.getString(R.string.initiate_questionnaire) else
                     resourceManager.getString(R.string.continue_questionnaire)
 
-                application = repository.getApplication()
-
                 if (isChildren) {
                     presenterImage = R.drawable.ic_launcher
                     presenterTitle = resourceManager.getString(R.string.cophat_ca)
@@ -61,20 +59,30 @@ class IntroViewModel(
         }
     }
 
-    fun chooseNavigation(): StepsPresenter {
-        return when {
-            application == null ->
-                StepsPresenter.GENERATE_CODE_STEP_0
-            application?.respondent?.motherProfession == null ->
-                StepsPresenter.REGISTER_PARENTS_STEP_1
-            application?.respondent?.medicalRecords == null ->
-                StepsPresenter.REGISTER_PATIENT_STEP_2
-            application?.respondent?.diagnosis == null ->
-                StepsPresenter.REGISTER_INTERNAL_STEP_3
-            application?.respondent?.schooling == null ->
-                StepsPresenter.REGISTER_SCHOOL_STEP_4
-            else ->
-                StepsPresenter.GENERATE_CODE_STEP_0
+    suspend fun chooseNavigation(): StepsPresenter? {
+        try {
+            isLoading.postValue(true)
+
+            application = repository.getApplication()
+            return when {
+                application == null ->
+                    StepsPresenter.GENERATE_CODE_STEP_0
+                application?.respondent?.motherProfession == null ->
+                    StepsPresenter.REGISTER_PARENTS_STEP_1
+                application?.respondent?.medicalRecords == null ->
+                    StepsPresenter.REGISTER_PATIENT_STEP_2
+                application?.respondent?.diagnosis == null ->
+                    StepsPresenter.REGISTER_INTERNAL_STEP_3
+                application?.respondent?.schooling == null ->
+                    StepsPresenter.REGISTER_SCHOOL_STEP_4
+                else ->
+                    StepsPresenter.GENERATE_CODE_STEP_0
+            }
+        } catch (e: DatabaseException) {
+            handleError.postValue(e)
+            return null
+        } finally {
+            isLoading.postValue(false)
         }
     }
 }

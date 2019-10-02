@@ -46,6 +46,6 @@ class LoadingDialog : DialogFragment() {
         }
         val ft = fragmentManager.beginTransaction()
         ft.add(this, TAG)
-        ft.commit()
+        ft.commitNow()
     }
 }

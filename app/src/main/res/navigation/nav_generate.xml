@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_generate_code">
         <action
             android:id="@+id/action_generateCodeFragment_to_nav_children"
-            app:destination="@id/children_navigation"
+            app:destination="@id/nav_children"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"

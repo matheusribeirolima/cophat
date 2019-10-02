@@ -47,11 +47,7 @@
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_beginFragment_to_registerActivity"
-            app:destination="@id/registerActivity"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:destination="@id/registerActivity" />
     </fragment>
     <include app:graph="@navigation/nav_questionnaires" />
     <include app:graph="@navigation/nav_configure" />
@@ -60,10 +56,10 @@
         android:id="@+id/registerActivity"
         android:name="com.matheus.cophat.feature.register.activity.RegisterActivity"
         android:label="activity_register"
-        tools:layout="@layout/fragment_register_parents" >
+        tools:layout="@layout/activity_register">
         <argument
             android:name="step"
-            app:argType="integer"
-            android:defaultValue="0" />
+            android:defaultValue="0"
+            app:argType="integer" />
     </activity>
 </navigation>
