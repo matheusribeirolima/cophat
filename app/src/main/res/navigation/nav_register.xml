@@ -54,5 +54,12 @@
         android:id="@+id/registerSchoolFragment"
         android:name="com.matheus.cophat.feature.register.fragment.RegisterSchoolFragment"
         android:label="RegisterSchoolFragment"
-        tools:layout="@layout/fragment_register_school" />
+        tools:layout="@layout/fragment_register_school" >
+        <action
+            android:id="@+id/action_registerSchoolFragment_to_nav_parents"
+            app:destination="@id/nav_parents"
+            app:popUpTo="@+id/nav_register"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <include app:graph="@navigation/nav_parents" />
 </navigation>
