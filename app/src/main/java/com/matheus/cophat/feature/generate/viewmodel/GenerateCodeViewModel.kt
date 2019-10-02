@@ -9,6 +9,7 @@ import com.matheus.cophat.data.local.entity.Applicator
 import com.matheus.cophat.data.local.entity.Hospital
 import com.matheus.cophat.data.local.entity.Respondent
 import com.matheus.cophat.data.presenter.GenerateCodePresenter
+import com.matheus.cophat.data.presenter.QuestionnairePresenter
 import com.matheus.cophat.data.repository.GenerateCodeRepository
 import com.matheus.cophat.helper.toString
 import com.matheus.cophat.ui.BaseViewModel
@@ -63,7 +64,7 @@ class GenerateCodeViewModel(private val repository: GenerateCodeRepository) : Ba
                 repository.addOrUpdateParentQuestionnaire(familyId, application, questionnaire)
             }
             repository.saveApplicationLocally(application)
-            chooseDestination()
+            chooseDestination(questionnaire)
         } catch (e: DatabaseException) {
             handleError.postValue(e)
         } finally {
@@ -99,11 +100,17 @@ class GenerateCodeViewModel(private val repository: GenerateCodeRepository) : Ba
         )
     }
 
-    private fun chooseDestination() {
-        if (isChildren) {
-            navigate.postValue(R.id.action_generateCodeFragment_to_nav_children)
+    private fun chooseDestination(questionnaire: QuestionnairePresenter?) {
+        if (isChildren && questionnaire == null) {
+            navigate.postValue(R.id.action_generateCodeFragment_to_tutorialFragment)
+        } else if (isChildren) {
+            navigate.postValue(R.id.action_generateCodeFragment_to_nav_questions)
         } else {
             navigate.postValue(R.id.action_generateCodeFragment_to_nav_register)
         }
+    }
+
+    fun getPatientName(): String {
+        return presenter.child
     }
 }

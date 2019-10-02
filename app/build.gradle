@@ -78,6 +78,7 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
 }
 
 dependencies {
@@ -138,11 +139,13 @@ dependencies {
 
     // Test helpers
     testImplementation "junit:junit:$junit_version"
+    testImplementation "io.mockk:mockk:$mockk_version"
     testImplementation "androidx.arch.core:core-testing:$lifecycle_version"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutine_version"
     testImplementation "androidx.room:room-testing:$room_version"
     testImplementation "org.koin:koin-test:$koin_version"
     androidTestImplementation "androidx.test:runner:$runner_version"
+    androidTestImplementation "io.mockk:mockk-android:$mockk_version"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
 }
 

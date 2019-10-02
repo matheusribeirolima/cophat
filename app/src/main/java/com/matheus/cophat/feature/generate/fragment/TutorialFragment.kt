@@ -1,9 +1,10 @@
-package com.matheus.cophat.feature.children.fragment
+package com.matheus.cophat.feature.generate.fragment
 
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.matheus.cophat.R
 import com.matheus.cophat.databinding.FragmentTutorialBinding
-import com.matheus.cophat.feature.children.viewmodel.ChildrenViewModel
+import com.matheus.cophat.feature.generate.viewmodel.GenerateCodeViewModel
 import com.matheus.cophat.ui.BaseFragment
 import com.matheus.cophat.ui.BaseViewModel
 import com.matheus.cophat.ui.base.view.BottomButtonsListener
@@ -11,7 +12,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class TutorialFragment : BaseFragment<FragmentTutorialBinding>() {
 
-    private val viewModel: ChildrenViewModel by viewModel()
+    private val viewModel: GenerateCodeViewModel by viewModel()
 
     override fun getLayout(): Int {
         return R.layout.fragment_tutorial
@@ -40,15 +41,11 @@ class TutorialFragment : BaseFragment<FragmentTutorialBinding>() {
             binding.bbvTutorial
         )
 
-        viewModel.initialize()
-
-        viewModel.patientName.observe(this, Observer {
-            binding.tvIntroTutorial.text = getString(R.string.lets_learn, it)
-        })
+        binding.tvIntroTutorial.text = getString(R.string.lets_learn, viewModel.getPatientName())
 
         binding.bbvTutorial.setBottomButtonsListener(object : BottomButtonsListener {
             override fun onPrimaryClick() {
-                //findNavController().navigate(R.id.)
+                findNavController().navigate(R.id.action_tutorialFragment_to_nav_questions)
             }
 
             override fun onSecondaryClick() {

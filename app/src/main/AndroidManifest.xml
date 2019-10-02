@@ -34,14 +34,9 @@
             android:name=".feature.questionnaires.activity.QuestionnairesActivity"
             android:configChanges="orientation|keyboardHidden|screenSize" />
         <activity
-            android:name=".feature.parents.activity.ParentsActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize" />
-        <activity
-            android:name=".feature.children.activity.ChildrenActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize" />
-        <activity
             android:name=".feature.register.activity.RegisterActivity"
             android:configChanges="orientation|keyboardHidden|screenSize" />
+
     </application>
 
 </manifest>

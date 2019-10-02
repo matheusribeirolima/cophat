@@ -66,7 +66,7 @@ class RegisterSchoolViewModel(
 
                     repository.updateParentQuestionnaire(application, questionnaire)
                     repository.updateApplicationLocally(application)
-                    navigate.postValue(R.id.action_registerSchoolFragment_to_nav_parents)
+                    navigate.postValue(R.id.action_registerSchoolFragment_to_nav_questions)
                 }
             } catch (e: DatabaseException) {
                 handleError.postValue(e)

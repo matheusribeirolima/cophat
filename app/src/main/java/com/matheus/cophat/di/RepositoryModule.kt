@@ -10,14 +10,6 @@ val repositoryModule = module {
     }
 
     single {
-        ChildrenRepository(get(), get())
-    }
-
-    single {
-        ParentsRepository(get(), get())
-    }
-
-    single {
         QuestionnairesRepository(get(), get())
     }
 
