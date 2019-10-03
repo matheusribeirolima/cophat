@@ -67,6 +67,8 @@ class IntroViewModel(
             return when {
                 application == null ->
                     StepsPresenter.GENERATE_CODE_STEP_0
+                isChildren ->
+                    StepsPresenter.CHILD_QUESTIONS
                 application?.respondent?.motherProfession == null ->
                     StepsPresenter.REGISTER_PARENTS_STEP_1
                 application?.respondent?.medicalRecords == null ->

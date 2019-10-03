@@ -64,7 +64,7 @@ class GenerateCodeViewModel(private val repository: GenerateCodeRepository) : Ba
                 repository.addOrUpdateParentQuestionnaire(familyId, application, questionnaire)
             }
             repository.saveApplicationLocally(application)
-            chooseDestination(questionnaire)
+            chooseDestination()
         } catch (e: DatabaseException) {
             handleError.postValue(e)
         } finally {
@@ -100,17 +100,24 @@ class GenerateCodeViewModel(private val repository: GenerateCodeRepository) : Ba
         )
     }
 
-    private fun chooseDestination(questionnaire: QuestionnairePresenter?) {
-        if (isChildren && questionnaire == null) {
+    private fun chooseDestination() {
+        if (isChildren) {
             navigate.postValue(R.id.action_generateCodeFragment_to_tutorialFragment)
-        } else if (isChildren) {
-            navigate.postValue(R.id.action_generateCodeFragment_to_nav_questions)
         } else {
             navigate.postValue(R.id.action_generateCodeFragment_to_nav_register)
         }
     }
 
-    fun getPatientName(): String {
-        return presenter.child
+    suspend fun getPatientName(): String {
+        return try {
+            isLoading.postValue(true)
+
+            repository.getPatientName() ?: ""
+        } catch (e: DatabaseException) {
+            handleError.postValue(e)
+            ""
+        } finally {
+            isLoading.postValue(false)
+        }
     }
 }

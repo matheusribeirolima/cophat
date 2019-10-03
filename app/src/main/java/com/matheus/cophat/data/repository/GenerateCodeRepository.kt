@@ -79,4 +79,8 @@ class GenerateCodeRepository(
             )
         }
     }
+
+    suspend fun getPatientName(): String? {
+        return dao.getApplication()?.respondent?.patientName
+    }
 }

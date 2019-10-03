@@ -50,6 +50,8 @@ class BeginFragment : BaseFragment<FragmentBeginBinding>() {
                 when (viewModel.chooseNavigation()) {
                     StepsPresenter.GENERATE_CODE_STEP_0 ->
                         findNavController().navigate(R.id.action_beginFragment_to_nav_generate)
+                    StepsPresenter.CHILD_QUESTIONS ->
+                        findNavController().navigate(R.id.action_beginFragment_to_nav_questions)
                     StepsPresenter.REGISTER_PARENTS_STEP_1 ->
                         findNavController().navigate(
                             BeginFragmentDirections.actionBeginFragmentToRegisterActivity(1)

@@ -1,6 +1,6 @@
 package com.matheus.cophat.feature.generate.fragment
 
-import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.matheus.cophat.R
 import com.matheus.cophat.databinding.FragmentTutorialBinding
@@ -8,6 +8,7 @@ import com.matheus.cophat.feature.generate.viewmodel.GenerateCodeViewModel
 import com.matheus.cophat.ui.BaseFragment
 import com.matheus.cophat.ui.BaseViewModel
 import com.matheus.cophat.ui.base.view.BottomButtonsListener
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class TutorialFragment : BaseFragment<FragmentTutorialBinding>() {
@@ -41,7 +42,9 @@ class TutorialFragment : BaseFragment<FragmentTutorialBinding>() {
             binding.bbvTutorial
         )
 
-        binding.tvIntroTutorial.text = getString(R.string.lets_learn, viewModel.getPatientName())
+        lifecycleScope.launch {
+            binding.tvIntroTutorial.text = getString(R.string.lets_learn, viewModel.getPatientName())
+        }
 
         binding.bbvTutorial.setBottomButtonsListener(object : BottomButtonsListener {
             override fun onPrimaryClick() {

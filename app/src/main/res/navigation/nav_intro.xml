@@ -48,6 +48,9 @@
         <action
             android:id="@+id/action_beginFragment_to_registerActivity"
             app:destination="@id/registerActivity" />
+        <action
+            android:id="@+id/action_beginFragment_to_nav_questions"
+            app:destination="@id/nav_questions" />
     </fragment>
     <include app:graph="@navigation/nav_questionnaires" />
     <include app:graph="@navigation/nav_configure" />
@@ -62,4 +65,5 @@
             android:defaultValue="0"
             app:argType="integer" />
     </activity>
+    <include app:graph="@navigation/nav_questions" />
 </navigation>
