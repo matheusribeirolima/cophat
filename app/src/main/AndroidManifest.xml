@@ -36,7 +36,9 @@
         <activity
             android:name=".feature.register.activity.RegisterActivity"
             android:configChanges="orientation|keyboardHidden|screenSize" />
-
+        <activity
+            android:name=".feature.questions.activity.QuestionsActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize" />
     </application>
 
 </manifest>

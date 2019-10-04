@@ -4,6 +4,7 @@ import com.matheus.cophat.feature.configure.viewmodel.ConfigureViewModel
 import com.matheus.cophat.feature.generate.viewmodel.GenerateCodeViewModel
 import com.matheus.cophat.feature.intro.viewmodel.IntroViewModel
 import com.matheus.cophat.feature.questionnaires.viewmodel.QuestionnairesViewModel
+import com.matheus.cophat.feature.questions.viewmodel.QuestionsViewModel
 import com.matheus.cophat.feature.register.viewmodel.RegisterInternalViewModel
 import com.matheus.cophat.feature.register.viewmodel.RegisterParentsViewModel
 import com.matheus.cophat.feature.register.viewmodel.RegisterPatientViewModel
@@ -33,4 +34,6 @@ val viewModelModule = module {
     viewModel { RegisterInternalViewModel(get(), get()) }
 
     viewModel { RegisterSchoolViewModel(get(), get()) }
+
+    viewModel { QuestionsViewModel(get(), get()) }
 }

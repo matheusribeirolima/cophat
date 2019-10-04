@@ -24,4 +24,8 @@ val repositoryModule = module {
     single {
         RegisterRepository(get(), get())
     }
+
+    single {
+        QuestionsRepository(get(), get())
+    }
 }
