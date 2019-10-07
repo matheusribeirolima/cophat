@@ -99,6 +99,20 @@ class ConfigureViewModel(
         }
     }
 
+    fun test() {
+        viewModelScope.launch(context = Dispatchers.IO) {
+            try {
+                isLoading.postValue(true)
+
+                repository.test()
+            } catch (e: DatabaseException) {
+                handleError.postValue(e)
+            } finally {
+                isLoading.postValue(false)
+            }
+        }
+    }
+
     fun verifyDialogPresenter(applicator: ApplicatorConfigurePresenter?) {
         applicator?.let {
             if (applicator.name.isNotEmpty() && applicator.contact.isValidEmail()) {

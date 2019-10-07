@@ -30,4 +30,8 @@ class ConfigureRepository(private val database: DatabaseReference) : BaseReposit
     suspend fun removeApplicator(key: String) {
         removeChild(FirebaseChild.APPLICATORS, key)
     }
+
+    suspend fun test() {
+
+    }
 }
