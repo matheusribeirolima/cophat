@@ -39,8 +39,8 @@ class RegisterSchoolViewModel(
     }
 
     fun validatePresenter() {
-        if (presenter.address.isNotEmpty() &&
-            presenter.income.isNotEmpty()
+        if (presenter.address.trim().isNotEmpty() &&
+            presenter.income.trim().isNotEmpty()
         ) {
             isButtonEnabled.postValue(true)
         } else {

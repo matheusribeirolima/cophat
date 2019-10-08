@@ -1,7 +1,7 @@
 package com.matheus.cophat.data.repository
 
 import com.google.firebase.database.DatabaseReference
-import com.matheus.cophat.data.local.entity.Applicator
+import com.matheus.cophat.data.local.entity.*
 import com.matheus.cophat.data.presenter.ItemApplicatorPresenter
 
 class ConfigureRepository(private val database: DatabaseReference) : BaseRepository() {

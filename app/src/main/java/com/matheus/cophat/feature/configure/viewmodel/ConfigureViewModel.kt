@@ -115,7 +115,7 @@ class ConfigureViewModel(
 
     fun verifyDialogPresenter(applicator: ApplicatorConfigurePresenter?) {
         applicator?.let {
-            if (applicator.name.isNotEmpty() && applicator.contact.isValidEmail()) {
+            if (applicator.name.trim().isNotEmpty() && applicator.contact.isValidEmail()) {
                 isButtonEnabled.postValue(true)
             } else {
                 isButtonEnabled.postValue(false)

@@ -39,10 +39,10 @@ class RegisterInternalViewModel(
     }
 
     fun validatePresenter() {
-        if (presenter.diagnosis.isNotEmpty() &&
-            presenter.diagnosisTime.isNotEmpty() &&
-            presenter.daysHospitalized.isNotEmpty() &&
-            presenter.hospitalizations.isNotEmpty()
+        if (presenter.diagnosis.trim().isNotEmpty() &&
+            presenter.diagnosisTime.trim().isNotEmpty() &&
+            presenter.daysHospitalized.trim().isNotEmpty() &&
+            presenter.hospitalizations.trim().isNotEmpty()
         ) {
             isButtonEnabled.postValue(true)
         } else {

@@ -5,4 +5,4 @@ enum class GenderType(val genderType: String, val genderPoints: Int) {
     MALE("Masculino", 2)
 }
 
-data class Gender (val genderType: String, val genderPoints: Int)
+data class Gender (val type: String, val description: String)

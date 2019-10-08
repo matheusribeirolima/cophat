@@ -50,11 +50,11 @@ class RegisterPatientViewModel(
     }
 
     fun validatePresenter() {
-        if (presenter.name.isNotEmpty() &&
-            presenter.medicalRecords.isNotEmpty() &&
-            presenter.birthday.isValidDate("dd/MM/yyyy") &&
-            presenter.birthday.isBeforeToday("dd/MM/yyyy") &&
-            presenter.age.isNotEmpty() &&
+        if (presenter.name.trim().isNotEmpty() &&
+            presenter.medicalRecords.trim().isNotEmpty() &&
+            presenter.birthday.trim().isValidDate("dd/MM/yyyy") &&
+            presenter.birthday.trim().isBeforeToday("dd/MM/yyyy") &&
+            presenter.age.trim().isNotEmpty() &&
             (presenter.male || presenter.female)
         ) {
             isButtonEnabled.postValue(true)

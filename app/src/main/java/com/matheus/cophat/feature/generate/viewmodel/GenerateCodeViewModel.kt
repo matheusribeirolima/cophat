@@ -40,9 +40,9 @@ class GenerateCodeViewModel(private val repository: GenerateCodeRepository) : Ba
     }
 
     fun validatePresenter() {
-        if (presenter.child.isNotEmpty() &&
-            presenter.applicator.name.isNotEmpty() &&
-            presenter.hospital.name.isNotEmpty()
+        if (presenter.child.trim().isNotEmpty() &&
+            presenter.applicator.name.trim().isNotEmpty() &&
+            presenter.hospital.name.trim().isNotEmpty()
         ) {
             isButtonEnabled.postValue(true)
         } else {

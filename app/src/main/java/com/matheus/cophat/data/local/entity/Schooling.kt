@@ -13,4 +13,4 @@ enum class SchoolingType(val schooling: String, val schoolingPoints: Int) {
     NINTH_YEAR("9º ano", 10)
 }
 
-data class Schooling(val schoolingType: String, val schoolingPoints: Int)
+data class Schooling(val type: SchoolingType, val description: String)

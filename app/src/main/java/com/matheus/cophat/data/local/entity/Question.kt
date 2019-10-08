@@ -1,10 +1,11 @@
 package com.matheus.cophat.data.local.entity
 
 data class Question(
-    val id: Int,
-    val category: Category,
-    val statement: String,
-    val chosenAnswer: Answer,
-    val alternatives: List<Answer>,
-    val subQuestions: List<SubQuestion>
+    var id: Int? = null,
+    var category: CategoryType? = null,
+    var statement: String? = null,
+    var statementMale: String? = null,
+    var statementFemale: String? = null,
+    var chosenAnswer: Answer? = null,
+    var subQuestions: List<SubQuestion>? = null
 )

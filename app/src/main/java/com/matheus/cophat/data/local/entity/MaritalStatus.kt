@@ -8,4 +8,4 @@ enum class MaritalStatusType(val maritalStatus: String, val maritalStatusPoints:
     WIDOWER("Viúvo", 5)
 }
 
-data class MaritalStatus(val maritalStatusType: String, val maritalStatusPoints: Int)
+data class MaritalStatus(val type: MaritalStatusType, val description: String, val points: Int)

@@ -40,9 +40,9 @@ class RegisterParentsViewModel(
     }
 
     fun validatePresenter() {
-        if (presenter.motherProfession.isNotEmpty() &&
-            presenter.fatherProfession.isNotEmpty() &&
-            (presenter.religionType != ReligionType.OTHER || presenter.religion.isNotEmpty())
+        if (presenter.motherProfession.trim().isNotEmpty() &&
+            presenter.fatherProfession.trim().isNotEmpty() &&
+            (presenter.religionType != ReligionType.OTHER || presenter.religion.trim().isNotEmpty())
         ) {
             isButtonEnabled.postValue(true)
         } else {

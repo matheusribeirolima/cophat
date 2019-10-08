@@ -5,4 +5,4 @@ enum class ResidentCityType(val liveInThisCity: String, val liveInThisCityPoints
     NO("Não", 0)
 }
 
-data class ResidentCity(val liveInThisCity: String, val liveInThisCityPoints: Int)
+data class ResidentCity(val type: ResidentCityType, val description: String, val points: Int)

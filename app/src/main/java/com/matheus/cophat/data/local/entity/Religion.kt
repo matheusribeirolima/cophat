@@ -9,7 +9,7 @@ enum class ReligionType(val religion: String, val religionPoints: Int) {
 }
 
 data class Religion(
-    val religionType: String,
-    val religionPoints: Int,
+    val type: ReligionType,
+    val description: String,
     var otherReligion: String? = null
 )

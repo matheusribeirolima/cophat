@@ -8,4 +8,4 @@ enum class EducationType(val education: String, val educationPoints: Int) {
     GRADUATED("Superior completo", 5)
 }
 
-data class Education(val educationType: String, val educationPoints: Int)
+data class Education(val type: EducationType, val description: String, val points: Int)

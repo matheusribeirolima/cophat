@@ -5,4 +5,7 @@ enum class SchoolFrequencyType(val schoolFrequency: String, val schoolFrequencyP
     NO("Não", 0)
 }
 
-data class SchoolFrequency(val schoolFrequencyType: String, val schoolFrequencyPoints: Int)
+data class SchoolFrequency(
+    val type: SchoolFrequencyType,
+    val description: String
+)

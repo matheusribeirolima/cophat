@@ -9,16 +9,6 @@ import java.util.*
 class DataConverter {
 
     @TypeConverter
-    fun toDate(timestamp: Long?): Date? {
-        return timestamp?.let { Date(it) }
-    }
-
-    @TypeConverter
-    fun fromDate(date: Date?): Long? {
-        return date?.time
-    }
-
-    @TypeConverter
     fun toQuestions(questions: String?): List<Question>? {
         return questions?.let {
             val type = object : TypeToken<List<Question>>() {}.type
