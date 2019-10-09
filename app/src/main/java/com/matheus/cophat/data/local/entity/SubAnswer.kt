@@ -35,8 +35,8 @@ enum class SubAnswerType(val chosenSubAnswer: String, val chosenSubAnswerPoints:
 }
 
 data class SubAnswer(
-    val type: SubAnswerType,
-    val description: String = type.chosenSubAnswer,
-    val points: Int = type.chosenSubAnswerPoints,
+    var type: SubAnswerType? = null,
+    var description: String? = type?.chosenSubAnswer,
+    var points: Int? = type?.chosenSubAnswerPoints,
     var other: String? = null
 )

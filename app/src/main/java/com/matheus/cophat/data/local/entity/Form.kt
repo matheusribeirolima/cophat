@@ -8,5 +8,5 @@ enum class FormType(val form: String) {
 data class Form(
     var type: FormType? = null,
     var description: String? = null,
-    var questions: List<Question>? = null
+    var questions: HashMap<String, Question>? = null
 )

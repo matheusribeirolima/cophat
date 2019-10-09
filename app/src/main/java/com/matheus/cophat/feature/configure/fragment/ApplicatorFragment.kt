@@ -44,12 +44,11 @@ class ApplicatorFragment : BaseFragment<FragmentApplicatorBinding>(), Applicator
         binding.rvApplicator.adapter = adapter
 
         binding.ivAddApplicator.setOnClickListener {
-            viewModel.test()
-//            findNavController().navigate(
-//                ApplicatorFragmentDirections.actionApplicatorFragmentToApplicatorDialog(
-//                    viewModel.getAddApplicator()
-//                )
-//            )
+            findNavController().navigate(
+                ApplicatorFragmentDirections.actionApplicatorFragmentToApplicatorDialog(
+                    viewModel.getAddApplicator()
+                )
+            )
         }
     }
 

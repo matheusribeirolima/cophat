@@ -3,23 +3,24 @@ package com.matheus.cophat.data.local.converter
 import androidx.room.TypeConverter
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com.matheus.cophat.data.local.entity.*
+import com.matheus.cophat.data.local.entity.Question
+import com.matheus.cophat.data.local.entity.Respondent
 import java.util.*
 
 class DataConverter {
 
     @TypeConverter
-    fun toQuestions(questions: String?): List<Question>? {
+    fun toQuestions(questions: String?): HashMap<String, Question>? {
         return questions?.let {
-            val type = object : TypeToken<List<Question>>() {}.type
-            Gson().fromJson<List<Question>>(questions, type)
+            val type = object : TypeToken<HashMap<String, Question>>() {}.type
+            Gson().fromJson<HashMap<String, Question>>(questions, type)
         }
     }
 
     @TypeConverter
-    fun fromQuestions(questions: List<Question>?): String? {
+    fun fromQuestions(questions: HashMap<String, Question>?): String? {
         return questions?.let {
-            val type = object : TypeToken<List<Question>>() {}.type
+            val type = object : TypeToken<HashMap<String, Question>>() {}.type
             return Gson().toJson(questions, type)
         }
     }

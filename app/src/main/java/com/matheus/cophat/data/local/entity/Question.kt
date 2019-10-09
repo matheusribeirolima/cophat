@@ -7,5 +7,5 @@ data class Question(
     var statementMale: String? = null,
     var statementFemale: String? = null,
     var chosenAnswer: Answer? = null,
-    var subQuestions: List<SubQuestion>? = null
+    var subQuestions: HashMap<String, SubQuestion>? = null
 )

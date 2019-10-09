@@ -6,6 +6,6 @@ data class SubQuestion(
     var statement: String? = null,
     var statementMale: String? = null,
     var statementFemale: String? = null,
-    var chosenAlternatives: List<SubAnswer>? = null,
-    var alternatives: List<SubAnswer>? = null
+    var chosenAlternatives: HashMap<String, SubAnswer>? = null,
+    var alternatives: HashMap<String, SubAnswer>? = null
 )

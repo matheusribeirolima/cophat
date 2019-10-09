@@ -104,7 +104,10 @@ class ConfigureViewModel(
             try {
                 isLoading.postValue(true)
 
-                repository.test()
+                for (form in repository.test()) {
+                    val sorted = form.questions?.toList()?.sortedBy { (_, value) -> value.id }?.toMap()
+                    sorted?.isEmpty()
+                }
             } catch (e: DatabaseException) {
                 handleError.postValue(e)
             } finally {

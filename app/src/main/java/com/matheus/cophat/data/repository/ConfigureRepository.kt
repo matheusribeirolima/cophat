@@ -1,7 +1,8 @@
 package com.matheus.cophat.data.repository
 
 import com.google.firebase.database.DatabaseReference
-import com.matheus.cophat.data.local.entity.*
+import com.matheus.cophat.data.local.entity.Applicator
+import com.matheus.cophat.data.local.entity.Form
 import com.matheus.cophat.data.presenter.ItemApplicatorPresenter
 
 class ConfigureRepository(private val database: DatabaseReference) : BaseRepository() {
@@ -31,7 +32,8 @@ class ConfigureRepository(private val database: DatabaseReference) : BaseReposit
         removeChild(FirebaseChild.APPLICATORS, key)
     }
 
-    suspend fun test() {
-
+    suspend fun test(): List<Form> {
+        return getDatabaseChild(FirebaseChild.FORMS, Form::class.java)
     }
+
 }

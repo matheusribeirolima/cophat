@@ -13,7 +13,7 @@ data class ApplicationEntity(
     var hospital: String? = null,
     var respondent: Respondent? = null,
     var applicator: String? = null,
-    var questions: List<Question>? = null,
+    var questions: HashMap<String, Question>? = null,
     var date: String? = null,
     var startHour: String? = null,
     var endHour: String? = null
