@@ -1,4 +1,5 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".feature.questions.fragment.QuestionsFragment">
 
@@ -6,12 +7,119 @@
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="@dimen/default_padding">
+        android:layout_height="match_parent">
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
+            <TextView
+                android:id="@+id/tvCodeQuestions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/default_padding"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="MRLHCU12102019" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/tvStateQuestions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/default_padding"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="1 / 35" />
+
+            <ProgressBar
+                android:id="@+id/pbStatusQuestions"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="0dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="@dimen/medium_margin"
+                android:progressDrawable="@drawable/bg_progress"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvStateQuestions"
+                tools:progress="50" />
+
+            <TextView
+                android:id="@+id/tvStatementQuestions"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/pbStatusQuestions"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textSize="@dimen/title_size"
+                tools:text="Quando eu pergunto sobre a minha doença, as respostas ainda me deixam com dúvidas."
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="@dimen/extra_margin"
+                android:layout_marginStart="@dimen/big_margin"
+                android:layout_marginEnd="@dimen/big_margin" />
+
+            <RadioGroup
+                android:id="@+id/rgAnswerQuestions"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/big_margin"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="@dimen/default_padding"
+                android:layout_marginEnd="@dimen/default_padding"
+                app:layout_constraintTop_toBottomOf="@+id/tvStatementQuestions">
+
+                <RadioButton
+                    android:id="@+id/rbAlwaysQuestions"
+                    style="@style/AppTheme.RadioButtonLargeTheme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="@string/always" />
+
+                <RadioButton
+                    android:id="@+id/rbOftenQuestions"
+                    style="@style/AppTheme.RadioButtonLargeTheme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/often" />
+
+                <RadioButton
+                    android:id="@+id/rbSometimesQuestions"
+                    style="@style/AppTheme.RadioButtonLargeTheme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sometimes" />
+
+                <RadioButton
+                    android:id="@+id/rbAlmostNeverQuestions"
+                    style="@style/AppTheme.RadioButtonLargeTheme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/almost_never" />
+
+                <RadioButton
+                    android:id="@+id/rbNeverQuestions"
+                    style="@style/AppTheme.RadioButtonLargeTheme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/never" />
+
+            </RadioGroup>
+
+            <com.matheus.cophat.ui.base.view.BottomButtonsView
+                android:id="@+id/bbvQuestions"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/bottom_button_height"
+                app:bbv_primary_enabled="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rgAnswerQuestions" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
 </layout>
