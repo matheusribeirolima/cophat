@@ -20,6 +20,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         testInstrumentationRunnerArgument "runnerBuilder", "de.mannodermaus.junit5.AndroidJUnit5Builder"
+        testInstrumentationRunnerArgument "listener", "leakcanary.FailTestOnLeakRunListener"
         buildConfigField("String", "BASE_URL", '"https://cophat-matheus.firebaseio.com"')
         javaCompileOptions {
             annotationProcessorOptions {
@@ -143,6 +144,9 @@ dependencies {
     // Loading
     implementation "com.wang.avi:library:$loading_version"
 
+    // LeakCanary
+    debugImplementation "com.squareup.leakcanary:leakcanary-android:$leak_version"
+
     // Test helpers
     testImplementation "org.junit.jupiter:junit-jupiter-api:$junit_version"
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junit_version"
@@ -158,6 +162,7 @@ dependencies {
     androidTestRuntimeOnly "de.mannodermaus.junit5:android-test-runner:$junit5_version"
     androidTestImplementation "io.mockk:mockk-android:$mockk_version"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
+    androidTestImplementation "com.squareup.leakcanary:leakcanary-android-instrumentation:$leak_version"
 }
 
 apply plugin: 'com.google.gms.google-services'
