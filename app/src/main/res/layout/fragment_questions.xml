@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="presenter"
+            type="com.matheus.cophat.data.presenter.QuestionsPresenter" />
     </data>
 
     <ScrollView
@@ -20,6 +23,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/default_padding"
+                android:text="@{presenter.code}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="MRLHCU12102019" />
@@ -29,6 +33,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/default_padding"
+                android:text="@{presenter.state}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="1 / 35" />
@@ -39,6 +44,7 @@
                 android:layout_width="0dp"
                 android:layout_height="20dp"
                 android:layout_marginTop="@dimen/medium_margin"
+                android:progress="@{presenter.progress}"
                 android:progressDrawable="@drawable/bg_progress"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -49,26 +55,26 @@
                 android:id="@+id/tvStatementQuestions"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/pbStatusQuestions"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:gravity="center"
-                android:textStyle="bold"
-                android:textSize="@dimen/title_size"
-                tools:text="Quando eu pergunto sobre a minha doença, as respostas ainda me deixam com dúvidas."
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginTop="@dimen/extra_margin"
                 android:layout_marginStart="@dimen/big_margin"
-                android:layout_marginEnd="@dimen/big_margin" />
+                android:layout_marginTop="@dimen/extra_margin"
+                android:layout_marginEnd="@dimen/big_margin"
+                android:gravity="center"
+                android:text="@{presenter.statement}"
+                android:textSize="@dimen/title_size"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pbStatusQuestions"
+                tools:text="Quando eu pergunto sobre a minha doença, as respostas ainda me deixam com dúvidas." />
 
             <RadioGroup
                 android:id="@+id/rgAnswerQuestions"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/big_margin"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/ivQuestions"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="@dimen/default_padding"
-                android:layout_marginEnd="@dimen/default_padding"
                 app:layout_constraintTop_toBottomOf="@+id/tvStatementQuestions">
 
                 <RadioButton
@@ -109,11 +115,24 @@
 
             </RadioGroup>
 
+            <ImageView
+                android:id="@+id/ivQuestions"
+                android:layout_width="@dimen/thermometer_size"
+                android:layout_height="@dimen/thermometer_size"
+                android:contentDescription="@string/thermometer"
+                android:src="@{presenter.thermometer}"
+                app:layout_constraintBottom_toBottomOf="@+id/rgAnswerQuestions"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/rgAnswerQuestions"
+                app:layout_constraintTop_toTopOf="@+id/rgAnswerQuestions"
+                tools:src="@drawable/ic_thermometer1" />
+
             <com.matheus.cophat.ui.base.view.BottomButtonsView
                 android:id="@+id/bbvQuestions"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/bottom_button_height"
-                app:bbv_primary_enabled="false"
+                app:bbv_primary_enabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/rgAnswerQuestions" />

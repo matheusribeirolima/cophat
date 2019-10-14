@@ -29,17 +29,6 @@ class GenerateCodeRepository(
         dao.insertApplication(application)
     }
 
-    suspend fun getQuestionnaireByFamilyId(familyId: String): QuestionnairePresenter? {
-        return try {
-            getDatabaseChildHash(FirebaseChild.QUESTIONNAIRES, Questionnaire::class.java)
-                .filter { it.value.familyId == familyId }
-                .map { (key, value) -> QuestionnairePresenter(value, key) }
-                .first()
-        } catch (e: Exception) {
-            null
-        }
-    }
-
     suspend fun addOrUpdateChildQuestionnaire(
         familyId: String,
         application: ApplicationEntity,

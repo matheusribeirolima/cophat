@@ -4,6 +4,8 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
+import com.matheus.cophat.data.local.entity.Questionnaire
+import com.matheus.cophat.data.presenter.QuestionnairePresenter
 import kotlinx.coroutines.tasks.await
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
@@ -86,4 +88,11 @@ abstract class BaseRepository {
                 .addOnCompleteListener { d.resume(null) }
                 .addOnFailureListener { d.resumeWithException(it) }
         }
+
+    suspend fun getQuestionnaireByFamilyId(familyId: String): QuestionnairePresenter? {
+        return getDatabaseChildHash(FirebaseChild.QUESTIONNAIRES, Questionnaire::class.java)
+            .filter { it.value.familyId == familyId }
+            .map { (key, value) -> QuestionnairePresenter(value, key) }
+            .firstOrNull()
+    }
 }

@@ -9,7 +9,6 @@ import com.matheus.cophat.data.local.entity.Applicator
 import com.matheus.cophat.data.local.entity.Hospital
 import com.matheus.cophat.data.local.entity.Respondent
 import com.matheus.cophat.data.presenter.GenerateCodePresenter
-import com.matheus.cophat.data.presenter.QuestionnairePresenter
 import com.matheus.cophat.data.repository.GenerateCodeRepository
 import com.matheus.cophat.helper.toString
 import com.matheus.cophat.ui.BaseViewModel
@@ -80,7 +79,7 @@ class GenerateCodeViewModel(private val repository: GenerateCodeRepository) : Ba
 
         val nowFormatted = Calendar.getInstance().toString("ddMMyyyy")
 
-        return childInitials + presenter.hospital.code + nowFormatted
+        return childInitials + nowFormatted + presenter.hospital.code
     }
 
     private fun generateApplicationEntity(familyId: String): ApplicationEntity {
