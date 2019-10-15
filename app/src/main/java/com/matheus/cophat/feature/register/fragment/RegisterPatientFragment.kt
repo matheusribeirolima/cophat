@@ -31,7 +31,7 @@ class RegisterPatientFragment : BaseFragment<FragmentRegisterPatientBinding>() {
             binding.tilNamePatient,
             binding.tilMedicalRecordsPatient,
             binding.tilBirthdayPatient,
-            binding.tilAgePatient,
+            binding.tilAgePatient,//string
             binding.tvGenderPatient,
             binding.rbMalePatient,
             binding.rbFemalePatient,
