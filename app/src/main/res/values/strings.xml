@@ -113,4 +113,10 @@
     <string name="complete_fundamental_2">Fundamental II completo / Médio incompleto</string>
     <string name="complete_medium">Médio completo / Superior incompleto</string>
     <string name="graduated">Superior completo</string>
+    <string name="zero">0</string>
+    <string name="one">1</string>
+    <string name="two">2</string>
+    <string name="three">3</string>
+    <string name="four">4</string>
+    <string name="start">Iniciar</string>
 </resources>

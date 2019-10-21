@@ -6,6 +6,5 @@ data class Question(
     var statement: String? = null,
     var statementMale: String? = null,
     var statementFemale: String? = null,
-    var chosenAnswer: Answer? = null,
     var subQuestions: HashMap<String, SubQuestion>? = null
 )

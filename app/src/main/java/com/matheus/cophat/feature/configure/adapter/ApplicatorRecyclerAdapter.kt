@@ -1,7 +1,6 @@
 package com.matheus.cophat.feature.configure.adapter
 
 import android.view.View
-import androidx.lifecycle.MutableLiveData
 import com.matheus.cophat.R
 import com.matheus.cophat.data.presenter.ItemApplicatorPresenter
 import com.matheus.cophat.ui.BaseRecyclerView

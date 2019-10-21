@@ -13,8 +13,9 @@ data class ApplicationEntity(
     var hospital: String? = null,
     var respondent: Respondent? = null,
     var applicator: String? = null,
-    var questions: HashMap<String, Question>? = null,
+    var answers: HashMap<String, Answer>? = null,
     var date: String? = null,
     var startHour: String? = null,
-    var endHour: String? = null
+    var endHour: String? = null,
+    var status: ApplicationStatus = ApplicationStatus.NOT_STARTED
 )

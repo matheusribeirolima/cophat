@@ -10,4 +10,8 @@ enum class AnswerType(val chosenAnswer: String, val chosenAnswerPoints: Int) {
     YES("Sim", 1)
 }
 
-data class Answer(val chosenAnswer: String, val chosenAnswerPoints: Int)
+data class Answer(
+    var id: Int? = null,
+    var chosenAnswer: AnswerType? = null,
+    var subAnswers: HashMap<String, SubAnswer>? = null
+)

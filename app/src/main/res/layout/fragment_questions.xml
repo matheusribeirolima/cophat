@@ -49,7 +49,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvStateQuestions"
-                tools:progress="50" />
+                tools:progress="10" />
 
             <TextView
                 android:id="@+id/tvStatementQuestions"
@@ -67,66 +67,13 @@
                 app:layout_constraintTop_toBottomOf="@+id/pbStatusQuestions"
                 tools:text="Quando eu pergunto sobre a minha doença, as respostas ainda me deixam com dúvidas." />
 
-            <RadioGroup
-                android:id="@+id/rgAnswerQuestions"
-                android:layout_width="wrap_content"
+            <com.matheus.cophat.ui.base.view.ThermometerView
+                android:id="@+id/vQuestions"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/big_margin"
-                app:layout_constraintEnd_toStartOf="@+id/ivQuestions"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvStatementQuestions">
-
-                <RadioButton
-                    android:id="@+id/rbAlwaysQuestions"
-                    style="@style/AppTheme.RadioButtonLargeTheme"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checked="true"
-                    android:text="@string/always" />
-
-                <RadioButton
-                    android:id="@+id/rbOftenQuestions"
-                    style="@style/AppTheme.RadioButtonLargeTheme"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/often" />
-
-                <RadioButton
-                    android:id="@+id/rbSometimesQuestions"
-                    style="@style/AppTheme.RadioButtonLargeTheme"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/sometimes" />
-
-                <RadioButton
-                    android:id="@+id/rbAlmostNeverQuestions"
-                    style="@style/AppTheme.RadioButtonLargeTheme"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/almost_never" />
-
-                <RadioButton
-                    android:id="@+id/rbNeverQuestions"
-                    style="@style/AppTheme.RadioButtonLargeTheme"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/never" />
-
-            </RadioGroup>
-
-            <ImageView
-                android:id="@+id/ivQuestions"
-                android:layout_width="@dimen/thermometer_size"
-                android:layout_height="@dimen/thermometer_size"
-                android:contentDescription="@string/thermometer"
-                android:src="@{presenter.thermometer}"
-                app:layout_constraintBottom_toBottomOf="@+id/rgAnswerQuestions"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/rgAnswerQuestions"
-                app:layout_constraintTop_toTopOf="@+id/rgAnswerQuestions"
-                tools:src="@drawable/ic_thermometer1" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvStatementQuestions" />
 
             <com.matheus.cophat.ui.base.view.BottomButtonsView
                 android:id="@+id/bbvQuestions"
@@ -135,7 +82,7 @@
                 app:bbv_primary_enabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/rgAnswerQuestions" />
+                app:layout_constraintTop_toBottomOf="@+id/vQuestions" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

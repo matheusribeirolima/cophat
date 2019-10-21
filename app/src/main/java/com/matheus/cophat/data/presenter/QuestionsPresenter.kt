@@ -1,10 +1,8 @@
 package com.matheus.cophat.data.presenter
 
-import androidx.annotation.DrawableRes
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.databinding.library.baseAdapters.BR
-import com.matheus.cophat.R
 import com.matheus.cophat.data.local.entity.AnswerType
 
 data class QuestionsPresenter(
@@ -12,9 +10,7 @@ data class QuestionsPresenter(
     private var _state: String? = "",
     private var _progress: Int = 0,
     private var _statement: String? = "",
-    private var _answer: AnswerType? = AnswerType.ALWAYS,
-    @DrawableRes
-    private var _thermometer: Int = R.drawable.ic_thermometer1
+    private var _answer: AnswerType? = AnswerType.ALWAYS
 ) : BaseObservable() {
 
     @get:Bindable
@@ -55,13 +51,5 @@ data class QuestionsPresenter(
         set(value) {
             _answer = value
             notifyPropertyChanged(BR.answer)
-        }
-
-    @get:Bindable
-    var thermometer
-        get() = _thermometer
-        set(value) {
-            _thermometer = value
-            notifyPropertyChanged(BR.thermometer)
         }
 }

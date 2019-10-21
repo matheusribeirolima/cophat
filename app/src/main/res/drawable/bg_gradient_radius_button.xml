@@ -11,8 +11,10 @@
     <item android:id="@android:id/background">
         <shape android:shape="rectangle">
             <gradient
-                android:endColor="@color/colorPrimary"
-                android:startColor="@color/colorAccent" />
+                android:angle="45"
+                android:endColor="@color/colorLauncher"
+                android:centerColor="@color/colorPrimaryDark"
+                android:startColor="@color/colorPrimary" />
             <corners android:radius="@dimen/button_radius" />
         </shape>
     </item>

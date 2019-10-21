@@ -3,6 +3,8 @@ package com.matheus.cophat.data.local.converter
 import androidx.room.TypeConverter
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.matheus.cophat.data.local.entity.Answer
+import com.matheus.cophat.data.local.entity.ApplicationStatus
 import com.matheus.cophat.data.local.entity.Question
 import com.matheus.cophat.data.local.entity.Respondent
 import java.util.*
@@ -10,18 +12,18 @@ import java.util.*
 class DataConverter {
 
     @TypeConverter
-    fun toQuestions(questions: String?): HashMap<String, Question>? {
-        return questions?.let {
-            val type = object : TypeToken<HashMap<String, Question>>() {}.type
-            Gson().fromJson<HashMap<String, Question>>(questions, type)
+    fun toAnswers(answers: String?): HashMap<String, Answer>? {
+        return answers?.let {
+            val type = object : TypeToken<HashMap<String, Answer>>() {}.type
+            Gson().fromJson<HashMap<String, Answer>>(answers, type)
         }
     }
 
     @TypeConverter
-    fun fromQuestions(questions: HashMap<String, Question>?): String? {
-        return questions?.let {
-            val type = object : TypeToken<HashMap<String, Question>>() {}.type
-            return Gson().toJson(questions, type)
+    fun fromAnswers(answers: HashMap<String, Answer>?): String? {
+        return answers?.let {
+            val type = object : TypeToken<HashMap<String, Answer>>() {}.type
+            return Gson().toJson(answers, type)
         }
     }
 
@@ -33,5 +35,15 @@ class DataConverter {
     @TypeConverter
     fun fromRespondent(respondent: Respondent?): String? {
         return Gson().toJson(respondent)
+    }
+
+    @TypeConverter
+    fun toApplicationStatus(status: String?): ApplicationStatus? {
+        return status?.let { ApplicationStatus.valueOf(it) }
+    }
+
+    @TypeConverter
+    fun fromApplicationStatus(status: ApplicationStatus?): String? {
+        return status?.toString()
     }
 }

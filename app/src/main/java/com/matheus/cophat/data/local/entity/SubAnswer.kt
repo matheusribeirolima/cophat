@@ -1,41 +1,50 @@
 package com.matheus.cophat.data.local.entity
 
-enum class SubAnswerType(val chosenSubAnswer: String, val chosenSubAnswerPoints: Int) {
-    RAGE("Raiva", 1),
-    FEAR("Medo", 1),
-    SADNESS("Tristeza", 1),
-    TIREDNESS("Cansaço", 1),
-    APPETITE_LACK("Falta de apetite", 1),
-    SICK("Enjoo", 1),
-    PAIN("Dor", 1),
-    DIZZINESS("Tontura", 1),
-    WEAKNESS("Fraqueza", 1),
-    SLEEP("Sono", 1),
-    IRRITATION("Irritação", 1),
-    ATTENTION_DIFFICULTY("Dificuldade de atenção", 1),
-    SWEAT("Suor", 1),
-    MOTOR_DIFFICULTY("Dificuldade motora", 1),
-    OTHER("Outros", 1),
-    SWELLING("Inchaço", 1),
-    WEIGHT_LOSS("Perda de peso", 1),
-    WEIGHT_GAIN("Ganho de peso", 1),
-    HAIR_LOSS("Queda de cabelo", 1),
-    INJECTION_BRANDS("Marcas de injeção / agulha", 1),
-    STAINS("Manchas", 1),
-    BODY_PARTS_LOSS("Perda de partes do corpo", 1),
-    PALLOR("Palidez", 1),
-    YELLOW_EYE("Olho amarelo", 1),
-    LAMPS("Caroços", 1),
-    CATHETER("Ter cateter ou fistula", 1),
-    SADNESS_BECAUSE("Tristeza por causa disso", 1),
-    OPEN("Alternativa aberta", 1),
-    PILL("Comprimido", 1),
-    INJECTION("Injeção", 1),
-    VEIN("Na veia", 1)
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+enum class SubAnswerType(val chosenSubAnswer: String) {
+    RAGE("Raiva"),
+    FEAR("Medo"),
+    SADNESS("Tristeza"),
+    TIREDNESS("Cansaço"),
+    APPETITE_LACK("Falta de apetite"),
+    SICK("Enjoo"),
+    PAIN("Dor"),
+    DIZZINESS("Tontura"),
+    WEAKNESS("Fraqueza"),
+    SLEEP("Sono"),
+    IRRITATION("Irritação"),
+    ATTENTION_DIFFICULTY("Dificuldade de atenção"),
+    SWEAT("Suor"),
+    MOTOR_DIFFICULTY("Dificuldade motora"),
+    OTHER("Outros"),
+    SWELLING("Inchaço"),
+    WEIGHT_LOSS("Perda de peso"),
+    WEIGHT_GAIN("Ganho de peso"),
+    HAIR_LOSS("Queda de cabelo"),
+    INJECTION_BRANDS("Marcas de injeção / agulha"),
+    STAINS("Manchas"),
+    BODY_PARTS_LOSS("Perda de partes do corpo"),
+    PALLOR("Palidez"),
+    YELLOW_EYE("Olho amarelo"),
+    LAMPS("Caroços"),
+    CATHETER("Ter cateter ou fistula"),
+    SADNESS_BECAUSE("Tristeza por causa disso"),
+    OPEN("Alternativa aberta"),
+    PILL("Comprimido"),
+    INJECTION("Injeção"),
+    VEIN("Na veia")
 }
+
+@Parcelize
+data class Alternative(
+    var type: SubAnswerType? = null,
+    var description: String? = type?.name
+) : Parcelable
 
 data class SubAnswer(
     var type: SubAnswerType? = null,
-    var description: String? = type?.chosenSubAnswer,
-    var other: String? = null
+    var other: String? = null,
+    var chosenSubAnswer: AnswerType? = null
 )

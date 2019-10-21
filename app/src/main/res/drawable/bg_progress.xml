@@ -11,8 +11,10 @@
         <clip>
             <shape android:shape="rectangle">
                 <gradient
-                    android:endColor="@color/colorPrimary"
-                    android:startColor="@color/colorAccent" />
+                    android:angle="45"
+                    android:centerColor="@color/colorPrimaryDark"
+                    android:startColor="@color/colorLauncher"
+                    android:endColor="@color/colorPrimary" />
             </shape>
         </clip>
     </item>

@@ -14,5 +14,6 @@
     <dimen name="button_radius">50dp</dimen>
     <dimen name="button_height">60dp</dimen>
     <dimen name="bottom_button_height">130dp</dimen>
-    <dimen name="thermometer_size">180dp</dimen>
+    <dimen name="thermometer_height">300dp</dimen>
+    <dimen name="thermometer_width">180dp</dimen>
 </resources>

@@ -200,6 +200,7 @@
             android:layout_width="0dp"
             android:layout_height="@dimen/bottom_button_height"
             app:bbv_primary_enabled="true"
+            app:bbv_primary_name="@string/start"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvThermometer5Tutorial" />

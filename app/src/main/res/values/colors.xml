@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#473080</color>
-    <color name="colorPrimaryDark">#382B73</color>
-    <color name="colorAccent">#1CAEE4</color>
+    <color name="colorPrimary">#D39AFF</color>
+    <color name="colorPrimaryDark">#611E80</color>
+    <color name="colorLauncher">#411158</color>
+    <color name="colorAccent">#F3E5F5</color>
     <color name="colorRipple">#99FFFFFF</color>
     <color name="colorSecondaryRipple">#4D000000</color>
     <color name="colorDivider">#BDBDBD</color>

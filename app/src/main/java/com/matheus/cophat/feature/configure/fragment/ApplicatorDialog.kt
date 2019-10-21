@@ -57,8 +57,7 @@ class ApplicatorDialog : BaseDialog<DialogApplicatorBinding>() {
     }
 
     private fun configureListeners() {
-        binding.bbvApplicator.setBottomButtonsListener(object :
-            BottomButtonsListener {
+        binding.bbvApplicator.setBottomButtonsListener(object : BottomButtonsListener {
             override fun onPrimaryClick() {
                 viewModel.saveOrUpdateApplicator(binding.presenter, args.key)
             }

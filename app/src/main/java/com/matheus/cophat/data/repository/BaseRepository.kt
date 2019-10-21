@@ -66,6 +66,9 @@ abstract class BaseRepository {
             })
         }
 
+    suspend fun addChild(child: String, value: Any): Void? =
+        getDatabase().child(child).push().setValue(value).await()
+
     suspend fun addChild(child: FirebaseChild, value: Any): Void? =
         getDatabase().child(child.pathName).push().setValue(value).await()
 

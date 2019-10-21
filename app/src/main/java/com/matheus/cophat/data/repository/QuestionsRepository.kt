@@ -2,10 +2,9 @@ package com.matheus.cophat.data.repository
 
 import com.google.firebase.database.DatabaseReference
 import com.matheus.cophat.data.local.dao.ApplicationDao
-import com.matheus.cophat.data.local.entity.Form
-import com.matheus.cophat.data.local.entity.FormType
-import com.matheus.cophat.data.local.entity.Question
+import com.matheus.cophat.data.local.entity.*
 import com.matheus.cophat.data.presenter.QuestionnairePresenter
+import kotlinx.coroutines.tasks.await
 
 class QuestionsRepository(
     private val database: DatabaseReference,
@@ -28,6 +27,10 @@ class QuestionsRepository(
         return dao.getApplication()?.familyId
     }
 
+    suspend fun getGender(): String? {
+        return dao.getApplication()?.respondent?.gender
+    }
+
     suspend fun updateParentQuestionnaire(questionnaire: QuestionnairePresenter?) {
         questionnaire?.let {
             updateChild(
@@ -46,5 +49,9 @@ class QuestionsRepository(
                 questionnaire.questionnaire
             )
         }
+    }
+
+    fun test(child: String) {
+        getDatabase().child(child).push().key
     }
 }
