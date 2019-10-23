@@ -119,4 +119,5 @@
     <string name="three">3</string>
     <string name="four">4</string>
     <string name="start">Iniciar</string>
+    <string name="describe">Descreva</string>
 </resources>

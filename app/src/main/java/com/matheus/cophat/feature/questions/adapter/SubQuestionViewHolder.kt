@@ -1,37 +1,49 @@
 package com.matheus.cophat.feature.questions.adapter
 
 import android.view.View
+import androidx.core.widget.doOnTextChanged
 import com.matheus.cophat.data.local.entity.AnswerType
-import com.matheus.cophat.data.local.entity.SubAnswer
+import com.matheus.cophat.data.presenter.ItemSubQuestionPresenter
 import com.matheus.cophat.databinding.ItemSubQuestionBinding
+import com.matheus.cophat.helper.visibleOrGone
 import com.matheus.cophat.ui.BaseViewHolder
 
 class SubQuestionViewHolder(itemView: View, private val subQuestionListener: SubQuestionListener) :
-    BaseViewHolder<ItemSubQuestionBinding, SubAnswer>(itemView) {
+    BaseViewHolder<ItemSubQuestionBinding, ItemSubQuestionPresenter>(itemView) {
 
-    override fun bind(presenter: SubAnswer, position: Int) {
-        //if open mostrar edittext
-        binding?.tvAlternative?.text = presenter.type?.chosenSubAnswer
+    override fun bind(presenter: ItemSubQuestionPresenter, position: Int) {
+        binding?.tvAlternative?.text = presenter.description
+        binding?.tvAlternative?.visibility = presenter.descriptionVisibility.visibleOrGone()
+        binding?.tilAlternative?.hint = presenter.description
+        binding?.tilAlternative?.visibility = presenter.otherVisibility.visibleOrGone()
+
+        binding?.etAlternative?.doOnTextChanged { text, _, _, _ ->
+            presenter.other = text.toString()
+            subQuestionListener.onSubAnswerOtherChanged(presenter)
+        }
 
         binding?.rgThermometerAlternative?.setOnCheckedChangeListener { _, checkedId ->
             when (checkedId) {
-                binding.rbAlwaysAlternative.id -> {
+                binding.rbAlwaysAlternative.id ->
                     presenter.chosenSubAnswer = AnswerType.ALWAYS
-                }
-                binding.rbOftenAlternative.id -> {
+                binding.rbOftenAlternative.id ->
                     presenter.chosenSubAnswer = AnswerType.OFTEN
-                }
-                binding.rbSometimesAlternative.id -> {
+                binding.rbSometimesAlternative.id ->
                     presenter.chosenSubAnswer = AnswerType.SOMETIMES
-                }
-                binding.rbAlmostNeverAlternative.id -> {
+                binding.rbAlmostNeverAlternative.id ->
                     presenter.chosenSubAnswer = AnswerType.ALMOST_NEVER
-                }
-                binding.rbNeverAlternative.id -> {
+                binding.rbNeverAlternative.id ->
                     presenter.chosenSubAnswer = AnswerType.NEVER
-                }
             }
-            subQuestionListener.onSubAnswerChanged(presenter, position)
+            when (checkedId) {
+                binding.rbNeverAlternative.id -> {
+                    binding.etAlternative?.isEnabled = false
+                    binding.etAlternative?.text?.clear()
+                }
+                else ->
+                    binding.etAlternative?.isEnabled = true
+            }
+            subQuestionListener.onSubAnswerChanged(presenter)
         }
     }
 }

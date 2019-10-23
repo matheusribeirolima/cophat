@@ -16,13 +16,32 @@
             android:id="@+id/tvAlternative"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_toStartOf="@+id/rgThermometerAlternative"
             android:layout_marginStart="@dimen/default_padding"
             android:layout_marginEnd="@dimen/default_padding"
+            android:layout_toStartOf="@+id/rgThermometerAlternative"
             android:gravity="center_vertical"
             android:maxLines="2"
             android:textAlignment="center"
             tools:text="Falta de apetite" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilAlternative"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/default_padding"
+            android:layout_marginEnd="@dimen/default_padding"
+            android:layout_toStartOf="@+id/rgThermometerAlternative"
+            android:hint="@string/describe"
+            android:visibility="gone">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etAlternative"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorTransparent"
+                android:enabled="false" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <RadioGroup
             android:id="@+id/rgThermometerAlternative"

@@ -1,10 +1,11 @@
 package com.matheus.cophat.feature.questions.fragment
 
+import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.matheus.cophat.R
-import com.matheus.cophat.data.local.entity.SubAnswer
+import com.matheus.cophat.data.presenter.ItemSubQuestionPresenter
 import com.matheus.cophat.databinding.DialogSubQuestionBinding
 import com.matheus.cophat.feature.questions.adapter.SubQuestionListener
 import com.matheus.cophat.feature.questions.adapter.SubQuestionRecyclerAdapter
@@ -42,8 +43,9 @@ class SubQuestionDialog : BaseDialog<DialogSubQuestionBinding>(), SubQuestionLis
         viewModel.presenter = args.subQuestion
 
         configureArgs()
-        configureAdapter()
         configureListeners()
+        configureObservers()
+        configureAdapter()
     }
 
     private fun configureArgs() {
@@ -80,7 +82,18 @@ class SubQuestionDialog : BaseDialog<DialogSubQuestionBinding>(), SubQuestionLis
         }
     }
 
-    override fun onSubAnswerChanged(item: SubAnswer, position: Int) {
+    private fun configureObservers() {
+        viewModel.isPrimaryButtonEnabled.observe(this, Observer {
+            binding.bbvSubQuestion.updatePrimaryButton(it)
+        })
+    }
+
+    override fun onSubAnswerChanged(item: ItemSubQuestionPresenter) {
+        binding.bbvSubQuestion.updatePrimaryButton(viewModel.isValidItem(item))
         context?.showToast(item.type?.chosenSubAnswer + " " + item.chosenSubAnswer?.chosenAnswer)
+    }
+
+    override fun onSubAnswerOtherChanged(item: ItemSubQuestionPresenter) {
+        binding.bbvSubQuestion.updatePrimaryButton(viewModel.isValidItem(item))
     }
 }

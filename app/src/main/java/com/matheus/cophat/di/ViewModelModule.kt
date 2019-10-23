@@ -38,5 +38,5 @@ val viewModelModule = module {
 
     viewModel { QuestionsViewModel(get()) }
 
-    viewModel { SubQuestionViewModel(get()) }
+    viewModel { SubQuestionViewModel(get(), get()) }
 }

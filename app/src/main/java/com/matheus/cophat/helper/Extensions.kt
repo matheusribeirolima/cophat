@@ -14,6 +14,8 @@ fun Context.showToast(text: CharSequence, duration: Int = Toast.LENGTH_SHORT) {
 
 fun Boolean.visibleOrGone() = if (this) 0 else 8
 
+fun Int?.visibleOrGone() = if (this == 0) View.VISIBLE else View.GONE
+
 fun String.isValidEmail(): Boolean = android.util.Patterns.EMAIL_ADDRESS.matcher(this).matches()
 
 fun String.isValidDate(format: String, locale: Locale = Locale.getDefault()): Boolean {

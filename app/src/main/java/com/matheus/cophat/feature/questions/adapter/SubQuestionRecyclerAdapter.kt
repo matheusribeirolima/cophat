@@ -3,9 +3,10 @@ package com.matheus.cophat.feature.questions.adapter
 import android.view.View
 import com.matheus.cophat.R
 import com.matheus.cophat.data.local.entity.SubAnswer
+import com.matheus.cophat.data.presenter.ItemSubQuestionPresenter
 import com.matheus.cophat.ui.BaseRecyclerView
 
-class SubQuestionRecyclerAdapter : BaseRecyclerView<SubAnswer, SubQuestionViewHolder>() {
+class SubQuestionRecyclerAdapter : BaseRecyclerView<ItemSubQuestionPresenter, SubQuestionViewHolder>() {
 
     lateinit var subQuestionListener: SubQuestionListener
 
@@ -19,13 +20,13 @@ class SubQuestionRecyclerAdapter : BaseRecyclerView<SubAnswer, SubQuestionViewHo
 
     override fun onBindViewHolder(
         holder: SubQuestionViewHolder,
-        item: SubAnswer,
+        item: ItemSubQuestionPresenter,
         position: Int
     ) {
         holder.bind(item, position)
     }
 
-    override fun setItems(items: List<SubAnswer>) {
+    override fun setItems(items: List<ItemSubQuestionPresenter>) {
         presenterList.clear()
         presenterList.addAll(items)
         notifyDataSetChanged()
