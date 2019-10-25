@@ -44,6 +44,11 @@ data class Alternative(
 ) : Parcelable
 
 data class SubAnswer(
+    var id: Int? = null,
+    var alternatives: HashMap<String, AlternativeAnswer>? = null
+)
+
+data class AlternativeAnswer(
     var type: SubAnswerType? = null,
     var other: String? = null,
     var chosenSubAnswer: AnswerType? = null

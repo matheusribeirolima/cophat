@@ -6,6 +6,7 @@ import com.google.firebase.database.DatabaseException
 import com.matheus.cophat.R
 import com.matheus.cophat.data.local.entity.*
 import com.matheus.cophat.data.presenter.ItemSubQuestionPresenter
+import com.matheus.cophat.data.presenter.QuestionnairePresenter
 import com.matheus.cophat.data.presenter.SubQuestionPresenter
 import com.matheus.cophat.data.repository.QuestionsRepository
 import com.matheus.cophat.helper.ResourceManager
@@ -101,9 +102,12 @@ class SubQuestionViewModel(
         try {
             isLoading.postValue(true)
 
+            repository.addChild(presenter.subAnswerPath, SubAnswer(presenter.subAnswerId))
+
+            val alternativePath = generateAlternativesPath()
             for (subAnswer in subAnswers) {
-                repository.addChild(presenter.subAnswerPath,
-                    SubAnswer().apply {
+                repository.addChild(alternativePath,
+                    AlternativeAnswer().apply {
                         type = subAnswer.type
                         other = subAnswer.other
                         chosenSubAnswer = subAnswer.chosenSubAnswer
@@ -113,6 +117,36 @@ class SubQuestionViewModel(
             handleError.postValue(e)
         } finally {
             isLoading.postValue(false)
+        }
+    }
+
+    private suspend fun generateAlternativesPath(): String {
+        return presenter.subAnswerPath + "/" + getSubAnswerKey() + "/alternatives"
+    }
+
+    private suspend fun getSubAnswerKey(): String? {
+        val questionnaire = getUpdatedQuestionnaire()
+        return getApplication(questionnaire)
+            ?.answers
+            ?.values
+            ?.firstOrNull { it.id == presenter.answerId }
+            ?.subAnswers
+            ?.entries
+            ?.firstOrNull{ it.value.id == presenter.subAnswerId }
+            ?.key
+    }
+
+    private suspend fun getUpdatedQuestionnaire(): QuestionnairePresenter? {
+        return repository.getFamilyId()?.let {
+             repository.getQuestionnaireByFamilyId(it)
+        }
+    }
+
+    private fun getApplication(questionnairePresenter: QuestionnairePresenter?): ApplicationEntity? {
+        return if (isChildren) {
+            questionnairePresenter?.questionnaire?.childApplication
+        } else {
+            questionnairePresenter?.questionnaire?.parentApplication
         }
     }
 }

@@ -21,6 +21,7 @@ class QuestionsViewModel(private val repository: QuestionsRepository) : BaseView
     private var position = 0
     private var subQuestionPosition = 0
     lateinit var gender: GenderType
+    private var application: ApplicationEntity? = null
     private var questionnairePresenter: QuestionnairePresenter? = null
 
     override fun initialize() {
@@ -30,7 +31,9 @@ class QuestionsViewModel(private val repository: QuestionsRepository) : BaseView
 
                 getQuestions()
                 getUpdatedQuestionnaire()
-                retrieveApplicationData(getApplication())
+                getApplication()
+                retrieveApplicationData()
+                retrievePositionInQuestionnaire()
                 generatePresenter()
             } catch (e: DatabaseException) {
                 handleError.postValue(e)
@@ -55,15 +58,15 @@ class QuestionsViewModel(private val repository: QuestionsRepository) : BaseView
         }
     }
 
-    private fun getApplication() : ApplicationEntity? {
-        return if (isChildren) {
+    private fun getApplication() {
+        application = if (isChildren) {
             questionnairePresenter?.questionnaire?.childApplication
         } else {
             questionnairePresenter?.questionnaire?.parentApplication
         }
     }
 
-    private fun retrieveApplicationData(application: ApplicationEntity?) {
+    private fun retrieveApplicationData() {
         application?.respondent?.let { respondent ->
             respondent.gender?.let {
                 gender = if (it == GenderType.MALE.genderType) {
@@ -73,8 +76,31 @@ class QuestionsViewModel(private val repository: QuestionsRepository) : BaseView
                 }
             }
         }
-        application?.answers?.let {
-            position = it.size
+    }
+
+    private fun retrievePositionInQuestionnaire() {
+        application?.answers?.let {answers ->
+            questions[answers.size].subQuestions?.let {subQuestion ->
+                answers.values.last().subAnswers?.let {subAnswer ->
+                    position = if (subAnswer.size < subQuestion.size) {
+
+                        answers.size - 1
+                    } else {
+                        answers.size
+                    }
+                }
+                position = answers.size
+            }
+            position = answers.size
+        }
+        getAnswer()?.subAnswers?.let {
+            subQuestionPosition = it.size
+        }
+    }
+
+    private fun getAnswer(): Answer? {
+        return application?.answers?.values?.firstOrNull{
+            it.id == position
         }
     }
 
@@ -112,7 +138,8 @@ class QuestionsViewModel(private val repository: QuestionsRepository) : BaseView
 
                 repository.addChild(getCurrentAnswerPath(), generateAnswer())
                 getUpdatedQuestionnaire()
-                if (questions[position].subQuestions != null &&
+                getApplication()
+                if (hasSubQuestionToRespond() &&
                     presenter.answer != AnswerType.NEVER) {
                     generateSubQuestionPresenter()
                 } else {
@@ -144,6 +171,15 @@ class QuestionsViewModel(private val repository: QuestionsRepository) : BaseView
         return Answer(position + 1, presenter.answer)
     }
 
+    private fun hasSubQuestionToRespond(): Boolean {
+        questions[position].subQuestions?.let {
+            if (subQuestionPosition < it.size) {
+                return true
+            }
+        }
+        return false
+    }
+
     private suspend fun continueQuestionnaire() {
         if (position + 1 < questions.size) {
             position++
@@ -162,7 +198,7 @@ class QuestionsViewModel(private val repository: QuestionsRepository) : BaseView
     }
 
     private fun generateSubQuestionPresenter() {
-        val answerKey = getApplication()
+        val answerKey = application
             ?.answers
             ?.entries
             ?.firstOrNull { it.value.id == position + 1 }
@@ -170,15 +206,16 @@ class QuestionsViewModel(private val repository: QuestionsRepository) : BaseView
 
         val subQuestion = questions[position]
             .subQuestions
-            ?.entries
-            ?.firstOrNull{ it.value.id == subQuestionPosition + 1 }
-            ?.value
+            ?.values
+            ?.firstOrNull{ it.id == subQuestionPosition + 1 }
 
         answerKey?.let {
             subQuestion?.let {
                 this.subQuestion.postValue(SubQuestionPresenter(
                     getCurrentAnswerPath() + "/" + answerKey + "/subAnswers",
-                    subQuestion))
+                    position + 1,
+                    subQuestion,
+                    subQuestionPosition + 1))
             }
         }
     }

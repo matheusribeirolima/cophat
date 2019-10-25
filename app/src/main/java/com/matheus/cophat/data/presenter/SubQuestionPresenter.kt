@@ -7,5 +7,7 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class SubQuestionPresenter(
     val subAnswerPath: String,
-    val subQuestion: SubQuestion
+    val answerId: Int,
+    val subQuestion: SubQuestion,
+    val subAnswerId: Int
 ) : Parcelable
