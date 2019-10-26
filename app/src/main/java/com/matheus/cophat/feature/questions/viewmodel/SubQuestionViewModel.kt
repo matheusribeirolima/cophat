@@ -52,6 +52,7 @@ class SubQuestionViewModel(
                     description = getDescriptionByType(entry.value)
                     descriptionVisibility = getDescriptionVisibility(entry.value)
                     otherVisibility = getOtherVisibility(entry.value)
+                    chosenSubAnswer = AnswerType.NEVER
                     isPrimaryButtonEnabled.postValue(isValidItem(this))
                 }
             }
@@ -71,7 +72,7 @@ class SubQuestionViewModel(
     }
 
     private fun getOtherVisibility(alternative: Alternative): Int {
-        return (alternative.type == SubAnswerType.OPEN &&
+        return (alternative.type == SubAnswerType.OPEN ||
                 alternative.type == SubAnswerType.OTHER).visibleOrGone()
     }
 

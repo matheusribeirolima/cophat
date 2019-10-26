@@ -70,7 +70,7 @@ class SubQuestionDialog : BaseDialog<DialogSubQuestionBinding>(), SubQuestionLis
             }
 
             override fun onSecondaryClick() {
-                saveAndRestartQuestionnaire()
+                dismiss()
             }
         })
     }

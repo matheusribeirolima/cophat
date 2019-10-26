@@ -19,7 +19,6 @@ class QuestionsRepository(
         return getDatabaseChild(FirebaseChild.FORMS, Form::class.java)
             .first { it.type == formType }.questions
             ?.map { entry -> entry.value }
-            ?.toList()
             ?.sortedBy { it.id }
     }
 
@@ -51,7 +50,7 @@ class QuestionsRepository(
         }
     }
 
-    fun test(child: String) {
-        getDatabase().child(child).push().key
+    suspend fun clearLocally() {
+        dao.deleteAllApplications()
     }
 }

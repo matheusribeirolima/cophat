@@ -11,7 +11,7 @@ enum class AnswerType(val chosenAnswer: String, val chosenAnswerPoints: Int) {
 }
 
 data class Answer(
-    var id: Int? = null,
+    var id: Int = 0,
     var chosenAnswer: AnswerType? = null,
     var subAnswers: HashMap<String, SubAnswer>? = null
 )

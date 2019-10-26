@@ -23,6 +23,7 @@ class QuestionsViewModel(private val repository: QuestionsRepository) : BaseView
     lateinit var gender: GenderType
     private var application: ApplicationEntity? = null
     private var questionnairePresenter: QuestionnairePresenter? = null
+    private var hasSubQuestionToRespond: Boolean = false
 
     override fun initialize() {
         viewModelScope.launch(context = Dispatchers.IO) {
@@ -34,7 +35,7 @@ class QuestionsViewModel(private val repository: QuestionsRepository) : BaseView
                 getApplication()
                 retrieveApplicationData()
                 retrievePositionInQuestionnaire()
-                generatePresenter()
+                verifyStep()
             } catch (e: DatabaseException) {
                 handleError.postValue(e)
             } finally {
@@ -79,28 +80,66 @@ class QuestionsViewModel(private val repository: QuestionsRepository) : BaseView
     }
 
     private fun retrievePositionInQuestionnaire() {
-        application?.answers?.let {answers ->
-            questions[answers.size].subQuestions?.let {subQuestion ->
-                answers.values.last().subAnswers?.let {subAnswer ->
-                    position = if (subAnswer.size < subQuestion.size) {
-
-                        answers.size - 1
-                    } else {
-                        answers.size
+        getLastAnswer()?.let { lastAnswer ->
+            val lastSubQuestions = questions[lastAnswer.id - 1].subQuestions
+            when {
+                lastSubQuestions.isNullOrEmpty() -> position = lastAnswer.id
+                lastAnswer.subAnswers.isNullOrEmpty() -> {
+                    lastAnswer.chosenAnswer?.let { chosenAnswer ->
+                        if (chosenAnswer != AnswerType.NEVER) {
+                            position = lastAnswer.id - 1
+                            generateSubQuestionPresenter()
+                        } else {
+                            position = lastAnswer.id
+                        }
                     }
                 }
-                position = answers.size
+                else -> {
+                    lastAnswer.chosenAnswer?.let { chosenAnswer ->
+                        if (chosenAnswer != AnswerType.NEVER) {
+                            lastSubQuestions.let { lastSubQuestions ->
+                                lastAnswer.subAnswers?.let { lastSubAnswers ->
+                                    continueAskingSubQuestions(
+                                        lastSubAnswers,
+                                        lastSubQuestions,
+                                        lastAnswer
+                                    )
+                                }
+                            }
+                        } else {
+                            position = lastAnswer.id
+                        }
+                    }
+                }
             }
-            position = answers.size
-        }
-        getAnswer()?.subAnswers?.let {
-            subQuestionPosition = it.size
         }
     }
 
-    private fun getAnswer(): Answer? {
-        return application?.answers?.values?.firstOrNull{
-            it.id == position
+    private fun getLastAnswer(): Answer? {
+        return application?.answers?.maxBy { it.value.id }?.value
+    }
+
+    private fun continueAskingSubQuestions(
+        lastSubAnswers: HashMap<String, SubAnswer>,
+        lastSubQuestions: HashMap<String, SubQuestion>,
+        lastAnswer: Answer
+    ) {
+        if (lastSubAnswers.size < lastSubQuestions.size) {
+            hasSubQuestionToRespond = true
+            subQuestionPosition = lastSubAnswers.size
+            position = lastAnswer.id - 1
+            generateSubQuestionPresenter()
+        } else {
+            position = lastAnswer.id
+        }
+    }
+
+    private suspend fun verifyStep() {
+        if (position + 1 < questions.size) {
+            generatePresenter()
+        } else {
+            completeApplication()
+            repository.clearLocally()
         }
     }
 
@@ -109,6 +148,18 @@ class QuestionsViewModel(private val repository: QuestionsRepository) : BaseView
         presenter.state = retrieveState()
         presenter.progress = retrieveProgress()
         presenter.statement = retrieveStatementByGender()
+    }
+
+    private suspend fun completeApplication() {
+        questionnairePresenter?.let {
+            if (isChildren) {
+                it.questionnaire.childApplication?.status = ApplicationStatus.COMPLETED
+                repository.updateChildrenQuestionnaire(it)
+            } else {
+                it.questionnaire.parentApplication?.status = ApplicationStatus.COMPLETED
+                repository.updateParentQuestionnaire(it)
+            }
+        }
     }
 
     private fun retrieveState(): String {
@@ -136,11 +187,14 @@ class QuestionsViewModel(private val repository: QuestionsRepository) : BaseView
             try {
                 isLoading.postValue(true)
 
-                repository.addChild(getCurrentAnswerPath(), generateAnswer())
-                getUpdatedQuestionnaire()
-                getApplication()
+                if (!hasSubQuestionToRespond) {
+                    repository.addChild(getCurrentAnswerPath(), generateAnswer())
+                    getUpdatedQuestionnaire()
+                    getApplication()
+                }
                 if (hasSubQuestionToRespond() &&
-                    presenter.answer != AnswerType.NEVER) {
+                    presenter.answer != AnswerType.NEVER
+                ) {
                     generateSubQuestionPresenter()
                 } else {
                     continueQuestionnaire()
@@ -168,6 +222,7 @@ class QuestionsViewModel(private val repository: QuestionsRepository) : BaseView
     }
 
     private fun generateAnswer(): Answer {
+        questions[position]
         return Answer(position + 1, presenter.answer)
     }
 
@@ -185,15 +240,8 @@ class QuestionsViewModel(private val repository: QuestionsRepository) : BaseView
             position++
             generatePresenter()
         } else {
-            questionnairePresenter?.let {
-                if (isChildren) {
-                    it.questionnaire.childApplication?.status = ApplicationStatus.COMPLETED
-                    repository.updateChildrenQuestionnaire(it)
-                } else {
-                    it.questionnaire.parentApplication?.status = ApplicationStatus.COMPLETED
-                    repository.updateParentQuestionnaire(it)
-                }
-            }
+            completeApplication()
+            repository.clearLocally()
         }
     }
 
@@ -207,15 +255,18 @@ class QuestionsViewModel(private val repository: QuestionsRepository) : BaseView
         val subQuestion = questions[position]
             .subQuestions
             ?.values
-            ?.firstOrNull{ it.id == subQuestionPosition + 1 }
+            ?.firstOrNull { it.id == subQuestionPosition + 1 }
 
         answerKey?.let {
             subQuestion?.let {
-                this.subQuestion.postValue(SubQuestionPresenter(
-                    getCurrentAnswerPath() + "/" + answerKey + "/subAnswers",
-                    position + 1,
-                    subQuestion,
-                    subQuestionPosition + 1))
+                this.subQuestion.postValue(
+                    SubQuestionPresenter(
+                        getCurrentAnswerPath() + "/" + answerKey + "/subAnswers",
+                        position + 1,
+                        subQuestion,
+                        subQuestionPosition + 1
+                    )
+                )
             }
         }
     }
