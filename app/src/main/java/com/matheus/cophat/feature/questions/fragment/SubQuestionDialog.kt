@@ -37,6 +37,11 @@ class SubQuestionDialog : BaseDialog<DialogSubQuestionBinding>(), SubQuestionLis
     }
 
     override fun initBinding() {
+        setViews(
+            binding.tvTitleSubQuestion,
+            binding.fSubQuestion,
+            binding.bbvSubQuestion
+        )
         isCancelable = false
 
         viewModel.initialize()

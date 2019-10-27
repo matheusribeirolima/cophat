@@ -144,6 +144,9 @@ dependencies {
     // Loading
     implementation "com.wang.avi:library:$loading_version"
 
+    // Export Excel
+    implementation "org.apache.poi:poi:$poi_version"
+
     // LeakCanary
     debugImplementation "com.squareup.leakcanary:leakcanary-android:$leak_version"
 

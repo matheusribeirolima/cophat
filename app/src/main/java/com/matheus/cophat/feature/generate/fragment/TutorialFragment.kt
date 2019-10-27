@@ -43,7 +43,8 @@ class TutorialFragment : BaseFragment<FragmentTutorialBinding>() {
         )
 
         lifecycleScope.launch {
-            binding.tvIntroTutorial.text = getString(R.string.lets_learn, viewModel.getPatientName())
+            binding.tvIntroTutorial.text =
+                getString(R.string.lets_learn, viewModel.getPatientName())
         }
 
         binding.bbvTutorial.setBottomButtonsListener(object : BottomButtonsListener {

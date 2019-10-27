@@ -17,6 +17,15 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_questionsFragment_to_completeFragment"
+            app:destination="@id/completeFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@+id/nav_questions"
+            app:popUpToInclusive="true" />
     </fragment>
     <dialog
         android:id="@+id/subQuestionDialog"
@@ -36,4 +45,9 @@
             app:popUpTo="@+id/nav_questions"
             app:popUpToInclusive="true" />
     </dialog>
+    <fragment
+        android:id="@+id/completeFragment"
+        android:name="com.matheus.cophat.feature.questions.fragment.CompleteFragment"
+        android:label="fragment_complete"
+        tools:layout="@layout/fragment_complete" />
 </navigation>

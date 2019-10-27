@@ -3,6 +3,7 @@ package com.matheus.cophat.feature.questions.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.database.DatabaseException
+import com.matheus.cophat.R
 import com.matheus.cophat.data.local.entity.*
 import com.matheus.cophat.data.presenter.QuestionnairePresenter
 import com.matheus.cophat.data.presenter.QuestionsPresenter
@@ -18,6 +19,7 @@ class QuestionsViewModel(private val repository: QuestionsRepository) : BaseView
     val questions = ArrayList<Question>()
     val presenter = QuestionsPresenter()
     val subQuestion = MutableLiveData<SubQuestionPresenter>()
+    val completeQuestionnaire = MutableLiveData<Int>()
     private var position = 0
     private var subQuestionPosition = 0
     lateinit var gender: GenderType
@@ -159,6 +161,7 @@ class QuestionsViewModel(private val repository: QuestionsRepository) : BaseView
                 it.questionnaire.parentApplication?.status = ApplicationStatus.COMPLETED
                 repository.updateParentQuestionnaire(it)
             }
+            completeQuestionnaire.postValue(R.id.action_questionsFragment_to_completeFragment)
         }
     }
 

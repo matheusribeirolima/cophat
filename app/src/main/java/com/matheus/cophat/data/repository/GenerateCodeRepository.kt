@@ -41,6 +41,12 @@ class GenerateCodeRepository(
             )
         } else {
             questionnaire.questionnaire.childApplication = application
+            updateChildrenQuestionnaire(questionnaire)
+        }
+    }
+
+    suspend fun updateChildrenQuestionnaire(questionnaire: QuestionnairePresenter?) {
+        questionnaire?.let {
             updateChild(
                 FirebaseChild.QUESTIONNAIRES,
                 questionnaire.questionnaireFirebaseKey,
@@ -61,6 +67,12 @@ class GenerateCodeRepository(
             )
         } else {
             questionnaire.questionnaire.parentApplication = application
+            updateParentQuestionnaire(questionnaire)
+        }
+    }
+
+    suspend fun updateParentQuestionnaire(questionnaire: QuestionnairePresenter?) {
+        questionnaire?.let {
             updateChild(
                 FirebaseChild.QUESTIONNAIRES,
                 questionnaire.questionnaireFirebaseKey,

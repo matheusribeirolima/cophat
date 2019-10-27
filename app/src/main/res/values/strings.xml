@@ -120,4 +120,9 @@
     <string name="four">4</string>
     <string name="start">Iniciar</string>
     <string name="describe">Descreva</string>
+    <string name="congrats">Parabéns</string>
+    <string name="questionnaire_finished">Parabéns! Você respondeu todas as perguntas</string>
+    <string name="thanks_parents">Obrigado pelo seu tempo.\nSuas respostas irão ajudar outras famílias a terem um tratamento cada vez melhor!</string>
+    <string name="thanks_children">Obrigado pelas respostas.\nSeja forte! E lembre-se, heróis nunca desistem!</string>
+    <string name="finish">Questionário concluído</string>
 </resources>

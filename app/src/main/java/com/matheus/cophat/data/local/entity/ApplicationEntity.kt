@@ -17,5 +17,5 @@ data class ApplicationEntity(
     var date: String? = null,
     var startHour: String? = null,
     var endHour: String? = null,
-    var status: ApplicationStatus = ApplicationStatus.NOT_STARTED
+    var status: ApplicationStatus = ApplicationStatus.STARTED
 )

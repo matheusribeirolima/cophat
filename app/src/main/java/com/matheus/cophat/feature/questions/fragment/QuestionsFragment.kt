@@ -65,5 +65,8 @@ class QuestionsFragment : BaseFragment<FragmentQuestionsBinding>() {
                 QuestionsFragmentDirections.actionQuestionsFragmentToSubQuestionDialog(it)
             )
         })
+        viewModel.completeQuestionnaire.observe(this, Observer {
+            findNavController().navigate(it)
+        })
     }
 }
