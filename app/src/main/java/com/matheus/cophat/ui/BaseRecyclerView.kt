@@ -22,12 +22,16 @@ abstract class BaseRecyclerView<T, VH : RecyclerView.ViewHolder> : RecyclerView.
         onBindViewHolder(holder, presenterList[position], position)
     }
 
+    fun setItems(items : List<T>) {
+        presenterList.clear()
+        presenterList.addAll(items)
+        notifyDataSetChanged()
+    }
+
     abstract fun getLayoutId(viewType: Int): Int
 
     abstract fun getViewHolderInstance(itemView: View, viewType: Int): VH
 
     abstract fun onBindViewHolder(holder: VH, item: T, position: Int)
-
-    abstract fun setItems(items : List<T>)
 
 }

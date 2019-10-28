@@ -25,10 +25,4 @@ class ApplicatorRecyclerAdapter :
     ) {
         holder.bind(item, position)
     }
-
-    override fun setItems(items: List<ItemApplicatorPresenter>) {
-        presenterList.clear()
-        presenterList.addAll(items)
-        notifyDataSetChanged()
-    }
 }

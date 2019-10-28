@@ -6,7 +6,6 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.databinding.Observable
 import androidx.lifecycle.Observer
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.matheus.cophat.R
 import com.matheus.cophat.data.local.entity.GenderType
@@ -17,7 +16,6 @@ import com.matheus.cophat.helper.OnOnlyItemSelectedListener
 import com.matheus.cophat.ui.BaseFragment
 import com.matheus.cophat.ui.BaseViewModel
 import com.matheus.cophat.ui.base.view.BottomButtonsListener
-import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class GenerateCodeFragment : BaseFragment<FragmentGenerateCodeBinding>() {
@@ -80,9 +78,7 @@ class GenerateCodeFragment : BaseFragment<FragmentGenerateCodeBinding>() {
 
         binding.bbvCode.setBottomButtonsListener(object : BottomButtonsListener {
             override fun onPrimaryClick() {
-                lifecycleScope.launch {
-                    viewModel.initiateQuestionnaire()
-                }
+                viewModel.initiateQuestionnaire()
             }
 
             override fun onSecondaryClick() {

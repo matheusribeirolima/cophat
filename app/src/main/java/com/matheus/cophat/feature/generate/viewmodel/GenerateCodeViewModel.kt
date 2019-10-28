@@ -49,25 +49,29 @@ class GenerateCodeViewModel(private val repository: GenerateCodeRepository) : Ba
         }
     }
 
-    suspend fun initiateQuestionnaire() {
-        try {
-            isLoading.postValue(true)
+    fun initiateQuestionnaire() {
+        viewModelScope.launch(context = Dispatchers.IO) {
+            try {
+                isLoading.postValue(true)
 
-            val familyId = generateFamilyId()
-            val application = generateApplicationEntity(familyId)
-            val questionnaire = repository.getQuestionnaireByFamilyId(familyId)
+                val familyId = generateFamilyId()
+                val application = generateApplicationEntity(familyId)
+                val questionnaire = repository.getQuestionnaireByFamilyId(familyId)
 
-            if (isChildren) {
-                repository.addOrUpdateChildQuestionnaire(familyId, application, questionnaire)
-            } else {
-                repository.addOrUpdateParentQuestionnaire(familyId, application, questionnaire)
+                if (isChildren) {
+                    questionnaire?.questionnaire?.childApplication = application
+                    repository.addOrUpdateChildQuestionnaire(familyId, application, questionnaire)
+                } else {
+                    questionnaire?.questionnaire?.parentApplication = application
+                    repository.addOrUpdateParentQuestionnaire(familyId, application, questionnaire)
+                }
+                repository.saveApplicationLocally(application)
+                chooseDestination()
+            } catch (e: DatabaseException) {
+                handleError.postValue(e)
+            } finally {
+                isLoading.postValue(false)
             }
-            repository.saveApplicationLocally(application)
-            chooseDestination()
-        } catch (e: DatabaseException) {
-            handleError.postValue(e)
-        } finally {
-            isLoading.postValue(false)
         }
     }
 
@@ -88,7 +92,8 @@ class GenerateCodeViewModel(private val repository: GenerateCodeRepository) : Ba
             respondent = generateRespondent(),
             hospital = presenter.hospital.name,
             applicator = presenter.applicator.name,
-            date = Calendar.getInstance().toString("dd/MM/yyyy")
+            date = Calendar.getInstance().toString("dd/MM/yyyy"),
+            startHour = Calendar.getInstance().timeInMillis.toString()
         )
     }
 

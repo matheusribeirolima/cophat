@@ -13,6 +13,8 @@ import com.matheus.cophat.data.repository.QuestionsRepository
 import com.matheus.cophat.ui.BaseViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.util.*
+import kotlin.collections.ArrayList
 
 class QuestionsViewModel(private val repository: QuestionsRepository) : BaseViewModel() {
 
@@ -156,9 +158,13 @@ class QuestionsViewModel(private val repository: QuestionsRepository) : BaseView
         questionnairePresenter?.let {
             if (isChildren) {
                 it.questionnaire.childApplication?.status = ApplicationStatus.COMPLETED
+                it.questionnaire.childApplication?.endHour =
+                    Calendar.getInstance().timeInMillis.toString()
                 repository.updateChildrenQuestionnaire(it)
             } else {
                 it.questionnaire.parentApplication?.status = ApplicationStatus.COMPLETED
+                it.questionnaire.parentApplication?.endHour =
+                    Calendar.getInstance().timeInMillis.toString()
                 repository.updateParentQuestionnaire(it)
             }
             completeQuestionnaire.postValue(R.id.action_questionsFragment_to_completeFragment)

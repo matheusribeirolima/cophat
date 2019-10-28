@@ -2,14 +2,17 @@ package com.matheus.cophat.feature.questionnaires.fragment
 
 import com.matheus.cophat.R
 import com.matheus.cophat.databinding.FragmentListQuestionnairesBinding
+import com.matheus.cophat.feature.questionnaires.adapter.QuestionnaireRecyclerAdapter
 import com.matheus.cophat.feature.questionnaires.viewmodel.QuestionnairesViewModel
 import com.matheus.cophat.ui.BaseFragment
 import com.matheus.cophat.ui.BaseViewModel
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ListQuestionnairesFragment : BaseFragment<FragmentListQuestionnairesBinding>() {
 
     private val viewModel: QuestionnairesViewModel by viewModel()
+    private val adapter: QuestionnaireRecyclerAdapter by inject()
 
     override fun getLayout(): Int {
         return R.layout.fragment_list_questionnaires

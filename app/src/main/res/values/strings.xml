@@ -125,4 +125,5 @@
     <string name="thanks_parents">Obrigado pelo seu tempo.\nSuas respostas irão ajudar outras famílias a terem um tratamento cada vez melhor!</string>
     <string name="thanks_children">Obrigado pelas respostas.\nSeja forte! E lembre-se, heróis nunca desistem!</string>
     <string name="finish">Questionário concluído</string>
+    <string name="export_sheet">Exportar planilha</string>
 </resources>
