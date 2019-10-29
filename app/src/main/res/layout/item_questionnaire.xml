@@ -18,9 +18,9 @@
         android:layout_marginEnd="@dimen/small_margin"
         android:layout_marginBottom="@dimen/small_margin"
         app:cardBackgroundColor="@color/colorPrimary"
-        app:cardCornerRadius="8dp"
+        app:cardCornerRadius="@dimen/card_radius"
         app:cardUseCompatPadding="true"
-        app:contentPadding="4dp">
+        app:contentPadding="@dimen/content_padding">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -30,6 +30,7 @@
                 android:id="@+id/tvIdentifyQuestionnaire"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/tiny_margin"
                 android:gravity="center"
                 android:singleLine="true"
                 android:text="@{presenter.applicationId}"
@@ -53,8 +54,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/medium_margin"
                 android:background="?attr/selectableItemBackground"
-                android:clickable="@{presenter.childrenEnabled}"
-                android:drawableStart="@{presenter.childrenDrawable}"
                 android:drawablePadding="@dimen/small_margin"
                 android:gravity="center_vertical"
                 android:text="@{presenter.childrenState}"
@@ -71,7 +70,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/small_margin"
                 android:background="?attr/selectableItemBackground"
-                android:clickable="@{presenter.childrenEnabled}"
                 android:drawableStart="@drawable/ic_parents"
                 android:drawablePadding="@dimen/small_margin"
                 android:gravity="center_vertical"
@@ -90,12 +88,12 @@
                 android:drawableStart="@drawable/ic_hourglass"
                 android:drawablePadding="@dimen/small_margin"
                 android:gravity="center_vertical"
-                android:text="@{presenter.applicationTime}"
+                android:text="@{presenter.applicationsTime}"
                 android:textSize="@dimen/default_size"
                 app:layout_constraintEnd_toStartOf="@+id/guidelineQuestionnaire"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvParentsQuestionnaire"
-                tools:text="1:15 min de aplicação" />
+                tools:text="1h15m CA\n1d+ P" />
 
             <TextView
                 android:id="@+id/tvHospitalQuestionnaire"
@@ -133,7 +131,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/small_margin"
                 android:background="?attr/selectableItemBackground"
-                android:clickable="@{presenter.childrenEnabled}"
+                android:clickable="@{presenter.excelEnabled}"
                 android:drawableStart="@drawable/ic_excel"
                 android:drawablePadding="@dimen/small_margin"
                 android:gravity="center_vertical"

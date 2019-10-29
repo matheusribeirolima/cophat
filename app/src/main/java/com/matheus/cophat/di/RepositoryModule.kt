@@ -10,10 +10,6 @@ val repositoryModule = module {
     }
 
     single {
-        QuestionnairesRepository(get(), get())
-    }
-
-    single {
         ConfigureRepository(get())
     }
 
@@ -27,5 +23,9 @@ val repositoryModule = module {
 
     single {
         QuestionsRepository(get(), get())
+    }
+
+    single {
+        QuestionnairesRepository(get())
     }
 }

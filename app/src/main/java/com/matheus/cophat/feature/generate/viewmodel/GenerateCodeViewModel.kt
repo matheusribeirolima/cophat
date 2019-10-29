@@ -93,7 +93,7 @@ class GenerateCodeViewModel(private val repository: GenerateCodeRepository) : Ba
             hospital = presenter.hospital.name,
             applicator = presenter.applicator.name,
             date = Calendar.getInstance().toString("dd/MM/yyyy"),
-            startHour = Calendar.getInstance().timeInMillis.toString()
+            startHour = Calendar.getInstance().timeInMillis
         )
     }
 

@@ -126,4 +126,10 @@
     <string name="thanks_children">Obrigado pelas respostas.\nSeja forte! E lembre-se, heróis nunca desistem!</string>
     <string name="finish">Questionário concluído</string>
     <string name="export_sheet">Exportar planilha</string>
+    <string name="all_questionnaires">Lista de todos os questionários</string>
+    <string name="description_questionnaires">Veja as informações detalhadas de cada questionário e gere suas respectivas planilhas</string>
+    <string name="not_initialized">Não iniciado</string>
+    <string name="incomplete">Incompleto</string>
+    <string name="complete">Completo</string>
+    <string name="more_days">1d+</string>
 </resources>

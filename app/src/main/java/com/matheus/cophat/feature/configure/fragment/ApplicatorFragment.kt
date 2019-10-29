@@ -38,11 +38,16 @@ class ApplicatorFragment : BaseFragment<FragmentApplicatorBinding>(), Applicator
         viewModel.initialize()
 
         configureObservers()
+        configureAdapter()
+        configureListener()
+    }
 
+    private fun configureAdapter() {
         adapter.applicatorListener = this
-
         binding.rvApplicator.adapter = adapter
+    }
 
+    private fun configureListener() {
         binding.ivAddApplicator.setOnClickListener {
             findNavController().navigate(
                 ApplicatorFragmentDirections.actionApplicatorFragmentToApplicatorDialog(
@@ -55,7 +60,6 @@ class ApplicatorFragment : BaseFragment<FragmentApplicatorBinding>(), Applicator
     private fun configureObservers() {
         viewModel.applicatorPresenter.observe(this,
             Observer {
-
                 adapter.setItems(it.applicators)
             })
     }

@@ -15,7 +15,7 @@ data class ApplicationEntity(
     var applicator: String? = null,
     var answers: HashMap<String, Answer>? = null,
     var date: String? = null,
-    var startHour: String? = null,
-    var endHour: String? = null,
+    var startHour: Long? = null,
+    var endHour: Long? = null,
     var status: ApplicationStatus = ApplicationStatus.STARTED
 )

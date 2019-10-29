@@ -7,10 +7,8 @@ data class ItemQuestionnairePresenter(
     @DrawableRes
     val childrenDrawable: Int,
     val childrenState: String,
-    val childrenEnabled: Boolean,
     val parentsState: String,
-    val parentsEnabled: Boolean,
-    val applicationTime: String,
+    val applicationsTime: String,
     val hospital: String,
     val admin: String,
     val excelEnabled: Boolean

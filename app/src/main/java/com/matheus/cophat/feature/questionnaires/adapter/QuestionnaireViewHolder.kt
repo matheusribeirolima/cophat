@@ -13,12 +13,12 @@ class QuestionnaireViewHolder(
     override fun bind(presenter: ItemQuestionnairePresenter, position: Int) {
         binding?.let {
             it.presenter = presenter
-            it.tvChildrenQuestionnaire.setOnClickListener {
-                questionnaireListener.onClickChildren(presenter)
-            }
-            it.tvParentsQuestionnaire.setOnClickListener {
-                questionnaireListener.onClickParents(presenter)
-            }
+            it.tvChildrenQuestionnaire.setCompoundDrawablesWithIntrinsicBounds(
+                presenter.childrenDrawable,
+                0,
+                0,
+                0
+            )
             it.tvExcelQuestionnaire.setOnClickListener {
                 questionnaireListener.onClickExcel(presenter)
             }

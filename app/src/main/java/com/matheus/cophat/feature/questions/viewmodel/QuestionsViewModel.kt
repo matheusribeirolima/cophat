@@ -159,12 +159,12 @@ class QuestionsViewModel(private val repository: QuestionsRepository) : BaseView
             if (isChildren) {
                 it.questionnaire.childApplication?.status = ApplicationStatus.COMPLETED
                 it.questionnaire.childApplication?.endHour =
-                    Calendar.getInstance().timeInMillis.toString()
+                    Calendar.getInstance().timeInMillis
                 repository.updateChildrenQuestionnaire(it)
             } else {
                 it.questionnaire.parentApplication?.status = ApplicationStatus.COMPLETED
                 it.questionnaire.parentApplication?.endHour =
-                    Calendar.getInstance().timeInMillis.toString()
+                    Calendar.getInstance().timeInMillis
                 repository.updateParentQuestionnaire(it)
             }
             completeQuestionnaire.postValue(R.id.action_questionsFragment_to_completeFragment)
