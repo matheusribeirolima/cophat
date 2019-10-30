@@ -5,7 +5,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.matheus.cophat.R
-import com.matheus.cophat.databinding.DialogApplicatorBinding
+import com.matheus.cophat.databinding.DialogAdminBinding
 import com.matheus.cophat.feature.configure.viewmodel.ConfigureViewModel
 import com.matheus.cophat.helper.showToast
 import com.matheus.cophat.ui.BaseDialog
@@ -13,14 +13,14 @@ import com.matheus.cophat.ui.BaseViewModel
 import com.matheus.cophat.ui.base.view.BottomButtonsListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class ApplicatorDialog : BaseDialog<DialogApplicatorBinding>() {
+class AdminDialog : BaseDialog<DialogAdminBinding>() {
 
     private val viewModel: ConfigureViewModel by viewModel()
 
-    private val args: ApplicatorDialogArgs by navArgs()
+    private val args: AdminDialogArgs by navArgs()
 
     override fun getLayout(): Int {
-        return R.layout.dialog_applicator
+        return R.layout.dialog_admin
     }
 
     override fun getViewModel(): BaseViewModel {
@@ -28,7 +28,7 @@ class ApplicatorDialog : BaseDialog<DialogApplicatorBinding>() {
     }
 
     override fun getDialogTag(): String {
-        return "dialog_applicator"
+        return "dialog_admin"
     }
 
     override fun initBinding() {
@@ -44,22 +44,22 @@ class ApplicatorDialog : BaseDialog<DialogApplicatorBinding>() {
         })
 
         viewModel.isButtonEnabled.observe(this, Observer {
-            binding.bbvApplicator.updatePrimaryButton(it)
+            binding.bbvAdmin.updatePrimaryButton(it)
         })
 
-        viewModel.statusApplicator.observe(this, Observer {
+        viewModel.statusAdmin.observe(this, Observer {
             context?.showToast(it)
             dismiss()
-            findNavController().navigate(R.id.action_applicatorDialog_to_applicatorFragment)
+            findNavController().navigate(R.id.action_adminDialog_to_adminFragment)
         })
 
         configureListeners()
     }
 
     private fun configureListeners() {
-        binding.bbvApplicator.setBottomButtonsListener(object : BottomButtonsListener {
+        binding.bbvAdmin.setBottomButtonsListener(object : BottomButtonsListener {
             override fun onPrimaryClick() {
-                viewModel.saveOrUpdateApplicator(binding.presenter, args.key)
+                viewModel.saveOrUpdateAdmin(binding.presenter, args.key)
             }
 
             override fun onSecondaryClick() {

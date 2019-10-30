@@ -1,6 +1,6 @@
 package com.matheus.cophat.di
 
-import com.matheus.cophat.feature.configure.adapter.ApplicatorRecyclerAdapter
+import com.matheus.cophat.feature.configure.adapter.AdminRecyclerAdapter
 import com.matheus.cophat.feature.questionnaires.adapter.QuestionnaireRecyclerAdapter
 import com.matheus.cophat.feature.questions.adapter.SubQuestionRecyclerAdapter
 import com.matheus.cophat.helper.ResourceManager
@@ -12,7 +12,7 @@ val appModule = module {
     }
 
     factory {
-        ApplicatorRecyclerAdapter()
+        AdminRecyclerAdapter()
     }
 
     factory {

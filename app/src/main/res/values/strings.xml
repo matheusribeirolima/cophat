@@ -40,16 +40,16 @@
     <string name="female">Feminino</string>
     <string name="complete_name">Nome completo</string>
     <string name="choose_hospital">Escolha o hospital:</string>
-    <string name="choose_applicator">Escolha o aplicador:</string>
-    <string name="edit_or_remove_applicator">Clique nos ícones para adicionar, editar ou remover
-        qualquer aplicador no banco de dados da aplicação</string>
+    <string name="choose_admin">Escolha o administrador:</string>
+    <string name="edit_or_remove_admin">Clique nos ícones para adicionar, editar ou remover
+        qualquer administrador no banco de dados da aplicação</string>
     <string name="edit">Editar</string>
     <string name="remove">Remover</string>
     <string name="add">Adicionar</string>
-    <string name="add_applicator">Adicionar aplicador</string>
-    <string name="edit_applicator">Editar aplicador</string>
-    <string name="add_desc_applicator">Insira abaixo o nome e o e-mail do aplicador que deseja cadastrar</string>
-    <string name="edit_desc_applicator">Altere abaixo o nome ou o e-mail do aplicador selecionado</string>
+    <string name="add_admin">Adicionar administrador</string>
+    <string name="edit_admin">Editar administrador</string>
+    <string name="add_desc_admin">Insira abaixo o nome e o e-mail do administrador que deseja cadastrar</string>
+    <string name="edit_desc_admin">Altere abaixo o nome ou o e-mail do administrador selecionado</string>
     <string name="email">E-mail</string>
     <string name="cancel">Cancelar</string>
     <string name="save">Salvar</string>

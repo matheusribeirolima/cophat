@@ -2,13 +2,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".feature.configure.fragment.ApplicatorDialog">
+    tools:context=".feature.configure.fragment.AdminDialog">
 
     <data>
 
         <variable
             name="presenter"
-            type="com.matheus.cophat.data.presenter.ApplicatorConfigurePresenter" />
+            type="com.matheus.cophat.data.presenter.AdminConfigurePresenter" />
 
     </data>
 
@@ -21,7 +21,7 @@
         android:padding="@dimen/default_padding">
 
         <TextView
-            android:id="@+id/tvTitleDialogApplicator"
+            android:id="@+id/tvTitleDialogAdmin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -31,10 +31,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="@string/add_applicator" />
+            tools:text="@string/add_admin" />
 
         <TextView
-            android:id="@+id/tvSubtitleDialogApplicator"
+            android:id="@+id/tvSubtitleDialogAdmin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/large_margin"
@@ -43,18 +43,18 @@
             android:textSize="@dimen/large_size"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvTitleDialogApplicator"
-            tools:text="@string/add_desc_applicator" />
+            app:layout_constraintTop_toBottomOf="@+id/tvTitleDialogAdmin"
+            tools:text="@string/add_desc_admin" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilNameApplicator"
+            android:id="@+id/tilNameAdmin"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/extra_margin"
             android:hint="@string/complete_name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvSubtitleDialogApplicator">
+            app:layout_constraintTop_toBottomOf="@+id/tvSubtitleDialogAdmin">
 
             <com.google.android.material.textfield.TextInputEditText
                 style="@style/AppTheme.EditTextTheme"
@@ -66,14 +66,14 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilEmailApplicator"
+            android:id="@+id/tilEmailAdmin"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/extra_margin"
             android:hint="@string/email"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tilNameApplicator">
+            app:layout_constraintTop_toBottomOf="@+id/tilNameAdmin">
 
             <com.google.android.material.textfield.TextInputEditText
                 style="@style/AppTheme.EditTextTheme"
@@ -85,7 +85,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.matheus.cophat.ui.base.view.BottomButtonsView
-            android:id="@+id/bbvApplicator"
+            android:id="@+id/bbvAdmin"
             android:layout_width="0dp"
             android:layout_height="@dimen/bottom_button_height"
             app:bbv_primary_enabled="false"
@@ -93,7 +93,7 @@
             app:bbv_secondary_name="@string/cancel"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tilEmailApplicator" />
+            app:layout_constraintTop_toBottomOf="@+id/tilEmailAdmin" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

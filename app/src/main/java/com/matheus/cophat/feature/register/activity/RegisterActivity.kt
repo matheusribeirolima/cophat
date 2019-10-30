@@ -1,6 +1,5 @@
 package com.matheus.cophat.feature.register.activity
 
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.navArgs
 import com.matheus.cophat.R

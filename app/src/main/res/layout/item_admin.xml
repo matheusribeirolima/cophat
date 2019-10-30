@@ -2,13 +2,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".feature.configure.adapter.ApplicatorViewHolder">
+    tools:context=".feature.configure.adapter.AdminViewHolder">
 
     <data>
 
         <variable
             name="presenter"
-            type="com.matheus.cophat.data.presenter.ItemApplicatorPresenter" />
+            type="com.matheus.cophat.data.presenter.ItemAdminPresenter" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,14 +18,14 @@
         android:paddingEnd="@dimen/default_padding">
 
         <TextView
-            android:id="@+id/tvNameItemApplicator"
+            android:id="@+id/tvNameItemAdmin"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/medium_margin"
-            android:text="@{presenter.applicatorName}"
+            android:text="@{presenter.adminName}"
             android:textSize="@dimen/large_size"
-            app:layout_constraintBottom_toTopOf="@+id/tvContactItemApplicator"
-            app:layout_constraintEnd_toStartOf="@+id/ivEditItemApplicator"
+            app:layout_constraintBottom_toTopOf="@+id/tvContactItemAdmin"
+            app:layout_constraintEnd_toStartOf="@+id/ivEditItemAdmin"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -33,20 +33,20 @@
             tools:text="Matheus Ribeiro Lima" />
 
         <TextView
-            android:id="@+id/tvContactItemApplicator"
+            android:id="@+id/tvContactItemAdmin"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/medium_margin"
-            android:text="@{presenter.applicatorContact}"
+            android:text="@{presenter.adminContact}"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/ivEditItemApplicator"
+            app:layout_constraintEnd_toStartOf="@+id/ivEditItemAdmin"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvNameItemApplicator"
+            app:layout_constraintTop_toBottomOf="@+id/tvNameItemAdmin"
             tools:text="matheusribeirolima@gmail.com" />
 
         <ImageView
-            android:id="@+id/ivEditItemApplicator"
+            android:id="@+id/ivEditItemAdmin"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginEnd="@dimen/big_margin"
@@ -54,11 +54,11 @@
             android:contentDescription="@string/edit"
             android:src="@drawable/ic_edit"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/ivRemoveItemApplicator"
+            app:layout_constraintEnd_toStartOf="@+id/ivRemoveItemAdmin"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/ivRemoveItemApplicator"
+            android:id="@+id/ivRemoveItemAdmin"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:background="?android:selectableItemBackgroundBorderless"
@@ -69,11 +69,11 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <View
-            android:id="@+id/vDividerItemApplicator"
+            android:id="@+id/vDividerItemAdmin"
             android:layout_width="0dp"
             android:layout_height="1dp"
             android:background="@color/colorWhite"
-            android:visibility="@{presenter.applicatorDividerVisibility}"
+            android:visibility="@{presenter.adminDividerVisibility}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

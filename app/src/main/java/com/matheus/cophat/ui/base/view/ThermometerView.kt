@@ -10,7 +10,7 @@ import com.matheus.cophat.data.local.entity.AnswerType
 import com.matheus.cophat.databinding.ViewThermometerBinding
 
 class ThermometerView  @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0, defStyleRes: Int = 0
+    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
 
     lateinit var listener: ThermometerListener

@@ -1,9 +1,9 @@
 package com.matheus.cophat.data.repository
 
 import com.google.firebase.database.DatabaseReference
-import com.matheus.cophat.data.local.entity.Applicator
+import com.matheus.cophat.data.local.entity.Admin
 import com.matheus.cophat.data.local.entity.Form
-import com.matheus.cophat.data.presenter.ItemApplicatorPresenter
+import com.matheus.cophat.data.presenter.ItemAdminPresenter
 
 class ConfigureRepository(private val database: DatabaseReference) : BaseRepository() {
 
@@ -11,29 +11,24 @@ class ConfigureRepository(private val database: DatabaseReference) : BaseReposit
         return database
     }
 
-    suspend fun getApplicators(): List<ItemApplicatorPresenter> {
-        val list = ArrayList<ItemApplicatorPresenter>()
-        getDatabaseChildHash(FirebaseChild.APPLICATORS, Applicator::class.java)
+    suspend fun getAdmins(): List<ItemAdminPresenter> {
+        val list = ArrayList<ItemAdminPresenter>()
+        getDatabaseChildHash(FirebaseChild.ADMINS, Admin::class.java)
             .forEach { (key, value) ->
-                list.add(ItemApplicatorPresenter(value.name, value.contact, key))
+                list.add(ItemAdminPresenter(value.name, value.contact, key))
             }
         return list
     }
 
-    suspend fun saveApplicator(name: String, contact: String) {
-        addChild(FirebaseChild.APPLICATORS, Applicator(name, contact))
+    suspend fun saveAdmin(name: String, contact: String) {
+        addChild(FirebaseChild.ADMINS, Admin(name, contact))
     }
 
-    suspend fun updateApplicator(name: String, contact: String, key: String) {
-        updateChild(FirebaseChild.APPLICATORS, key, Applicator(name, contact))
+    suspend fun updateAdmin(name: String, contact: String, key: String) {
+        updateChild(FirebaseChild.ADMINS, key, Admin(name, contact))
     }
 
-    suspend fun removeApplicator(key: String) {
-        removeChild(FirebaseChild.APPLICATORS, key)
+    suspend fun removeAdmin(key: String) {
+        removeChild(FirebaseChild.ADMINS, key)
     }
-
-    suspend fun test(): List<Form> {
-        return getDatabaseChild(FirebaseChild.FORMS, Form::class.java)
-    }
-
 }

@@ -10,9 +10,8 @@ import com.google.firebase.database.IgnoreExtraProperties
 data class ApplicationEntity(
     @PrimaryKey
     @get:Exclude var familyId: String = "",
-    var hospital: String? = null,
-    var respondent: Respondent? = null,
-    var applicator: String? = null,
+    var patient: Patient? = null,
+    var admin: String? = null,
     var answers: HashMap<String, Answer>? = null,
     var date: String? = null,
     var startHour: Long? = null,

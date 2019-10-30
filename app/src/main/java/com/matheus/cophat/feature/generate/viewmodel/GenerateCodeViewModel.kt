@@ -5,9 +5,9 @@ import androidx.lifecycle.viewModelScope
 import com.google.firebase.database.DatabaseException
 import com.matheus.cophat.R
 import com.matheus.cophat.data.local.entity.ApplicationEntity
-import com.matheus.cophat.data.local.entity.Applicator
+import com.matheus.cophat.data.local.entity.Admin
 import com.matheus.cophat.data.local.entity.Hospital
-import com.matheus.cophat.data.local.entity.Respondent
+import com.matheus.cophat.data.local.entity.Patient
 import com.matheus.cophat.data.presenter.GenerateCodePresenter
 import com.matheus.cophat.data.repository.GenerateCodeRepository
 import com.matheus.cophat.helper.toString
@@ -18,7 +18,7 @@ import java.util.*
 
 class GenerateCodeViewModel(private val repository: GenerateCodeRepository) : BaseViewModel() {
 
-    val applicators = MutableLiveData<List<Applicator>>()
+    val admins = MutableLiveData<List<Admin>>()
     val hospitals = MutableLiveData<List<Hospital>>()
     val presenter = GenerateCodePresenter()
     val navigate = MutableLiveData<Int>()
@@ -29,7 +29,7 @@ class GenerateCodeViewModel(private val repository: GenerateCodeRepository) : Ba
                 isLoading.postValue(true)
 
                 hospitals.postValue(repository.getHospitals())
-                applicators.postValue(repository.getApplicators())
+                admins.postValue(repository.getAdmins())
             } catch (e: DatabaseException) {
                 handleError.postValue(e)
             } finally {
@@ -40,7 +40,7 @@ class GenerateCodeViewModel(private val repository: GenerateCodeRepository) : Ba
 
     fun validatePresenter() {
         if (presenter.child.trim().isNotEmpty() &&
-            presenter.applicator.name.trim().isNotEmpty() &&
+            presenter.admin.name.trim().isNotEmpty() &&
             presenter.hospital.name.trim().isNotEmpty()
         ) {
             isButtonEnabled.postValue(true)
@@ -57,15 +57,35 @@ class GenerateCodeViewModel(private val repository: GenerateCodeRepository) : Ba
                 val familyId = generateFamilyId()
                 val application = generateApplicationEntity(familyId)
                 val questionnaire = repository.getQuestionnaireByFamilyId(familyId)
-
-                if (isChildren) {
-                    questionnaire?.questionnaire?.childApplication = application
-                    repository.addOrUpdateChildQuestionnaire(familyId, application, questionnaire)
+                if (questionnaire == null) {
+                    if (isChildren) {
+                        repository.addChildQuestionnaire(
+                            familyId,
+                            presenter.hospital.name,
+                            application
+                        )
+                    } else {
+                        repository.addParentQuestionnaire(familyId,
+                            presenter.hospital.name,
+                            application)
+                    }
                 } else {
-                    questionnaire?.questionnaire?.parentApplication = application
-                    repository.addOrUpdateParentQuestionnaire(familyId, application, questionnaire)
+                    if (isChildren) {
+                        questionnaire.questionnaire.childApplication?.let {
+                            it.apply {
+                                it.familyId = questionnaire.questionnaire.familyId
+                            }
+                            repository.saveApplicationLocally(it)
+                        }
+                    } else {
+                        questionnaire.questionnaire.parentApplication?.let {
+                            it.apply {
+                                it.familyId = questionnaire.questionnaire.familyId
+                            }
+                            repository.saveApplicationLocally(it)
+                        }
+                    }
                 }
-                repository.saveApplicationLocally(application)
                 chooseDestination()
             } catch (e: DatabaseException) {
                 handleError.postValue(e)
@@ -89,16 +109,15 @@ class GenerateCodeViewModel(private val repository: GenerateCodeRepository) : Ba
     private fun generateApplicationEntity(familyId: String): ApplicationEntity {
         return ApplicationEntity(
             familyId = familyId,
-            respondent = generateRespondent(),
-            hospital = presenter.hospital.name,
-            applicator = presenter.applicator.name,
+            patient = generatePatient(),
+            admin = presenter.admin.name,
             date = Calendar.getInstance().toString("dd/MM/yyyy"),
             startHour = Calendar.getInstance().timeInMillis
         )
     }
 
-    private fun generateRespondent(): Respondent {
-        return Respondent(
+    private fun generatePatient(): Patient {
+        return Patient(
             patientName = presenter.child,
             gender = presenter.gender.genderType
         )

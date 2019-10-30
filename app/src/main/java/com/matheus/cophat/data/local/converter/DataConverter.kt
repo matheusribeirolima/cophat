@@ -5,8 +5,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.matheus.cophat.data.local.entity.Answer
 import com.matheus.cophat.data.local.entity.ApplicationStatus
-import com.matheus.cophat.data.local.entity.Question
-import com.matheus.cophat.data.local.entity.Respondent
+import com.matheus.cophat.data.local.entity.Patient
 import java.util.*
 
 class DataConverter {
@@ -28,13 +27,13 @@ class DataConverter {
     }
 
     @TypeConverter
-    fun toRespondent(respondent: String?): Respondent? {
-        return respondent?.let { Gson().fromJson(respondent, Respondent::class.java) }
+    fun toPatient(patient: String?): Patient? {
+        return patient?.let { Gson().fromJson(patient, Patient::class.java) }
     }
 
     @TypeConverter
-    fun fromRespondent(respondent: Respondent?): String? {
-        return Gson().toJson(respondent)
+    fun fromPatient(patient: Patient?): String? {
+        return Gson().toJson(patient)
     }
 
     @TypeConverter

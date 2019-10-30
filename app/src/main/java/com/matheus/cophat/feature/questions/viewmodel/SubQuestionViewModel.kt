@@ -21,8 +21,8 @@ class SubQuestionViewModel(
 ) : BaseViewModel() {
 
     lateinit var presenter: SubQuestionPresenter
-    lateinit var gender: GenderType
     val isPrimaryButtonEnabled = MutableLiveData<Boolean>()
+    val statement = MutableLiveData<String>()
 
     override fun initialize() {
         viewModelScope.launch(context = Dispatchers.IO) {
@@ -30,17 +30,30 @@ class SubQuestionViewModel(
                 isLoading.postValue(true)
 
                 repository.getGender()?.let {
-                    gender = if (it == GenderType.MALE.genderType) {
+                    val gender = if (it == GenderType.MALE.genderType) {
                         GenderType.MALE
                     } else {
                         GenderType.FEMALE
                     }
+                    statement.postValue(getStatement(gender))
                 }
             } catch (e: DatabaseException) {
                 handleError.postValue(e)
             } finally {
                 isLoading.postValue(false)
             }
+        }
+    }
+
+    private fun getStatement(gender: GenderType): String? {
+        return if (presenter.subQuestion.statement.isNullOrEmpty()) {
+            if (gender == GenderType.MALE) {
+                presenter.subQuestion.statementMale
+            } else {
+                presenter.subQuestion.statementFemale
+            }
+        } else {
+            presenter.subQuestion.statement
         }
     }
 
@@ -51,6 +64,7 @@ class SubQuestionViewModel(
                     type = entry.value.type
                     description = getDescriptionByType(entry.value)
                     descriptionVisibility = getDescriptionVisibility(entry.value)
+                    alternativeIsEnabled = entry.value.type == SubAnswerType.OPEN
                     otherVisibility = getOtherVisibility(entry.value)
                     chosenSubAnswer = AnswerType.NEVER
                     isPrimaryButtonEnabled.postValue(isValidItem(this))
@@ -76,22 +90,9 @@ class SubQuestionViewModel(
                 alternative.type == SubAnswerType.OTHER).visibleOrGone()
     }
 
-    fun getStatement(): String? {
-        return if (presenter.subQuestion.statement.isNullOrEmpty()) {
-            if (gender == GenderType.MALE) {
-                presenter.subQuestion.statementMale
-            } else {
-                presenter.subQuestion.statementFemale
-            }
-        } else {
-            presenter.subQuestion.statement
-        }
-    }
-
     fun isValidItem(item: ItemSubQuestionPresenter): Boolean {
-        return if ((item.type == SubAnswerType.OPEN ||
-                    item.type == SubAnswerType.OTHER) &&
-            item.chosenSubAnswer != AnswerType.NEVER
+        return if (item.type == SubAnswerType.OPEN ||
+            (item.type == SubAnswerType.OTHER && item.chosenSubAnswer != AnswerType.NEVER)
         ) {
             !item.other.isNullOrEmpty()
         } else {
@@ -133,13 +134,13 @@ class SubQuestionViewModel(
             ?.firstOrNull { it.id == presenter.answerId }
             ?.subAnswers
             ?.entries
-            ?.firstOrNull{ it.value.id == presenter.subAnswerId }
+            ?.firstOrNull { it.value.id == presenter.subAnswerId }
             ?.key
     }
 
     private suspend fun getUpdatedQuestionnaire(): QuestionnairePresenter? {
         return repository.getFamilyId()?.let {
-             repository.getQuestionnaireByFamilyId(it)
+            repository.getQuestionnaireByFamilyId(it)
         }
     }
 

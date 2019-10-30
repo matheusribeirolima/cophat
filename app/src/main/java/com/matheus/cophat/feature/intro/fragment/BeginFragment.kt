@@ -68,6 +68,8 @@ class BeginFragment : BaseFragment<FragmentBeginBinding>() {
                         findNavController().navigate(
                             BeginFragmentDirections.actionBeginFragmentToRegisterActivity(4)
                         )
+                    StepsPresenter.CONTINUE_QUESTIONNAIRE ->
+                        findNavController().navigate(R.id.action_beginFragment_to_nav_questions)
                 }
             }
         }

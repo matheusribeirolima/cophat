@@ -27,7 +27,7 @@ class QuestionsRepository(
     }
 
     suspend fun getGender(): String? {
-        return dao.getApplication()?.respondent?.gender
+        return dao.getApplication()?.patient?.gender
     }
 
     suspend fun updateParentQuestionnaire(questionnaire: QuestionnairePresenter?) {

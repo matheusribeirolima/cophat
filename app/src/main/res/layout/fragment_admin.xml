@@ -1,7 +1,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".feature.configure.fragment.ApplicatorFragment">
+    tools:context=".feature.configure.fragment.AdminFragment">
 
     <data>
 
@@ -13,7 +13,7 @@
         android:padding="@dimen/default_padding">
 
         <TextView
-            android:id="@+id/tvTitleApplicator"
+            android:id="@+id/tvTitleAdmin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -25,19 +25,19 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tvSubtitleApplicator"
+            android:id="@+id/tvSubtitleAdmin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/large_margin"
             android:gravity="center"
-            android:text="@string/edit_or_remove_applicator"
+            android:text="@string/edit_or_remove_admin"
             android:textSize="@dimen/large_size"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvTitleApplicator" />
+            app:layout_constraintTop_toBottomOf="@+id/tvTitleAdmin" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvApplicator"
+            android:id="@+id/rvAdmin"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/big_margin"
@@ -46,12 +46,12 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvSubtitleApplicator"
+            app:layout_constraintTop_toBottomOf="@+id/tvSubtitleAdmin"
             tools:itemCount="4"
-            tools:listitem="@layout/item_applicator" />
+            tools:listitem="@layout/item_admin" />
 
         <ImageView
-            android:id="@+id/ivAddApplicator"
+            android:id="@+id/ivAddAdmin"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginTop="@dimen/big_margin"
@@ -60,7 +60,7 @@
             android:src="@drawable/ic_plus"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rvApplicator" />
+            app:layout_constraintTop_toBottomOf="@+id/rvAdmin" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

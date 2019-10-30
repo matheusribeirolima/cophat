@@ -112,25 +112,25 @@
                 app:layout_constraintTop_toBottomOf="@+id/tvHospitalCode" />
 
             <TextView
-                android:id="@+id/tvApplicatorCode"
+                android:id="@+id/tvAdminCode"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/extra_margin"
-                android:text="@string/choose_applicator"
+                android:text="@string/choose_admin"
                 android:textSize="@dimen/title_size"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/sHospitalCode" />
 
             <Spinner
-                android:id="@+id/sApplicatorCode"
+                android:id="@+id/sAdminCode"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/medium_margin"
                 android:backgroundTint="@color/colorWhite"
                 android:popupBackground="@drawable/bg_gradient"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvApplicatorCode" />
+                app:layout_constraintTop_toBottomOf="@+id/tvAdminCode" />
 
             <com.matheus.cophat.ui.base.view.BottomButtonsView
                 android:id="@+id/bbvCode"
@@ -139,7 +139,7 @@
                 app:bbv_primary_enabled="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/sApplicatorCode" />
+                app:layout_constraintTop_toBottomOf="@+id/sAdminCode" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -45,14 +45,14 @@ class QuestionnairesViewModel(
             ItemQuestionnairePresenter(
                 applicationId = generateApplicationId(
                     questionnaire.familyId,
-                    application?.respondent?.patientName
+                    application?.patient?.patientName
                 ),
-                childrenDrawable = generateChildrenDrawable(application?.respondent?.gender),
+                childrenDrawable = generateChildrenDrawable(application?.patient?.gender),
                 childrenState = generateChildrenState(questionnaire.childApplication?.status),
                 parentsState = generateParentsState(questionnaire.parentApplication?.status),
                 applicationsTime = generateApplicationsTime(questionnaire),
-                hospital = generateHospital(application?.hospital),
-                admin = generateAdmin(application?.applicator),
+                hospital = generateHospital(questionnaire.hospital),
+                admin = generateAdmin(questionnaire),
                 excelEnabled = generateExcelEnabled(questionnaire)
             )
         })
@@ -73,7 +73,7 @@ class QuestionnairesViewModel(
     private fun generateChildrenDrawable(gender: String?): Int {
         gender?.let {
             return if (gender == GenderType.MALE.genderType) {
-                 R.drawable.ic_boy
+                R.drawable.ic_boy
             } else {
                 R.drawable.ic_girl
             }
@@ -145,8 +145,20 @@ class QuestionnairesViewModel(
         return hospital ?: ""
     }
 
-    private fun generateAdmin(admin: String?): String {
-        return admin ?: ""
+    private fun generateAdmin(questionnaire: Questionnaire): String {
+        val childrenAdmin = questionnaire.childApplication?.admin ?: ""
+        val parentsAdmin = questionnaire.parentApplication?.admin ?: ""
+
+        return if (childrenAdmin.isEmpty() && parentsAdmin.isNotEmpty()) {
+            "${parentsAdmin.substringBefore(" ")} - P"
+        } else if (childrenAdmin.isNotEmpty() && parentsAdmin.isEmpty()) {
+            "${childrenAdmin.substringBefore(" ")} - CA"
+        } else if (childrenAdmin.isNotEmpty() && parentsAdmin.isNotEmpty()) {
+            "${childrenAdmin.substringBefore(" ")} - CA\n" +
+                    "${parentsAdmin.substringBefore(" ")} - P"
+        } else {
+            ""
+        }
     }
 
     private fun generateExcelEnabled(questionnaire: Questionnaire): Boolean {

@@ -58,11 +58,11 @@ class RegisterParentsViewModel(
                 application?.let { application ->
                     val questionnaire = repository.getQuestionnaireByFamilyId(application.familyId)
 
-                    val respondent = application.respondent
-                    respondent?.motherProfession = presenter.motherProfession
-                    respondent?.fatherProfession = presenter.fatherProfession
-                    respondent?.maritalStatus = presenter.maritalStatus.maritalStatus
-                    respondent?.religion = if (presenter.religionType != ReligionType.OTHER)
+                    val patient = application.patient
+                    patient?.motherProfession = presenter.motherProfession
+                    patient?.fatherProfession = presenter.fatherProfession
+                    patient?.maritalStatus = presenter.maritalStatus.maritalStatus
+                    patient?.religion = if (presenter.religionType != ReligionType.OTHER)
                         presenter.religionType.religion else presenter.religion
 
                     repository.updateParentQuestionnaire(application, questionnaire)
@@ -78,9 +78,9 @@ class RegisterParentsViewModel(
     }
 
     private fun generateSubtitle(): String {
-        val treatment = if (application?.respondent?.gender == GenderType.MALE.genderType)
+        val treatment = if (application?.patient?.gender == GenderType.MALE.genderType)
             resourceManager.getString(R.string.male_treatment) else resourceManager.getString(R.string.female_treatment)
-        val name = application?.respondent?.patientName
+        val name = application?.patient?.patientName
 
         return resourceManager.getString(R.string.patient_parents) + treatment + name
     }

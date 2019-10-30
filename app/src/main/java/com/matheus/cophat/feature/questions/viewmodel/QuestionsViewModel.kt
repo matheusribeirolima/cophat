@@ -28,6 +28,7 @@ class QuestionsViewModel(private val repository: QuestionsRepository) : BaseView
     private var application: ApplicationEntity? = null
     private var questionnairePresenter: QuestionnairePresenter? = null
     private var hasSubQuestionToRespond: Boolean = false
+    private lateinit var familyId: String
 
     override fun initialize() {
         viewModelScope.launch(context = Dispatchers.IO) {
@@ -59,6 +60,7 @@ class QuestionsViewModel(private val repository: QuestionsRepository) : BaseView
 
     private suspend fun getUpdatedQuestionnaire() {
         repository.getFamilyId()?.let {
+            familyId = it
             questionnairePresenter = repository.getQuestionnaireByFamilyId(it)
         }
     }
@@ -72,8 +74,8 @@ class QuestionsViewModel(private val repository: QuestionsRepository) : BaseView
     }
 
     private fun retrieveApplicationData() {
-        application?.respondent?.let { respondent ->
-            respondent.gender?.let {
+        application?.patient?.let { patient ->
+            patient.gender?.let {
                 gender = if (it == GenderType.MALE.genderType) {
                     GenderType.MALE
                 } else {
@@ -139,7 +141,7 @@ class QuestionsViewModel(private val repository: QuestionsRepository) : BaseView
     }
 
     private suspend fun verifyStep() {
-        if (position + 1 < questions.size) {
+        if (position < questions.size) {
             generatePresenter()
         } else {
             completeApplication()
@@ -148,7 +150,7 @@ class QuestionsViewModel(private val repository: QuestionsRepository) : BaseView
     }
 
     private fun generatePresenter() {
-        presenter.code = questionnairePresenter?.questionnaire?.familyId
+        presenter.code = familyId
         presenter.state = retrieveState()
         presenter.progress = retrieveProgress()
         presenter.statement = retrieveStatementByGender()

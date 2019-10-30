@@ -4,9 +4,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.database.DatabaseException
 import com.matheus.cophat.R
-import com.matheus.cophat.data.presenter.ApplicatorConfigurePresenter
-import com.matheus.cophat.data.presenter.ApplicatorPresenter
-import com.matheus.cophat.data.presenter.ItemApplicatorPresenter
+import com.matheus.cophat.data.presenter.AdminConfigurePresenter
+import com.matheus.cophat.data.presenter.AdminPresenter
+import com.matheus.cophat.data.presenter.ItemAdminPresenter
 import com.matheus.cophat.data.repository.ConfigureRepository
 import com.matheus.cophat.helper.ResourceManager
 import com.matheus.cophat.helper.isValidEmail
@@ -20,21 +20,21 @@ class ConfigureViewModel(
     private val resourceManager: ResourceManager
 ) : BaseViewModel() {
 
-    val applicatorPresenter = MutableLiveData<ApplicatorPresenter>()
-    val statusApplicator = MutableLiveData<String>()
+    val adminPresenter = MutableLiveData<AdminPresenter>()
+    val statusAdmin = MutableLiveData<String>()
 
     override fun initialize() {
         viewModelScope.launch(context = Dispatchers.IO) {
             try {
                 isLoading.postValue(true)
 
-                val list = repository.getApplicators()
+                val list = repository.getAdmins()
                 for (i in list) {
-                    i.applicatorDividerVisibility = (i != list.last()).visibleOrGone()
+                    i.adminDividerVisibility = (i != list.last()).visibleOrGone()
                 }
 
-                applicatorPresenter.postValue(
-                    ApplicatorPresenter(list.isEmpty().visibleOrGone(), list)
+                adminPresenter.postValue(
+                    AdminPresenter(list.isEmpty().visibleOrGone(), list)
                 )
             } catch (e: DatabaseException) {
                 handleError.postValue(e)
@@ -44,34 +44,34 @@ class ConfigureViewModel(
         }
     }
 
-    fun getAddApplicator(): ApplicatorConfigurePresenter {
-        return ApplicatorConfigurePresenter(
-            resourceManager.getString(R.string.add_applicator),
-            resourceManager.getString(R.string.add_desc_applicator)
+    fun getAddAdmin(): AdminConfigurePresenter {
+        return AdminConfigurePresenter(
+            resourceManager.getString(R.string.add_admin),
+            resourceManager.getString(R.string.add_desc_admin)
         )
     }
 
-    fun getEditApplicator(applicator: ItemApplicatorPresenter): ApplicatorConfigurePresenter {
-        return ApplicatorConfigurePresenter(
-            resourceManager.getString(R.string.edit_applicator),
-            resourceManager.getString(R.string.edit_desc_applicator),
-            applicator.applicatorName,
-            applicator.applicatorContact
+    fun getEditAdmin(admin: ItemAdminPresenter): AdminConfigurePresenter {
+        return AdminConfigurePresenter(
+            resourceManager.getString(R.string.edit_admin),
+            resourceManager.getString(R.string.edit_desc_admin),
+            admin.adminName,
+            admin.adminContact
         )
     }
 
-    fun saveOrUpdateApplicator(applicator: ApplicatorConfigurePresenter?, key: String?) {
+    fun saveOrUpdateAdmin(admin: AdminConfigurePresenter?, key: String?) {
         viewModelScope.launch(context = Dispatchers.IO) {
             try {
                 isLoading.postValue(true)
 
-                applicator?.let {
+                admin?.let {
                     if (key != null) {
-                        repository.updateApplicator(it.name, it.contact, key)
-                        statusApplicator.postValue(resourceManager.getString(R.string.success_update))
+                        repository.updateAdmin(it.name, it.contact, key)
+                        statusAdmin.postValue(resourceManager.getString(R.string.success_update))
                     } else {
-                        repository.saveApplicator(it.name, it.contact)
-                        statusApplicator.postValue(resourceManager.getString(R.string.success_register))
+                        repository.saveAdmin(it.name, it.contact)
+                        statusAdmin.postValue(resourceManager.getString(R.string.success_register))
                     }
                 }
             } catch (e: DatabaseException) {
@@ -82,14 +82,14 @@ class ConfigureViewModel(
         }
     }
 
-    fun removeApplicator(key: String?) {
+    fun removeAdmin(key: String?) {
         viewModelScope.launch(context = Dispatchers.IO) {
             try {
                 isLoading.postValue(true)
 
                 key?.let {
-                    repository.removeApplicator(key)
-                    statusApplicator.postValue(resourceManager.getString(R.string.success_remove))
+                    repository.removeAdmin(key)
+                    statusAdmin.postValue(resourceManager.getString(R.string.success_remove))
                 }
             } catch (e: DatabaseException) {
                 handleError.postValue(e)
@@ -99,26 +99,9 @@ class ConfigureViewModel(
         }
     }
 
-    fun test() {
-        viewModelScope.launch(context = Dispatchers.IO) {
-            try {
-                isLoading.postValue(true)
-
-                for (form in repository.test()) {
-                    val sorted = form.questions?.toList()?.sortedBy { (_, value) -> value.id }?.toMap()
-                    sorted?.isEmpty()
-                }
-            } catch (e: DatabaseException) {
-                handleError.postValue(e)
-            } finally {
-                isLoading.postValue(false)
-            }
-        }
-    }
-
-    fun verifyDialogPresenter(applicator: ApplicatorConfigurePresenter?) {
-        applicator?.let {
-            if (applicator.name.trim().isNotEmpty() && applicator.contact.isValidEmail()) {
+    fun verifyDialogPresenter(admin: AdminConfigurePresenter?) {
+        admin?.let {
+            if (admin.name.trim().isNotEmpty() && admin.contact.isValidEmail()) {
                 isButtonEnabled.postValue(true)
             } else {
                 isButtonEnabled.postValue(false)

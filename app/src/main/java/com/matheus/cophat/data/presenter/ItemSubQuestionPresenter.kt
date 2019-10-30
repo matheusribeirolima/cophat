@@ -7,6 +7,7 @@ data class ItemSubQuestionPresenter(
     var type: SubAnswerType? = null,
     var description: String? = null,
     var other: String? = null,
+    var alternativeIsEnabled: Boolean = false,
     var descriptionVisibility: Int? = null,
     var otherVisibility: Int? = null,
     var chosenSubAnswer: AnswerType? = null

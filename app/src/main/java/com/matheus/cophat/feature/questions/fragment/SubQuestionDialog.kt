@@ -54,9 +54,9 @@ class SubQuestionDialog : BaseDialog<DialogSubQuestionBinding>(), SubQuestionLis
     }
 
     private fun configureArgs() {
-        viewModel.getStatement()?.let {
+        viewModel.statement.observe(this, Observer {
             binding.tvTitleSubQuestion.text = it
-        }
+        })
     }
 
     private fun configureAdapter() {
@@ -84,6 +84,7 @@ class SubQuestionDialog : BaseDialog<DialogSubQuestionBinding>(), SubQuestionLis
         lifecycleScope.launch {
             viewModel.saveAlternatives(adapter.presenterList)
             findNavController().navigate(R.id.action_subQuestionDialog_to_questionsFragment)
+            dismiss()
         }
     }
 

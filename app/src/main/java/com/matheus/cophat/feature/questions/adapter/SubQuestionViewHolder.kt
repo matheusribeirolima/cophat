@@ -3,6 +3,7 @@ package com.matheus.cophat.feature.questions.adapter
 import android.view.View
 import androidx.core.widget.doOnTextChanged
 import com.matheus.cophat.data.local.entity.AnswerType
+import com.matheus.cophat.data.local.entity.SubAnswerType
 import com.matheus.cophat.data.presenter.ItemSubQuestionPresenter
 import com.matheus.cophat.databinding.ItemSubQuestionBinding
 import com.matheus.cophat.helper.visibleOrGone
@@ -16,7 +17,7 @@ class SubQuestionViewHolder(itemView: View, private val subQuestionListener: Sub
         binding?.tvAlternative?.visibility = presenter.descriptionVisibility.visibleOrGone()
         binding?.tilAlternative?.hint = presenter.description
         binding?.tilAlternative?.visibility = presenter.otherVisibility.visibleOrGone()
-
+        binding?.etAlternative?.isEnabled = presenter.alternativeIsEnabled
         binding?.etAlternative?.doOnTextChanged { text, _, _, _ ->
             presenter.other = text.toString()
             subQuestionListener.onSubAnswerOtherChanged(presenter)
@@ -37,11 +38,13 @@ class SubQuestionViewHolder(itemView: View, private val subQuestionListener: Sub
             }
             when (checkedId) {
                 binding.rbNeverAlternative.id -> {
-                    binding.etAlternative?.isEnabled = false
-                    binding.etAlternative?.text?.clear()
+                    if (presenter.type != SubAnswerType.OPEN) {
+                        binding.etAlternative.isEnabled = false
+                        binding.etAlternative.text?.clear()
+                    }
                 }
                 else ->
-                    binding.etAlternative?.isEnabled = true
+                    binding.etAlternative.isEnabled = true
             }
             subQuestionListener.onSubAnswerChanged(presenter)
         }

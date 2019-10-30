@@ -2,11 +2,10 @@ package com.matheus.cophat.data.repository
 
 import com.google.firebase.database.DatabaseReference
 import com.matheus.cophat.data.local.dao.ApplicationDao
+import com.matheus.cophat.data.local.entity.Admin
 import com.matheus.cophat.data.local.entity.ApplicationEntity
-import com.matheus.cophat.data.local.entity.Applicator
 import com.matheus.cophat.data.local.entity.Hospital
 import com.matheus.cophat.data.local.entity.Questionnaire
-import com.matheus.cophat.data.presenter.QuestionnairePresenter
 
 class GenerateCodeRepository(
     private val database: DatabaseReference,
@@ -21,65 +20,37 @@ class GenerateCodeRepository(
         return getDatabaseChild(FirebaseChild.HOSPITALS, Hospital::class.java)
     }
 
-    suspend fun getApplicators(): List<Applicator> {
-        return getDatabaseChild(FirebaseChild.APPLICATORS, Applicator::class.java)
+    suspend fun getAdmins(): List<Admin> {
+        return getDatabaseChild(FirebaseChild.ADMINS, Admin::class.java)
     }
 
     suspend fun saveApplicationLocally(application: ApplicationEntity) {
         dao.insertApplication(application)
     }
 
-    suspend fun addOrUpdateChildQuestionnaire(
+    suspend fun addChildQuestionnaire(
         familyId: String,
-        application: ApplicationEntity,
-        questionnaire: QuestionnairePresenter? = null
+        hospital: String,
+        application: ApplicationEntity
     ) {
-        if (questionnaire == null) {
-            addChild(
-                FirebaseChild.QUESTIONNAIRES,
-                Questionnaire(familyId, childApplication = application)
-            )
-        } else {
-            updateChildrenQuestionnaire(questionnaire)
-        }
+        addChild(
+            FirebaseChild.QUESTIONNAIRES,
+            Questionnaire(familyId, hospital, childApplication = application)
+        )
     }
 
-    private suspend fun updateChildrenQuestionnaire(questionnaire: QuestionnairePresenter?) {
-        questionnaire?.let {
-            updateChild(
-                FirebaseChild.QUESTIONNAIRES,
-                questionnaire.questionnaireFirebaseKey,
-                questionnaire.questionnaire
-            )
-        }
-    }
-
-    suspend fun addOrUpdateParentQuestionnaire(
+    suspend fun addParentQuestionnaire(
         familyId: String,
-        application: ApplicationEntity,
-        questionnaire: QuestionnairePresenter? = null
+        hospital: String,
+        application: ApplicationEntity
     ) {
-        if (questionnaire == null) {
-            addChild(
-                FirebaseChild.QUESTIONNAIRES,
-                Questionnaire(familyId, parentApplication = application)
-            )
-        } else {
-            updateParentQuestionnaire(questionnaire)
-        }
-    }
-
-    private suspend fun updateParentQuestionnaire(questionnaire: QuestionnairePresenter?) {
-        questionnaire?.let {
-            updateChild(
-                FirebaseChild.QUESTIONNAIRES,
-                questionnaire.questionnaireFirebaseKey,
-                questionnaire.questionnaire
-            )
-        }
+        addChild(
+            FirebaseChild.QUESTIONNAIRES,
+            Questionnaire(familyId, hospital, parentApplication = application)
+        )
     }
 
     suspend fun getPatientName(): String? {
-        return dao.getApplication()?.respondent?.patientName
+        return dao.getApplication()?.patient?.patientName
     }
 }

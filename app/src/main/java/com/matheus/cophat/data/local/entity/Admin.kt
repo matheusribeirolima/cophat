@@ -1,6 +1,6 @@
 package com.matheus.cophat.data.local.entity
 
-data class Applicator(
+data class Admin(
     var name: String = "",
     var contact: String = ""
 ) {

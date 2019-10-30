@@ -33,10 +33,10 @@ class ConfigureExcludeDialog : BaseDialog<DialogConfigureExcludeBinding>() {
     override fun initBinding() {
         isCancelable = false
 
-        viewModel.statusApplicator.observe(this, Observer {
+        viewModel.statusAdmin.observe(this, Observer {
             context?.showToast(it)
             dismiss()
-            findNavController().navigate(R.id.action_configureExcludeDialog_to_applicatorFragment)
+            findNavController().navigate(R.id.action_configureExcludeDialog_to_adminFragment)
         })
 
         configureListeners()
@@ -46,7 +46,7 @@ class ConfigureExcludeDialog : BaseDialog<DialogConfigureExcludeBinding>() {
         binding.bbvExclude.setBottomButtonsListener(object :
             BottomButtonsListener {
             override fun onPrimaryClick() {
-                viewModel.removeApplicator(args.key)
+                viewModel.removeAdmin(args.key)
             }
 
             override fun onSecondaryClick() {

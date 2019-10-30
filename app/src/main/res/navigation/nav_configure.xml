@@ -3,21 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_configure"
-    app:startDestination="@id/applicatorFragment">
+    app:startDestination="@id/adminFragment">
     <fragment
-        android:id="@+id/applicatorFragment"
-        android:name="com.matheus.cophat.feature.configure.fragment.ApplicatorFragment"
-        android:label="ApplicatorFragment"
-        tools:layout="@layout/fragment_applicator">
+        android:id="@+id/adminFragment"
+        android:name="com.matheus.cophat.feature.configure.fragment.AdminFragment"
+        android:label="AdminFragment"
+        tools:layout="@layout/fragment_admin">
         <action
-            android:id="@+id/action_applicatorFragment_to_applicatorDialog"
-            app:destination="@id/applicatorDialog"
+            android:id="@+id/action_adminFragment_to_adminDialog"
+            app:destination="@id/adminDialog"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
-            android:id="@+id/action_applicatorFragment_to_configureExcludeDialog"
+            android:id="@+id/action_adminFragment_to_configureExcludeDialog"
             app:destination="@id/configureExcludeDialog"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
@@ -25,21 +25,21 @@
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <dialog
-        android:id="@+id/applicatorDialog"
-        android:name="com.matheus.cophat.feature.configure.fragment.ApplicatorDialog"
-        android:label="ApplicatorDialog"
-        tools:layout="@layout/dialog_applicator">
+        android:id="@+id/adminDialog"
+        android:name="com.matheus.cophat.feature.configure.fragment.AdminDialog"
+        android:label="AdminDialog"
+        tools:layout="@layout/dialog_admin">
         <argument
             android:name="presenter"
-            app:argType="com.matheus.cophat.data.presenter.ApplicatorConfigurePresenter" />
+            app:argType="com.matheus.cophat.data.presenter.AdminConfigurePresenter" />
         <argument
             android:name="key"
             android:defaultValue="@null"
             app:argType="string"
             app:nullable="true" />
         <action
-            android:id="@+id/action_applicatorDialog_to_applicatorFragment"
-            app:destination="@id/applicatorFragment"
+            android:id="@+id/action_adminDialog_to_adminFragment"
+            app:destination="@id/adminFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
@@ -58,8 +58,8 @@
             app:argType="string"
             app:nullable="true" />
         <action
-            android:id="@+id/action_configureExcludeDialog_to_applicatorFragment"
-            app:destination="@id/applicatorFragment"
+            android:id="@+id/action_configureExcludeDialog_to_adminFragment"
+            app:destination="@id/adminFragment"
             app:popUpTo="@+id/nav_configure"
             app:popUpToInclusive="true" />
     </dialog>

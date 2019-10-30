@@ -32,11 +32,11 @@ class RegisterPatientViewModel(
                 application = repository.getApplication()
 
                 presenter.subtitle = generateSubtitle()
-                application?.respondent?.let {respondent ->
-                    respondent.patientName?.let {
+                application?.patient?.let {patient ->
+                    patient.patientName?.let {
                         presenter.name = it
                     }
-                    respondent.gender?.let {
+                    patient.gender?.let {
                         presenter.male = it == GenderType.MALE.genderType
                         presenter.female = it == GenderType.FEMALE.genderType
                     }
@@ -71,10 +71,10 @@ class RegisterPatientViewModel(
                 application?.let { application ->
                     val questionnaire = repository.getQuestionnaireByFamilyId(application.familyId)
 
-                    val respondent = application.respondent
-                    respondent?.medicalRecords = presenter.medicalRecords
-                    respondent?.birthday = presenter.birthday
-                    respondent?.age = Integer.valueOf(presenter.age)
+                    val patient = application.patient
+                    patient?.medicalRecords = presenter.medicalRecords
+                    patient?.birthday = presenter.birthday
+                    patient?.age = Integer.valueOf(presenter.age)
 
                     repository.updateParentQuestionnaire(application, questionnaire)
                     repository.updateApplicationLocally(application)
@@ -89,9 +89,9 @@ class RegisterPatientViewModel(
     }
 
     private fun generateSubtitle(): String {
-        val treatment = if (application?.respondent?.gender == GenderType.MALE.genderType)
+        val treatment = if (application?.patient?.gender == GenderType.MALE.genderType)
             resourceManager.getString(R.string.male_treatment) else resourceManager.getString(R.string.female_treatment)
-        val name = application?.respondent?.patientName
+        val name = application?.patient?.patientName
 
         return resourceManager.getString(R.string.confirm_patient) + treatment + name
     }

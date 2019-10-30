@@ -8,7 +8,7 @@ import kotlinx.android.parcel.IgnoredOnParcel
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class ApplicatorConfigurePresenter(
+data class AdminConfigurePresenter(
     private var _title: String = "",
     private var _subtitle: String = "",
     private var _name: String = "",

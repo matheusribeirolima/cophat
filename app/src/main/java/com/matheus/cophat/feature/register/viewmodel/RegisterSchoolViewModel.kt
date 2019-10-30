@@ -56,13 +56,13 @@ class RegisterSchoolViewModel(
                 application?.let { application ->
                     val questionnaire = repository.getQuestionnaireByFamilyId(application.familyId)
 
-                    val respondent = application.respondent
-                    respondent?.schooling = presenter.schooling.schooling
-                    respondent?.schoolFrequency = presenter.outYes
-                    respondent?.liveInThisCity = presenter.residentYes
-                    respondent?.home = presenter.address
-                    respondent?.monthlyIncome = presenter.income
-                    respondent?.educationDegree = presenter.education.education
+                    val patient = application.patient
+                    patient?.schooling = presenter.schooling.schooling
+                    patient?.schoolFrequency = presenter.outYes
+                    patient?.liveInThisCity = presenter.residentYes
+                    patient?.home = presenter.address
+                    patient?.monthlyIncome = presenter.income
+                    patient?.educationDegree = presenter.education.education
 
                     repository.updateParentQuestionnaire(application, questionnaire)
                     repository.updateApplicationLocally(application)
@@ -77,9 +77,9 @@ class RegisterSchoolViewModel(
     }
 
     private fun generateSubtitle(): String {
-        val treatment = if (application?.respondent?.gender == GenderType.MALE.genderType)
+        val treatment = if (application?.patient?.gender == GenderType.MALE.genderType)
             resourceManager.getString(R.string.male_treatment) else resourceManager.getString(R.string.female_treatment)
-        val name = application?.respondent?.patientName
+        val name = application?.patient?.patientName
 
         return resourceManager.getString(R.string.finalize_register) + treatment + name
     }

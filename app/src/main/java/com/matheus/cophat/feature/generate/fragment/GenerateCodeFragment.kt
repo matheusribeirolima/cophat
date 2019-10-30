@@ -38,8 +38,8 @@ class GenerateCodeFragment : BaseFragment<FragmentGenerateCodeBinding>() {
             binding.rgGenderCode,
             binding.tvHospitalCode,
             binding.sHospitalCode,
-            binding.tvApplicatorCode,
-            binding.sApplicatorCode,
+            binding.tvAdminCode,
+            binding.sAdminCode,
             binding.bbvCode
         )
         binding.presenter = viewModel.presenter
@@ -96,12 +96,12 @@ class GenerateCodeFragment : BaseFragment<FragmentGenerateCodeBinding>() {
             binding.bbvCode.updatePrimaryButton(it)
         })
 
-        viewModel.applicators.observe(this, Observer { applicators ->
+        viewModel.admins.observe(this, Observer { admins ->
             context?.let { context ->
-                binding.sApplicatorCode.adapter = generateAdapter(context, applicators)
+                binding.sAdminCode.adapter = generateAdapter(context, admins)
             }
 
-            binding.sApplicatorCode.onItemSelectedListener = CustomSpinnerListener(
+            binding.sAdminCode.onItemSelectedListener = CustomSpinnerListener(
                 object : OnOnlyItemSelectedListener {
                     override fun onItemSelected(
                         parent: AdapterView<*>?,
@@ -109,7 +109,7 @@ class GenerateCodeFragment : BaseFragment<FragmentGenerateCodeBinding>() {
                         position: Int,
                         id: Long
                     ) {
-                        binding.presenter?.applicator = applicators[position]
+                        binding.presenter?.admin = admins[position]
                     }
                 })
         })

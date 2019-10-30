@@ -69,16 +69,16 @@ class IntroViewModel(
                     StepsPresenter.GENERATE_CODE_STEP_0
                 isChildren ->
                     StepsPresenter.CHILD_QUESTIONS
-                application?.respondent?.motherProfession == null ->
+                application?.patient?.motherProfession == null ->
                     StepsPresenter.REGISTER_PARENTS_STEP_1
-                application?.respondent?.medicalRecords == null ->
+                application?.patient?.medicalRecords == null ->
                     StepsPresenter.REGISTER_PATIENT_STEP_2
-                application?.respondent?.diagnosis == null ->
+                application?.patient?.diagnosis == null ->
                     StepsPresenter.REGISTER_INTERNAL_STEP_3
-                application?.respondent?.schooling == null ->
+                application?.patient?.schooling == null ->
                     StepsPresenter.REGISTER_SCHOOL_STEP_4
                 else ->
-                    StepsPresenter.GENERATE_CODE_STEP_0
+                    StepsPresenter.CONTINUE_QUESTIONNAIRE
             }
         } catch (e: DatabaseException) {
             handleError.postValue(e)
