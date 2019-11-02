@@ -1,8 +1,6 @@
 package com.matheus.cophat.feature.questionnaires.viewmodel
 
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
-import com.google.firebase.database.DatabaseException
+import com.google.firebase.database.Query
 import com.matheus.cophat.R
 import com.matheus.cophat.data.local.entity.ApplicationEntity
 import com.matheus.cophat.data.local.entity.ApplicationStatus
@@ -12,9 +10,6 @@ import com.matheus.cophat.data.presenter.ItemQuestionnairePresenter
 import com.matheus.cophat.data.repository.QuestionnairesRepository
 import com.matheus.cophat.helper.ResourceManager
 import com.matheus.cophat.ui.BaseViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import java.text.SimpleDateFormat
 import java.util.*
 
 class QuestionnairesViewModel(
@@ -22,40 +17,28 @@ class QuestionnairesViewModel(
     private val resourceManager: ResourceManager
 ) : BaseViewModel() {
 
-    val presenters = MutableLiveData<List<ItemQuestionnairePresenter>>()
+    override fun initialize() {}
 
-    override fun initialize() {
-        viewModelScope.launch(context = Dispatchers.IO) {
-            try {
-                isLoading.postValue(true)
-
-                convertToPresenter(repository.getQuestionnaires())
-            } catch (e: DatabaseException) {
-                handleError.postValue(e)
-            } finally {
-                isLoading.postValue(false)
-            }
-        }
+    fun getQuery(): Query {
+        return repository.getQuery()
     }
 
-    private fun convertToPresenter(questionnaires: List<Questionnaire>) {
-        presenters.postValue(questionnaires.map { questionnaire ->
-            val application = retrieveApplication(questionnaire)
+    fun convertToPresenter(questionnaire: Questionnaire): ItemQuestionnairePresenter {
+        val application = retrieveApplication(questionnaire)
 
-            ItemQuestionnairePresenter(
-                applicationId = generateApplicationId(
-                    questionnaire.familyId,
-                    application?.patient?.patientName
-                ),
-                childrenDrawable = generateChildrenDrawable(application?.patient?.gender),
-                childrenState = generateChildrenState(questionnaire.childApplication?.status),
-                parentsState = generateParentsState(questionnaire.parentApplication?.status),
-                applicationsTime = generateApplicationsTime(questionnaire),
-                hospital = generateHospital(questionnaire.hospital),
-                admin = generateAdmin(questionnaire),
-                excelEnabled = generateExcelEnabled(questionnaire)
-            )
-        })
+        return ItemQuestionnairePresenter(
+            applicationId = generateApplicationId(
+                questionnaire.familyId,
+                application?.patient?.patientName
+            ),
+            childrenDrawable = generateChildrenDrawable(application?.patient?.gender),
+            childrenState = generateChildrenState(questionnaire.childApplication?.status),
+            parentsState = generateParentsState(questionnaire.parentApplication?.status),
+            applicationsTime = generateApplicationsTime(questionnaire),
+            hospital = generateHospital(questionnaire.hospital),
+            admin = generateAdmin(questionnaire),
+            excelEnabled = generateExcelEnabled(questionnaire)
+        )
     }
 
     private fun retrieveApplication(questionnaire: Questionnaire): ApplicationEntity? {

@@ -19,6 +19,8 @@ buildscript {
         roomcompiler_version = "2.1.0"
         firebase_version = "17.2.1"
         database_version = "19.2.0"
+        ui_version = "6.0.2"
+        paging_version = "2.1.0"
         crashlytics_version = "2.10.1"
         koin_version = '2.0.1'
         daggerandroid_version = '2.21'

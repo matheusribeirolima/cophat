@@ -1,7 +1,7 @@
 package com.matheus.cophat.data.repository
 
 import com.google.firebase.database.DatabaseReference
-import com.matheus.cophat.data.local.entity.Questionnaire
+import com.google.firebase.database.Query
 
 class QuestionnairesRepository(private val database: DatabaseReference) : BaseRepository() {
 
@@ -9,7 +9,7 @@ class QuestionnairesRepository(private val database: DatabaseReference) : BaseRe
         return database
     }
 
-    suspend fun getQuestionnaires(): List<Questionnaire> {
-        return getDatabaseChild(FirebaseChild.QUESTIONNAIRES, Questionnaire::class.java)
+    fun getQuery(): Query {
+        return database.child(FirebaseChild.QUESTIONNAIRES.pathName)
     }
 }
