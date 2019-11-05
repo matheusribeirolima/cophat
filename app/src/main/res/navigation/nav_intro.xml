@@ -25,13 +25,6 @@
         android:label="BeginFragment"
         tools:layout="@layout/fragment_begin">
         <action
-            android:id="@+id/action_beginFragment_to_nav_questionnaires"
-            app:destination="@id/nav_questionnaires"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
-        <action
             android:id="@+id/action_beginFragment_to_nav_configure"
             app:destination="@id/nav_configure"
             app:enterAnim="@anim/nav_default_enter_anim"
@@ -47,12 +40,26 @@
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_beginFragment_to_registerActivity"
-            app:destination="@id/registerActivity" />
+            app:destination="@id/registerActivity"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_beginFragment_to_nav_questions"
-            app:destination="@id/nav_questions" />
+            app:destination="@id/nav_questions"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_beginFragment_to_questionnairesActivity"
+            app:destination="@id/questionnairesActivity"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
-    <include app:graph="@navigation/nav_questionnaires" />
     <include app:graph="@navigation/nav_configure" />
     <include app:graph="@navigation/nav_generate" />
     <activity
@@ -66,4 +73,9 @@
             app:argType="integer" />
     </activity>
     <include app:graph="@navigation/nav_questions" />
+    <activity
+        android:id="@+id/questionnairesActivity"
+        android:name="com.matheus.cophat.feature.questionnaires.activity.QuestionnairesActivity"
+        android:label="activity_questionnaires"
+        tools:layout="@layout/activity_questionnaires" />
 </navigation>

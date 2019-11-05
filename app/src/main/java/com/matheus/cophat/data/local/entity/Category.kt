@@ -8,4 +8,4 @@ enum class CategoryType(val category: String) {
     SCHOOL_EXPECTATION("Expectativa do retorno à escola")
 }
 
-data class Category(val type: CategoryType, val description: String)
+data class Category(var type: CategoryType? = null, var description: String? = null)

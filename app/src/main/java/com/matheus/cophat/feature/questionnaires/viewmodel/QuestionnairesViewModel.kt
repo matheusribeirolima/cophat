@@ -37,7 +37,8 @@ class QuestionnairesViewModel(
             applicationsTime = generateApplicationsTime(questionnaire),
             hospital = generateHospital(questionnaire.hospital),
             admin = generateAdmin(questionnaire),
-            excelEnabled = generateExcelEnabled(questionnaire)
+            excelEnabled = generateExcelEnabled(questionnaire),
+            questionnaire = questionnaire
         )
     }
 
@@ -154,5 +155,19 @@ class QuestionnairesViewModel(
             enabledExcel = it.isNotEmpty()
         }
         return enabledExcel
+    }
+
+    fun getArrayByQuestionnaire(questionnaire: Questionnaire): Array<Questionnaire> {
+        return arrayOf(questionnaire.apply {
+            childApplication?.familyId = this.familyId
+            parentApplication?.familyId = this.familyId
+        })
+    }
+
+    fun getArgsByQuestionnaire(questionnaire: Questionnaire?): Questionnaire? {
+        return questionnaire?.apply {
+            childApplication?.familyId = this.familyId
+            parentApplication?.familyId = this.familyId
+        }
     }
 }

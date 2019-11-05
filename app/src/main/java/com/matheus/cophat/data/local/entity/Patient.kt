@@ -1,5 +1,9 @@
 package com.matheus.cophat.data.local.entity
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class Patient(
     var motherProfession: String? = null,
     var fatherProfession: String? = null,
@@ -20,4 +24,4 @@ data class Patient(
     var home: String? = null,
     var monthlyIncome: String? = null,
     var educationDegree: String? = null
-)
+) : Parcelable

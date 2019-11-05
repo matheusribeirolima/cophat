@@ -46,7 +46,7 @@ abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
         } else {
             ActivityCompat.requestPermissions(
                 this, arrayOf(permission),
-                permissionsRequestCode++
+                ++permissionsRequestCode
             )
         }
     }

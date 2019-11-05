@@ -3,6 +3,7 @@ package com.matheus.cophat.di
 import com.matheus.cophat.feature.configure.viewmodel.ConfigureViewModel
 import com.matheus.cophat.feature.generate.viewmodel.GenerateCodeViewModel
 import com.matheus.cophat.feature.intro.viewmodel.IntroViewModel
+import com.matheus.cophat.feature.questionnaires.viewmodel.ExportExcelViewModel
 import com.matheus.cophat.feature.questionnaires.viewmodel.QuestionnairesViewModel
 import com.matheus.cophat.feature.questions.viewmodel.CompleteViewModel
 import com.matheus.cophat.feature.questions.viewmodel.QuestionsViewModel
@@ -24,6 +25,8 @@ val viewModelModule = module {
     viewModel { IntroViewModel(get(), get()) }
 
     viewModel { QuestionnairesViewModel(get(), get()) }
+
+    viewModel { ExportExcelViewModel(get(), get()) }
 
     viewModel { ConfigureViewModel(get(), get()) }
 

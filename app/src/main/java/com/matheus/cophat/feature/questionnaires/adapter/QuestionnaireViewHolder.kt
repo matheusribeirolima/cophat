@@ -20,7 +20,7 @@ class QuestionnaireViewHolder(
                 0
             )
             it.tvExcelQuestionnaire.setOnClickListener {
-                questionnaireListener.onClickExcel(presenter)
+                questionnaireListener.onClickExcel(presenter.questionnaire)
             }
         }
     }

@@ -1,6 +1,7 @@
 package com.matheus.cophat.data.presenter
 
 import androidx.annotation.DrawableRes
+import com.matheus.cophat.data.local.entity.Questionnaire
 
 data class ItemQuestionnairePresenter(
     val applicationId: String,
@@ -11,5 +12,6 @@ data class ItemQuestionnairePresenter(
     val applicationsTime: String,
     val hospital: String,
     val admin: String,
-    val excelEnabled: Boolean
+    val excelEnabled: Boolean,
+    val questionnaire: Questionnaire
 )

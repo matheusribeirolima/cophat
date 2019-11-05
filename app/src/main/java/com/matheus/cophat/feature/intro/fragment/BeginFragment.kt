@@ -75,7 +75,7 @@ class BeginFragment : BaseFragment<FragmentBeginBinding>() {
         }
 
         binding.btListFormsBegin.setOnClickListener {
-            findNavController().navigate(R.id.action_beginFragment_to_nav_questionnaires)
+            findNavController().navigate(R.id.action_beginFragment_to_questionnairesActivity)
         }
 
         binding.btConfigureBegin.setOnClickListener {

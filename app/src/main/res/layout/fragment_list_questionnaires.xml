@@ -38,17 +38,30 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvTitleQuestionnaires" />
 
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btExcelQuestionnaires"
+            style="@style/AppTheme.ButtonTheme"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginTop="@dimen/small_margin"
+            android:alpha="0.5"
+            android:enabled="false"
+            android:text="@string/export_all"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvSubtitleQuestionnaires" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvQuestionnaires"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="@dimen/large_margin"
+            android:layout_marginTop="@dimen/small_margin"
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvSubtitleQuestionnaires"
+            app:layout_constraintTop_toBottomOf="@+id/btExcelQuestionnaires"
             tools:listitem="@layout/item_questionnaire" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

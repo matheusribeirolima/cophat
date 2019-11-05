@@ -9,5 +9,18 @@
         android:id="@+id/listQuestionnairesFragment"
         android:name="com.matheus.cophat.feature.questionnaires.fragment.ListQuestionnairesFragment"
         android:label="ListQuestionnairesFragment"
-        tools:layout="@layout/fragment_list_questionnaires" />
+        tools:layout="@layout/fragment_list_questionnaires" >
+        <action
+            android:id="@+id/action_listQuestionnairesFragment_to_exportExcelDialog"
+            app:destination="@id/exportExcelDialog" />
+    </fragment>
+    <dialog
+        android:id="@+id/exportExcelDialog"
+        android:name="com.matheus.cophat.feature.questionnaires.fragment.ExportExcelDialog"
+        android:label="dialog_export_excel"
+        tools:layout="@layout/dialog_export_excel" >
+        <argument
+            android:name="questionnaires"
+            app:argType="com.matheus.cophat.data.local.entity.Questionnaire[]" />
+    </dialog>
 </navigation>

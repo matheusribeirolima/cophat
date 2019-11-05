@@ -43,13 +43,15 @@ data class Alternative(
     var description: String? = type?.name
 ) : Parcelable
 
+@Parcelize
 data class SubAnswer(
     var id: Int? = null,
     var alternatives: HashMap<String, AlternativeAnswer>? = null
-)
+) : Parcelable
 
+@Parcelize
 data class AlternativeAnswer(
     var type: SubAnswerType? = null,
     var other: String? = null,
     var chosenSubAnswer: AnswerType? = null
-)
+) : Parcelable
