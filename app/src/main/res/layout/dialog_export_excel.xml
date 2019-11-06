@@ -32,19 +32,20 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/large_margin"
             android:gravity="center"
-            android:text="@string/export_choose"
+            android:text="@string/export_path"
             android:textSize="@dimen/large_size"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvTitleDialogExcel" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btExcelQuestionnaires"
-            style="@style/AppTheme.ButtonTheme"
+        <com.matheus.cophat.ui.base.view.BottomButtonsView
+            android:id="@+id/bbvExcel"
             android:layout_width="0dp"
-            android:layout_height="@dimen/button_height"
-            android:layout_marginTop="@dimen/extra_margin"
-            android:text="@string/create_sheet"
+            android:layout_height="@dimen/bottom_button_height"
+            app:bbv_is_small="true"
+            app:bbv_primary_enabled="true"
+            app:bbv_primary_name="@string/confirm"
+            app:bbv_secondary_name="@string/cancel"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvSubtitleDialogExcel" />

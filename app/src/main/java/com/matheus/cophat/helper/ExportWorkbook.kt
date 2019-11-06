@@ -1,6 +1,7 @@
 package com.matheus.cophat.helper
 
 import android.content.Context
+import com.matheus.cophat.R
 import com.matheus.cophat.data.local.entity.*
 import org.apache.poi.hssf.record.cf.BorderFormatting
 import org.apache.poi.hssf.usermodel.*
@@ -12,6 +13,10 @@ import java.io.FileNotFoundException
 import java.io.FileOutputStream
 import java.io.IOException
 
+interface ExportListener {
+    fun onExportSuccess()
+    fun onExportFailed()
+}
 
 class ExportWorkbook(private val context: Context, private val resourceManager: ResourceManager) {
 
@@ -30,19 +35,22 @@ class ExportWorkbook(private val context: Context, private val resourceManager: 
     fun exportQuestionnaires(
         questionnaires: Array<Questionnaire>,
         categories: List<Category>,
-        questionsList: List<Question>?
+        questionsList: List<Question>?,
+        listener: ExportListener
     ) {
         questionsList?.let { questions = it }
         generateCenterColoredStyles()
         generateBoldStyle()
 
-        val sheetChildren = workBook.createSheet("Crianças e Adolescentes")
+        val sheetChildren =
+            workBook.createSheet(resourceManager.getString(R.string.children_adolescents))
         createHeader(sheetChildren, questionnaires)
 
-        val sheetParents = workBook.createSheet("Pais e Responsáveis")
+        val sheetParents =
+            workBook.createSheet(resourceManager.getString(R.string.parents_responsible))
         createHeader(sheetParents, questionnaires)
 
-        val sheetComparative = workBook.createSheet("Comparativo")
+        val sheetComparative = workBook.createSheet(resourceManager.getString(R.string.comparative))
 
         var answerColumn = descriptionColumn + 1
         var answerColumnComparative = descriptionColumn + 1
@@ -83,9 +91,9 @@ class ExportWorkbook(private val context: Context, private val resourceManager: 
         }
 
         if (questionnaires.size > 1) {
-            generateFile("Cophat")
+            generateFile(resourceManager.getString(R.string.cophat), listener)
         } else {
-            generateFile(questionnaires[0].familyId)
+            generateFile(questionnaires[0].familyId, listener)
         }
     }
 
@@ -192,7 +200,7 @@ class ExportWorkbook(private val context: Context, private val resourceManager: 
     private fun createHeader(sheet: HSSFSheet, questionnaires: Array<Questionnaire>) {
         val headerRow = sheet.createRow(headerRow)
         headerRow.createCell(descriptionColumn).apply {
-            setCellValue("QUESTÕES")
+            setCellValue(resourceManager.getString(R.string.questions))
             setCellStyle(boldStyle)
         }
 
@@ -222,14 +230,14 @@ class ExportWorkbook(private val context: Context, private val resourceManager: 
         val categoriesPositionRow = questionsSize + 3
         val categoriesHeaderRow = sheet.createRow(categoriesPositionRow)
         categoriesHeaderRow.createCell(descriptionColumn).apply {
-            setCellValue("CATEGORIA")
+            setCellValue(resourceManager.getString(R.string.category))
             setCellStyle(boldStyle)
         }
 
         val totalPositionRow = questionsSize + 1
         val totalDescriptionRow = sheet.createRow(totalPositionRow)
         totalDescriptionRow.createCell(descriptionColumn).apply {
-            setCellValue("TOTAL")
+            setCellValue(resourceManager.getString(R.string.total))
             setCellStyle(boldStyle)
         }
     }
@@ -252,7 +260,7 @@ class ExportWorkbook(private val context: Context, private val resourceManager: 
     private fun createCategoriesComparative(sheet: HSSFSheet, categories: List<Category>) {
         val categoriesHeaderRow = sheet.createRow(0)
         categoriesHeaderRow.createCell(descriptionColumn).apply {
-            setCellValue("CATEGORIA")
+            setCellValue(resourceManager.getString(R.string.category))
             setCellStyle(boldStyle)
         }
 
@@ -308,7 +316,7 @@ class ExportWorkbook(private val context: Context, private val resourceManager: 
 
         val totalDescriptionRow = sheet.createRow(totalPositionRow)
         totalDescriptionRow.createCell(descriptionColumn).apply {
-            setCellValue("TOTAL")
+            setCellValue(resourceManager.getString(R.string.total))
             setCellStyle(boldStyle)
         }
 
@@ -400,18 +408,19 @@ class ExportWorkbook(private val context: Context, private val resourceManager: 
         sheet.setColumnWidth(answerColumnComparative + 1, 3500)
     }
 
-    private fun generateFile(familyId: String) {
+    private fun generateFile(familyId: String, listener: ExportListener) {
         val file = File(context.getExternalFilesDir(null), "$familyId.xls")
         try {
             val os = FileOutputStream(file)
             workBook.write(os)
             os.close()
+            listener.onExportSuccess()
         } catch (e: FileNotFoundException) {
             e.printStackTrace()
-            context.showToast("Arquivo não encontrado")
+            listener.onExportFailed()
         } catch (e: IOException) {
             e.printStackTrace()
-            context.showToast("Erro ao salvar arquivo")
+            listener.onExportFailed()
         }
     }
 }

@@ -135,7 +135,15 @@
     <string name="export_all">Exportar todos os questionários</string>
     <string name="loaded_all">Todos os questionários foram carregados</string>
     <string name="export_data_sheet">Exportar dados para planilha</string>
-    <string name="export_choose">Escolha dentre as opções abaixo como deseja exportar os dados selecionados para uma planilha em Excel</string>
+    <string name="export_path">A planilha será salva na memória interna deste dispositivo no diretório:\nAndroid/data/com.cophat/files/</string>
     <string name="create_sheet">Criar documento</string>
     <string name="turn_on_permission">Permissão necessária para gerar a planilha</string>
+    <string name="export_failed">Erro ao salvar arquivo</string>
+    <string name="export_success">Arquivo salvo com sucesso!</string>
+    <string name="children_adolescents">Crianças e Adolescentes</string>
+    <string name="parents_responsible">Pais e responsáveis</string>
+    <string name="comparative">Comparativo</string>
+    <string name="questions">QUESTÕES</string>
+    <string name="category">CATEGORIA</string>
+    <string name="total">TOTAL</string>
 </resources>

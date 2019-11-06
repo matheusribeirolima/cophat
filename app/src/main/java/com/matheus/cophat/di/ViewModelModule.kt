@@ -26,7 +26,7 @@ val viewModelModule = module {
 
     viewModel { QuestionnairesViewModel(get(), get()) }
 
-    viewModel { ExportExcelViewModel(get(), get()) }
+    viewModel { ExportExcelViewModel(get()) }
 
     viewModel { ConfigureViewModel(get(), get()) }
 
