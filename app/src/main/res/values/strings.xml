@@ -140,10 +140,14 @@
     <string name="turn_on_permission">Permissão necessária para gerar a planilha</string>
     <string name="export_failed">Erro ao salvar arquivo</string>
     <string name="export_success">Arquivo salvo com sucesso!</string>
-    <string name="children_adolescents">Crianças e Adolescentes</string>
-    <string name="parents_responsible">Pais e responsáveis</string>
-    <string name="comparative">Comparativo</string>
+    <string name="children_adolescents">Questões CA</string>
+    <string name="sub_children">Subquestões CA</string>
+    <string name="parents_responsible">Questões P</string>
+    <string name="sub_parents">Subquestões P</string>
+    <string name="comparative">Questões CA x P</string>
+    <string name="sub_comparative">Subquestões CA x P</string>
     <string name="questions">QUESTÕES</string>
+    <string name="sub_questions">SUBQUESTÕES</string>
     <string name="category">CATEGORIA</string>
     <string name="total">TOTAL</string>
 </resources>

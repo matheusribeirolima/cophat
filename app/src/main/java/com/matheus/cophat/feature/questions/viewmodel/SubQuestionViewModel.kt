@@ -61,6 +61,7 @@ class SubQuestionViewModel(
         return presenter.subQuestion.alternatives
             ?.map { entry ->
                 ItemSubQuestionPresenter().apply {
+                    id = entry.value.id
                     type = entry.value.type
                     description = getDescriptionByType(entry.value)
                     descriptionVisibility = getDescriptionVisibility(entry.value)
@@ -110,7 +111,7 @@ class SubQuestionViewModel(
             for (subAnswer in subAnswers) {
                 repository.addChild(alternativePath,
                     AlternativeAnswer().apply {
-                        type = subAnswer.type
+                        id = subAnswer.id
                         other = subAnswer.other
                         chosenSubAnswer = subAnswer.chosenSubAnswer
                     })

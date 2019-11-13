@@ -39,6 +39,7 @@ enum class SubAnswerType(val chosenSubAnswer: String) {
 
 @Parcelize
 data class Alternative(
+    var id: Int? = null,
     var type: SubAnswerType? = null,
     var description: String? = type?.name
 ) : Parcelable
@@ -51,7 +52,7 @@ data class SubAnswer(
 
 @Parcelize
 data class AlternativeAnswer(
-    var type: SubAnswerType? = null,
+    var id: Int? = null,
     var other: String? = null,
     var chosenSubAnswer: AnswerType? = null
 ) : Parcelable
