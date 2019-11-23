@@ -13,6 +13,7 @@
     <string name="firebase_error">Ops… Ocorreu um erro ao salvar as informações.</string>
     <string name="ok">OK</string>
     <string name="initiate_questionnaire">Iniciar questionário</string>
+    <string name="done_questionnaire">Finalizar questionário</string>
     <string name="continue_questionnaire">Continuar questionário</string>
     <string name="list_questionnaires">Listar questionários</string>
     <string name="configurations">Configurações</string>
@@ -150,4 +151,5 @@
     <string name="sub_questions">SUBQUESTÕES</string>
     <string name="category">CATEGORIA</string>
     <string name="total">TOTAL</string>
+    <string name="removed_application">Aplicação removida com sucesso</string>
 </resources>

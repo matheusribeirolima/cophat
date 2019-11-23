@@ -9,6 +9,7 @@ import com.matheus.cophat.data.presenter.BeginPresenter
 import com.matheus.cophat.data.presenter.StepsPresenter
 import com.matheus.cophat.data.repository.IntroRepository
 import com.matheus.cophat.helper.ResourceManager
+import com.matheus.cophat.helper.visibleOrGone
 import com.matheus.cophat.ui.BaseViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -18,8 +19,9 @@ class IntroViewModel(
     private val resourceManager: ResourceManager
 ) : BaseViewModel() {
 
-    val beginPresenter = MutableLiveData<BeginPresenter>()
     private var application: ApplicationEntity? = null
+    val beginPresenter = MutableLiveData<BeginPresenter>()
+    val statusApplication = MutableLiveData<String>()
 
     override fun initialize() {
         viewModelScope.launch(context = Dispatchers.IO) {
@@ -29,7 +31,8 @@ class IntroViewModel(
                 val presenterImage: Int
                 val presenterTitle: String
                 val presenterSubtitle: String
-                val presenterButton: String = if (repository.isEmpty())
+                val hasRepository = !repository.isEmpty()
+                val presenterButton: String = if (!hasRepository)
                     resourceManager.getString(R.string.initiate_questionnaire) else
                     resourceManager.getString(R.string.continue_questionnaire)
 
@@ -48,7 +51,8 @@ class IntroViewModel(
                         presenterImage,
                         presenterTitle,
                         presenterSubtitle,
-                        presenterButton
+                        presenterButton,
+                        hasRepository.visibleOrGone()
                     )
                 )
             } catch (e: DatabaseException) {
@@ -85,6 +89,21 @@ class IntroViewModel(
             return null
         } finally {
             isLoading.postValue(false)
+        }
+    }
+
+    fun deleteApplication() {
+        viewModelScope.launch(context = Dispatchers.IO) {
+            try {
+                isLoading.postValue(true)
+
+                repository.clearLocally()
+                statusApplication.postValue(resourceManager.getString(R.string.removed_application))
+            } catch (e: DatabaseException) {
+                handleError.postValue(e)
+            } finally {
+                isLoading.postValue(false)
+            }
         }
     }
 }

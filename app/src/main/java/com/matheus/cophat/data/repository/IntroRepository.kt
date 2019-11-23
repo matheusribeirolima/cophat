@@ -12,4 +12,8 @@ class IntroRepository(private val dao: ApplicationDao) {
     suspend fun getApplication(): ApplicationEntity? {
         return dao.getApplication()
     }
+
+    suspend fun clearLocally() {
+        dao.deleteAllApplications()
+    }
 }

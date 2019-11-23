@@ -69,6 +69,7 @@ class GenerateCodeViewModel(private val repository: GenerateCodeRepository) : Ba
                             presenter.hospital.name,
                             application)
                     }
+                    repository.saveApplicationLocally(application)
                 } else {
                     if (isChildren) {
                         questionnaire.questionnaire.childApplication?.let {

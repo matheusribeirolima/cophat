@@ -7,5 +7,6 @@ data class BeginPresenter(
     var beginImage: Int = 0,
     var beginTitle: String = "",
     var beginSubtitle: String = "",
-    var beginButton: String = ""
+    var beginButton: String = "",
+    var beginVisibility: Int = 0
 )
