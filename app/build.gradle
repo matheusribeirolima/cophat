@@ -152,7 +152,7 @@ dependencies {
     implementation "org.apache.poi:poi:$poi_version"
 
     // LeakCanary
-    debugImplementation "com.squareup.leakcanary:leakcanary-android:$leak_version"
+    //debugImplementation "com.squareup.leakcanary:leakcanary-android:$leak_version"
 
     // Test helpers
     testImplementation "org.junit.jupiter:junit-jupiter-api:$junit_version"
